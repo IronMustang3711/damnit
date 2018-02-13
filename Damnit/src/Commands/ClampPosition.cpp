@@ -12,6 +12,7 @@
 
 #include "ClampPosition.h"
 #include "Subsystems/clamp.h"
+#include "Robot.h"
 double clampStartTime;
 bool clampOpen;
 

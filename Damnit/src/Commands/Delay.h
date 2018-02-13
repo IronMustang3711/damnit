@@ -2,9 +2,9 @@
 #define Delay_H
 
 #include "Commands/TimedCommand.h"
-#include "../Robot.h"
 
-class Delay : public TimedCommand {
+
+class Delay : public frc::TimedCommand {
 public:
 	Delay(double timeout);
 	void Initialize();

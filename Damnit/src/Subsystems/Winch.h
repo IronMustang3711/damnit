@@ -1,8 +1,9 @@
 #ifndef winch_H
 #define winch_H
 
+#include <memory>
 #include <Commands/Subsystem.h>
-#include "WPILib.h"
+#include <SpeedController.h>
 
 class Winch : public Subsystem {
 private:

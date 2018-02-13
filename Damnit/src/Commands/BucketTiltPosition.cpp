@@ -11,6 +11,7 @@
 
 
 #include "BucketTiltPosition.h"
+#include "Robot.h"
 struct{
 	float armPosition;
 	float bucketPosition;

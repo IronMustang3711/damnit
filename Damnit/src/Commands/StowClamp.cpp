@@ -1,6 +1,6 @@
 #include "StowClamp.h"
-#include "Commands/ClampPosition.h"
-#include "Commands/ClampTiltPosition.h"
+#include "ClampPosition.h"
+#include "ClampTiltPosition.h"
 
 StowClamp::StowClamp() {
 	AddSequential(new ClampPosition(220));  // Open Clamp

@@ -1,5 +1,5 @@
 #include "WinchDown.h"
-
+#include "Robot.h"
 WinchDown::WinchDown() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());

@@ -12,8 +12,10 @@
 #ifndef UPPERTILT_H
 #define UPPERTILT_H
 
-#include "Commands/PIDSubsystem.h"
-#include "WPILib.h"
+#include <memory>
+#include <Commands/PIDSubsystem.h>
+#include <SpeedController.h>
+#include <Encoder.h>
 
 /**
  *

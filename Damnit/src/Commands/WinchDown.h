@@ -2,8 +2,8 @@
 #define WinchDown_H
 
 
-#include "Commands/Subsystem.h"
-#include "../Robot.h"
+#include "Commands/Command.h"
+
 
 
 class WinchDown: public frc::Command {

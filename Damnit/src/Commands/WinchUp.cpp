@@ -1,5 +1,5 @@
 #include "WinchUp.h"
-
+#include "Robot.h"
 WinchUp::WinchUp() {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
