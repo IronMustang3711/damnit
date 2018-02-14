@@ -94,7 +94,7 @@ void RobotMap::init() {
 	clampClampEncoder->SetName("Clamp", "ClampEncoder");
 	clampClampEncoder->SetDistancePerPulse(1.0);
 	clampClampEncoder->SetPIDSourceType(frc::PIDSourceType::kDisplacement);
-	subsystem1PowerDistributionPanel1.reset(new frc::PowerDistributionPanel(0));
+	subsystem1PowerDistributionPanel1.reset(new frc::PowerDistributionPanel(10));
 	subsystem1PowerDistributionPanel1->SetName("Robot",
 			"Power Distribution Panel");
 
