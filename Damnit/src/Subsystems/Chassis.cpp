@@ -14,15 +14,15 @@ constexpr double pi = 3.14159265358979323846;
 constexpr double wheel_diameter = 6.0;
 constexpr int encoder_ticks_per_rev = 1410;
 
-constexpr double distance_per_rev = wheel_diameter * pi;
+constexpr double distance_per_rev = wheel_diameter * pi; //18.8495
 
-constexpr double encoder_ticks_per_inch = encoder_ticks_per_rev / distance_per_rev;
+constexpr double encoder_ticks_per_inch = encoder_ticks_per_rev / distance_per_rev; //74.802823
 
-constexpr double max_fps = 4.0;
+//constexpr double max_fps = 4.0;
 
-constexpr double max_encoder_rate_per_sec = max_fps * 12.0 * encoder_ticks_per_inch;
+//constexpr double max_encoder_rate_per_sec = max_fps * 12.0 * encoder_ticks_per_inch;
 
-constexpr double max_encoder_rate = max_encoder_rate_per_sec / 10.0;
+constexpr double max_encoder_rate = 1100.0;//max_encoder_rate_per_sec / 10.0;
 
 
 constexpr double FGain = 1023.0 / (max_encoder_rate - 0.1 * max_encoder_rate);
@@ -105,7 +105,7 @@ void Chassis::TankDrive(std::shared_ptr<Joystick> stickPosition) {
 void Chassis::driveForward_mm(double distanceInches) {
     prepareForAutonomous();
     //configure closed loop settings
-    for (const auto &t : {leftFront, leftRear, rightFront, rightRear1}) {
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->Config_kP(SLOT, 5.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 300.0, TIMEOUT);
@@ -119,30 +119,30 @@ void Chassis::driveForward_mm(double distanceInches) {
 
     }
 
-    //configure follower mode
-    leftRear->ConfigRemoteFeedbackFilter(
-            leftFront->GetDeviceID(), RemoteSensorSource::RemoteSensorSource_TalonSRX_SelectedSensor, 0, TIMEOUT);
+    //not yet supported:
+//    leftRear->ConfigRemoteFeedbackFilter(
+//            leftFront->GetDeviceID(), RemoteSensorSource::RemoteSensorSource_TalonSRX_SelectedSensor, 0, TIMEOUT);
     leftRear->Follow(*leftFront);
 
 
-    rightRear1->ConfigRemoteFeedbackFilter(
-            rightFront->GetDeviceID(), RemoteSensorSource::RemoteSensorSource_TalonSRX_SelectedSensor, 0, TIMEOUT);
+//    rightRear1->ConfigRemoteFeedbackFilter(
+//            rightFront->GetDeviceID(), RemoteSensorSource::RemoteSensorSource_TalonSRX_SelectedSensor, 0, TIMEOUT);
     rightRear1->Follow(*rightFront);
 
 // ### START ###
-    for (const auto &t : {leftFront, leftRear, rightFront, rightRear1}) {
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->Set(ControlMode::MotionMagic, inches_to_encoder_ticks(distanceInches));
     }
 
 }
 
 void Chassis::resetEncoders() {
-    for (const auto &t : {leftFront, rightFront}) t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
+    for (const auto t : {leftFront.get(), rightFront.get()}) t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
 }
 
 void Chassis::prepareForAutonomous() {
     stop();
-    for (const auto &t : {leftFront, leftRear, rightFront, rightRear1}) {
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->ConfigVoltageCompSaturation(11.0, TIMEOUT);
         t->EnableVoltageCompensation(true);
     }
@@ -151,8 +151,9 @@ void Chassis::prepareForAutonomous() {
 
 void Chassis::prepareForTeleop() {
 
-    for (const auto &t : {leftFront, leftRear, rightFront, rightRear1}) {
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->EnableVoltageCompensation(false);
+        t->SetNeutralMode(NeutralMode::Coast); // reduce the chances of tipping ( hopefully).
     }
 }
 
@@ -168,7 +169,7 @@ void Chassis::stop() {
 }
 
 void Chassis::enableInductiveBreaking(bool enable) {
-    for (const auto &t : {leftFront, leftRear, rightFront, rightRear1}) {
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
 
         t->SetNeutralMode(enable ? NeutralMode::Brake : NeutralMode::Coast);
     }
@@ -185,9 +186,3 @@ void Chassis::curvatureDrive(double fwd, double rotate, bool quickTurn) {
     differentialDrive->CurvatureDrive(fwd, rotate, quickTurn);
 }
 
-void Chassis::ResetEncoders() {
-
-	for(auto t : { leftFront.get(),rightFront.get()}){
-		t->GetSensorCollection().SetQuadraturePosition(0,10);
-	}
-}

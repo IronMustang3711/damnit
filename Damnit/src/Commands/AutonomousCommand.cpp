@@ -13,18 +13,21 @@
 #include "DriveForward.h"
 #include "GoToSwitch.h"
 #include "DumpCube.h"
+#include "Spin.h"
 
 
 AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO") {
-    Requires(Robot::chassis.get());
-    Requires(Robot::clamp.get());
-    Requires(Robot::clampTilt.get());
-    Requires(Robot::bucket.get());
-    Requires(Robot::upperTilt.get());
+//    Requires(Robot::chassis.get());
+//    Requires(Robot::clamp.get());
+//    Requires(Robot::clampTilt.get());
+//    Requires(Robot::bucket.get());
+//    Requires(Robot::upperTilt.get());
 
     AddSequential(new DriveForward(42.0));
     AddSequential(new GoToSwitch());
     AddSequential(new DumpCube());
+    AddSequential(new DriveForward(-12.0));
+    AddSequential(new Spin());
 
 }
 
