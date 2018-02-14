@@ -44,6 +44,26 @@ public:
 
 	void TankDrive(std::shared_ptr<Joystick>stickPosition);
 
+    void ArcadeDrive(double fwd, double rotate);
+
+    void curvatureDrive(double fwd, double rotate, bool quickTurn);
+
+
+    void driveForward_mm(double distanceInches);
+
+    bool driveStraightIsOnTarget();
+
+
+    void resetEncoders();
+
+    void prepareForAutonomous();
+
+    void prepareForTeleop();
+
+    void enableInductiveBreaking(bool enable);
+
+    void stop();
+
 };
 
 #endif
