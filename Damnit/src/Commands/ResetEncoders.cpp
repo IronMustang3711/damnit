@@ -9,43 +9,37 @@
 #include "Robot.h"
 #include "Subsystems/Chassis.h"
 
-ResetEncoders::ResetEncoders() : frc::InstantCommand("reset encoders") {
-	// Use Requires() here to declare subsystem dependencies
+ResetDriveTrainEncoders::ResetDriveTrainEncoders() : frc::InstantCommand("reset drivetrain encoders") {
 	 Requires(Robot::chassis.get());
 }
-
-
-
-// Called repeatedly when this Command is scheduled to run
-void ResetEncoders::Execute() {
+void ResetDriveTrainEncoders::Execute() {
 	Robot::chassis->resetEncoders();
-
 }
 
-ResetBucketEncoder::ResetBucketEncoder() {
-
+ResetBucketEncoder::ResetBucketEncoder() : frc::InstantCommand("reset bucket encoder"){
+	Requires(Robot::bucket.get());
 }
-
 void ResetBucketEncoder::Execute() {
-	Command::Execute();
+	Robot::bucket->reset();
 }
 
-ResetClampEncoder::ResetClampEncoder() {
-
+ResetClampEncoder::ResetClampEncoder() : frc::InstantCommand("reset clamp encoder"){
+	Requires(Robot::clamp.get());
 }
-
 void ResetClampEncoder::Execute() {
-	Command::Execute();
+	Robot::clamp->reset();
 }
 
-ResetClampTiltEncoder::ResetClampTiltEncoder() {
-
+ResetClampTiltEncoder::ResetClampTiltEncoder() : frc::InstantCommand("reset clamp tilt encoder") {
+	Requires(Robot::clampTilt.get());
 }
-
 void ResetClampTiltEncoder::Execute() {
-	Command::Execute();
+	Robot::clampTilt->reset();
 }
 
-ResetAllEncoders::ResetAllEncoders() {
-
+ResetAllEncoders::ResetAllEncoders() : frc::CommandGroup("reset all encoders"){
+	AddSequential(new ResetDriveTrainEncoders());
+	AddSequential(new ResetBucketEncoder());
+	AddSequential(new ResetClampEncoder());
+	AddSequential(new ResetClampTiltEncoder());
 }
