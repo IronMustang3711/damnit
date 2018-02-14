@@ -63,7 +63,7 @@ void RobotMap::init() {
     clampTiltEncoder->SetDistancePerPulse(1.0);
     clampTiltEncoder->SetPIDSourceType(frc::PIDSourceType::kDisplacement);
     chassisLeftFront.reset(new WPI_TalonSRX(1));
-    
+    chassisLeftFront->SetSensorPhase(false);
     
     chassisLeftRear.reset(new WPI_TalonSRX(2));
     
@@ -93,7 +93,7 @@ void RobotMap::init() {
     lw->AddSensor("Clamp", "ClampEncoder", clampClampEncoder);
     clampClampEncoder->SetDistancePerPulse(1.0);
     clampClampEncoder->SetPIDSourceType(frc::PIDSourceType::kDisplacement);
-    subsystem1PowerDistributionPanel1.reset(new frc::PowerDistributionPanel(0));
+    subsystem1PowerDistributionPanel1.reset(new frc::PowerDistributionPanel(10));
     lw->AddSensor("Subsystem1", "PowerDistributionPanel 1", subsystem1PowerDistributionPanel1);
     
 

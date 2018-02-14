@@ -43,6 +43,8 @@ public:
 
 	void TankDrive(std::shared_ptr<Joystick>stickPosition);
 
+	void ResetEncoders();
+
 };
 
 #endif
