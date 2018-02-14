@@ -100,7 +100,10 @@ OI::OI() {
 	frc::SmartDashboard::PutData(new DriveForward());
 
 	SmartDashboard::PutNumber("fwd", 12.0);
-    frc::SmartDashboard::PutData("reset encoders", new ResetEncoders());
+    frc::SmartDashboard::PutData(new ResetDriveTrainEncoders());
+	frc::SmartDashboard::PutData(new ResetClampEncoder());
+	frc::SmartDashboard::PutData(new ResetClampTiltEncoder());
+	frc::SmartDashboard::PutData(new ResetAllEncoders());
 
 }
 
