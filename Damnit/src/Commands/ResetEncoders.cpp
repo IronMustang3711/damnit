@@ -18,7 +18,34 @@ ResetEncoders::ResetEncoders() : frc::InstantCommand("reset encoders") {
 
 // Called repeatedly when this Command is scheduled to run
 void ResetEncoders::Execute() {
-	Robot::chassis->ResetEncoders();
+	Robot::chassis->resetEncoders();
 
 }
 
+ResetBucketEncoder::ResetBucketEncoder() {
+
+}
+
+void ResetBucketEncoder::Execute() {
+	Command::Execute();
+}
+
+ResetClampEncoder::ResetClampEncoder() {
+
+}
+
+void ResetClampEncoder::Execute() {
+	Command::Execute();
+}
+
+ResetClampTiltEncoder::ResetClampTiltEncoder() {
+
+}
+
+void ResetClampTiltEncoder::Execute() {
+	Command::Execute();
+}
+
+ResetAllEncoders::ResetAllEncoders() {
+
+}

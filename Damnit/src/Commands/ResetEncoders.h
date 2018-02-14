@@ -8,11 +8,36 @@
 #pragma once
 
 #include <Commands/InstantCommand.h>
+#include <Commands/CommandGroup.h>
 
-class ResetEncoders : public frc::InstantCommand {
+class ResetDriveTrainEncoders : public frc::InstantCommand {
 public:
-	ResetEncoders();
+	ResetDriveTrainEncoders();
 	void Execute() override;
 
 };
+class ResetBucketEncoder : public frc::InstantCommand {
+public:
+	ResetBucketEncoder();
+	void Execute() override;
+
+};
+class ResetClampEncoder : public frc::InstantCommand {
+public:
+	ResetClampEncoder();
+	void Execute() override;
+
+};
+class ResetClampTiltEncoder : public frc::InstantCommand {
+public:
+	ResetClampTiltEncoder();
+	void Execute() override;
+
+};
+
+class ResetAllEncoders : public frc::CommandGroup {
+public:
+	ResetAllEncoders();
+};
+
 
