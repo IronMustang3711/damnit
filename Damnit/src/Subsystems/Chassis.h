@@ -54,7 +54,7 @@ public:
     bool driveStraightIsOnTarget();
 
 
-    void resetEncoders();
+    void ResetEncoders();
 
     void prepareForAutonomous();
 

@@ -136,7 +136,7 @@ void Chassis::driveForward_mm(double distanceInches) {
 
 }
 
-void Chassis::resetEncoders() {
+void Chassis::ResetEncoders() {
     for (const auto &t : {leftFront, rightFront}) t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
 }
 
@@ -146,7 +146,7 @@ void Chassis::prepareForAutonomous() {
         t->ConfigVoltageCompSaturation(11.0, TIMEOUT);
         t->EnableVoltageCompensation(true);
     }
-    resetEncoders();
+    ResetEncoders();
 }
 
 void Chassis::prepareForTeleop() {
@@ -185,9 +185,4 @@ void Chassis::curvatureDrive(double fwd, double rotate, bool quickTurn) {
     differentialDrive->CurvatureDrive(fwd, rotate, quickTurn);
 }
 
-void Chassis::ResetEncoders() {
 
-	for(auto t : { leftFront.get(),rightFront.get()}){
-		t->GetSensorCollection().SetQuadraturePosition(0,10);
-	}
-}
