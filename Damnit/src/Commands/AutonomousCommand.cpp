@@ -24,8 +24,11 @@ AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO") {
 //    Requires(Robot::upperTilt.get());
 
     AddSequential(new DriveForward(42.0));
+
+
     AddSequential(new GoToSwitch());
     AddSequential(new DumpCube());
+
     AddSequential(new DriveForward(-12.0));
     AddSequential(new Spin());
 
