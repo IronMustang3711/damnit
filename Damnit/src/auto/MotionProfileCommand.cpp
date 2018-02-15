@@ -60,7 +60,7 @@ void MotionProfileCommand::Initialize() {
 
     }
 
-    fill(std::next(PROFS.cbegin(), 20));
+    fill();
 
     notifier->StartPeriodic(0.05);
 }
@@ -131,11 +131,11 @@ void MotionProfileCommand::fill(ProfIter stop) {
         leftPoint.timeDur = rightPoint.timeDur = TrajectoryDuration_10ms;
 
         leftPoint.position = it->leftPosition;
-        leftPoint.velocity = it->leftVelocity / 600.0; //100 ms interval //TODO: do this during codegen
-        //TODO: also, is that correct?
+        leftPoint.velocity = it->leftVelocity;
+
 
         rightPoint.position = it->rightPosition;
-        rightPoint.velocity = it->rightVelocity / 600.0;
+        rightPoint.velocity = it->rightVelocity;
 
         left->PushMotionProfileTrajectory(leftPoint);
         right->PushMotionProfileTrajectory(rightPoint);

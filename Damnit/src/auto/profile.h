@@ -17,5 +17,5 @@ namespace mp {
         double rightVelocity;
     };
 //todo: constexpr
-    extern std::array<Prof,3436> PROFS;
+    extern std::array<Prof,757> PROFS;
 }
