@@ -31,7 +31,9 @@ void MotionProfileCommand::Initialize() {
     for (auto t : {left, right}) {
         t->SelectProfileSlot(SLOT, TIMEOUT);
 
-        t->Config_kF(SLOT, 0.0, TIMEOUT);
+        constexpr double FGain = (0.8/*percent*/ * 1023.0/*10 bit SRX max*/) / 1100.0; /*max v*/
+
+        t->Config_kF(SLOT, FGain, TIMEOUT);
         t->Config_kP(SLOT, 0.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 0.0, TIMEOUT);
@@ -43,8 +45,10 @@ void MotionProfileCommand::Initialize() {
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
-        //TODO am i going to use this?
+        //TODO this can be removed once it's working correctly?
         t->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, TIMEOUT);
+
+        t->SetControlFramePeriod(Control_3_General, 10); //TODO: Control_6_MotProfAddTrajPoint?
 
         t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
         t->SetSelectedSensorPosition(0, SLOT, TIMEOUT);
