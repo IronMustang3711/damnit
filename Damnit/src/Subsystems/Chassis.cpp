@@ -74,14 +74,14 @@ void Chassis::Periodic() {
 //    SmartDashboard::PutNumberArray("encoder position",
 //    		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadraturePosition(),
 //									(double)rightFront->GetSensorCollection().GetQuadraturePosition()});
-SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
-	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
-	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
-}));
+//SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
+//	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
+//	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
+//}));
 	//SmartDashboard::PutNumberArray("encoder positions", {double(leftFront->GetSelectedSensorPosition(0)});
 
-   // SmartDashboard::PutNumber("encoder position(left)",(double)leftFront->GetSensorCollection().GetQuadraturePosition());
-   // SmartDashboard::PutNumber("encoder position(right)",(double)rightFront->GetSensorCollection().GetQuadraturePosition());
+    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
+    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
 
 //    SmartDashboard::PutNumberArray("encoder velocity",
 //       		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadratureVelocity(),
@@ -240,10 +240,10 @@ void Chassis::mm_Periodic(double distanceInches) {
 }
 
 void Chassis::testPeriodic() {
-	llvm::outs() << "left encoder: " << leftFront->GetSelectedSensorPosition(0)
-			<< " right encoder: "<<rightFront->GetSelectedSensorPosition(0) << "\n";
-	llvm::outs() << "lf " << leftFront->GetMotorOutputPercent()
-			<< "lr "<<leftRear->GetMotorOutputPercent()
-			<<"rf "<<rightFront->GetMotorOutputPercent()
-			<<"rr "<<rightRear1->GetMotorOutputPercent() <<"\n";
+//	llvm::outs() << "left encoder: " << leftFront->GetSelectedSensorPosition(0)
+//			<< " right encoder: "<<rightFront->GetSelectedSensorPosition(0) << "\n";
+//	llvm::outs() << "lf " << leftFront->GetMotorOutputPercent()
+//			<< "lr "<<leftRear->GetMotorOutputPercent()
+//			<<"rf "<<rightFront->GetMotorOutputPercent()
+//			<<"rr "<<rightRear1->GetMotorOutputPercent() <<"\n";
 }
