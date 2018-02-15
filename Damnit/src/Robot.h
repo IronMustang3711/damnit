@@ -62,6 +62,5 @@ public:
 	void TestInit() override;
     void RobotPeriodic() override;
 
-	std::unique_ptr<FieldModel> field;
 };
 #endif

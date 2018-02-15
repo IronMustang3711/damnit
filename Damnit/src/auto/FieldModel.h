@@ -11,6 +11,9 @@
 #include <DriverStation.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <Commands/Subsystem.h>
+#include <ostream>
+
 
 /*
  * see http://wpilib.screenstepslive.com/s/currentCS/m/getting_started/l/826278-2018-game-data-details
@@ -51,22 +54,37 @@ enum class Alliance {
     BLUE
 };
 
-
 typedef std::tuple<TargetLocation, TargetLocation> FieldAutoLayout;
-
 
 
 std::string to_string(StartPosition p);
 std::string to_string(TargetLocation l, bool use_top_bottom = true);
 std::string to_string(Alliance a);
 std::string to_string(FieldAutoLayout l);
+std::string to_string(AutoTarget t);
+
+
+llvm::raw_ostream& operator <<(llvm::raw_ostream &os,const FieldAutoLayout& l);
+llvm::raw_ostream &operator<<(llvm::raw_ostream  &os, const Alliance &a);
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const TargetLocation &a);
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os,const AutoTarget& a);
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const StartPosition &a);
+
+
+
+
+
+
+
+
 
 
 TargetLocation parse_TargetLocation(char c);
 FieldAutoLayout
 parse_field_layout_message(const std::string &message = frc::DriverStation::GetInstance().GetGameSpecificMessage());
 
-struct FieldModel {
+struct FieldModel : public frc::Subsystem{
+    FieldModel();
 
     SendableChooser<Alliance> allianceChooser;
     SendableChooser<StartPosition> startChooser;
@@ -74,6 +92,7 @@ struct FieldModel {
 
 
     std::string getFieldLayoutMessage();
+
     FieldAutoLayout getFieldLayout();
 
     bool fieldLayoutIsValid();
@@ -82,8 +101,15 @@ struct FieldModel {
 
     Alliance getAlliance();
 
-    FieldModel();
+    AutoTarget getAutoTarget();
+
+
 
     void update();
+
+    static FieldModel& getInstance();
+
+    friend std::ostream &operator<<(std::ostream &os, const FieldModel &model);
+
 
 };

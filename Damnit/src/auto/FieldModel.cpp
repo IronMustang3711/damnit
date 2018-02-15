@@ -2,7 +2,7 @@
 // Created by Jason Markham on 2/15/18.
 //
 #include <llvm/raw_ostream.h>
-#include "positions.h"
+#include "FieldModel.h"
 #pragma ide diagnostic ignored "DuplicateSwitchCase"
 
 std::string to_string(StartPosition p) {
@@ -71,6 +71,41 @@ FieldAutoLayout parse_field_layout_message(const std::string &message) {
 
 }
 
+std::string to_string(AutoTarget t) {
+    switch (t){
+        case AutoTarget::NONE:return "none";
+        case AutoTarget::LINE:return "line";
+        case AutoTarget::SWITCH:return "switch";
+        case AutoTarget::SCALE: return "scale";
+        default: return "invalid";
+    }
+}
+
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const AutoTarget &a) {
+    os << to_string(a);
+    return os;
+}
+
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const StartPosition &a) {
+    os << to_string(a);
+    return os;
+}
+
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const TargetLocation &a) {
+    os << to_string(a);
+    return os;
+}
+
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const FieldAutoLayout &l) {
+    os << to_string(l);
+    return os;
+}
+
+llvm::raw_ostream &operator<<(llvm::raw_ostream &os, const Alliance &a) {
+    os << to_string(a);
+    return os;
+}
+
 std::string FieldModel::getFieldLayoutMessage() {
     auto ds_msg = frc::DriverStation::GetInstance().GetGameSpecificMessage();
     return !ds_msg.empty() ?  ds_msg: SmartDashboard::GetString("FIELD",""); //TODO: remove when done testing
@@ -105,7 +140,7 @@ Alliance FieldModel::getAlliance() {
     }
 }
 
-FieldModel::FieldModel() {
+FieldModel::FieldModel() : frc::Subsystem("Field model") {
     allianceChooser.SetName("Robot","Alliance");
     allianceChooser.AddDefault("red", Alliance::RED);
     allianceChooser.AddObject("blue",Alliance::BLUE);
@@ -175,4 +210,13 @@ void FieldModel::update() {
     SmartDashboard::PutString("start position",to_string(getStartPosition()));
     SmartDashboard::PutString("target position",to_string(getFieldLayout()));
 
+}
+
+FieldModel &FieldModel::getInstance() {
+    static FieldModel inst;
+    return inst;
+}
+
+AutoTarget FieldModel::getAutoTarget() {
+    return targetChooser.GetSelected();
 }
