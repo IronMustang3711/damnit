@@ -34,6 +34,8 @@
 
 #include "OI.h"
 
+class FieldModel;
+
 class Robot : public frc::TimedRobot {
 public:
 	frc::Command* autonomousCommand = nullptr;
@@ -58,5 +60,8 @@ public:
 	void TeleopPeriodic() override;
 	void TestPeriodic() override;
 	void TestInit() override;
+    void RobotPeriodic() override;
+
+	std::unique_ptr<FieldModel> field;
 };
 #endif
