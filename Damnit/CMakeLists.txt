@@ -15,7 +15,7 @@ set (CMAKE_CXX_STANDARD 14)
 SET(CMAKE_CXX_COMPILER ${ARM_PREFIX}-g++)
 SET(CMAKE_C_COMPILER ${ARM_PREFIX}-gcc)
 #TODO: add -Wno-unknown-warning-option for xcode
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -Wformat=2 -Wall -Wextra -pedantic" CACHE STRING "" FORCE)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -Wformat=2 -Wall -Wextra -pedantic -Wno-unknown-pragmas" CACHE STRING "" FORCE)
 
 #doesnt seem to work on windows:
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=always")
