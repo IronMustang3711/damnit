@@ -44,7 +44,7 @@ void Robot::RobotInit() {
 	// which commands extend), subsystems are not guaranteed to be
 	// yet. Thus, their requires() statements may grab null pointers. Bad
 	// news. Don't move it.
-	oi.reset(new OI());
+	oi = std::make_unique<OI>();
 
 
 	// Add commands to Autonomous Sendable Chooser

@@ -114,8 +114,8 @@ void BucketTiltPosition::Execute() {
 	}
 	else {
 		// now determine if we are in velocity or position control.
-		double currentPosition = Robot::bucket->GetPosition();
-		double distanceToTarget = bucketSetpoint - currentPosition;
+        currentPosition= Robot::bucket->GetPosition();
+        double distanceToTarget = bucketSetpoint - currentPosition;
 		SmartDashboard::PutNumber("Upper", currentPosition);
 
 		if (velocityControl &&                        // are we controlling velocity?
@@ -132,8 +132,8 @@ void BucketTiltPosition::Execute() {
 				desiredVelocity = targetVelocity;   //should be done accelerating
 
 			// now estimate distance required to decelerate to target
-			float distanceToStop = desiredVelocity * desiredVelocity / (2 * deceleration);
-			float remainingDistance = fabs(distanceToTarget);
+			double distanceToStop = desiredVelocity * desiredVelocity / (2 * deceleration);
+			double remainingDistance = fabs(distanceToTarget);
 			if (distanceToStop >= remainingDistance)
 				desiredVelocity = sqrt(2 * remainingDistance * deceleration);
 

@@ -6,11 +6,11 @@
 
 class Delay : public frc::TimedCommand {
 public:
-	Delay(double timeout);
-	void Initialize();
-	void Execute();
-	void End();
-	void Interrupted();
+	explicit Delay(double timeout);
+	void Initialize() override;
+	void Execute() override;
+	void End() override;
+	void Interrupted() override;
 };
 
 #endif  // Delay_H

@@ -13,7 +13,7 @@ private:
 
 public:
 	Winch();
-	void InitDefaultCommand();
+	void InitDefaultCommand() override;
 
 	void driveWinch(double speed);
 };

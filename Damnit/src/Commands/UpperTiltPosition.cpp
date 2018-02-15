@@ -100,8 +100,8 @@ void UpperTiltPosition::Execute() {
 			desiredVelocity = targetVelocity;   //should be done accelerating
 
 		// now estimate distance required to decelerate to target
-		float distanceToStop = desiredVelocity * desiredVelocity / (2 * deceleration);
-		float remainingDistance = fabs(distanceToTarget);
+		double distanceToStop = desiredVelocity * desiredVelocity / (2 * deceleration);
+		double remainingDistance = fabs(distanceToTarget);
 		if (distanceToStop >= remainingDistance)
 			desiredVelocity = sqrt(2 * remainingDistance * deceleration);
 
