@@ -3,7 +3,7 @@
 #include "UpperTiltPosition.h"
 #include "StowClamp.h"
 
-GoToScale::GoToScale() {
+GoToScale::GoToScale() : frc::CommandGroup("Go To Scale") {
 	// stow clamp
 	AddSequential(new StowClamp);  // Hide clamp
 

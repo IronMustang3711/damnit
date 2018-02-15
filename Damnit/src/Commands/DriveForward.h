@@ -16,6 +16,7 @@ public:
 
 protected:
     void Initialize() override;
+    void Execute() override;
 
     bool IsFinished() override;
 
@@ -24,6 +25,8 @@ protected:
 
 private:
     double distance;
+    int onTargetCount = 0;
+  //  LinearDigitalFilter errFilter;
 
 };
 

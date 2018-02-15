@@ -50,11 +50,12 @@ public:
 
 
     void driveForward_mm(double distanceInches);
+    void mm_Periodic(double distanceInches);
 
     bool driveStraightIsOnTarget();
 
 
-    void ResetEncoders();
+    void resetEncoders();
 
     void prepareForAutonomous();
 
@@ -63,6 +64,11 @@ public:
     void enableInductiveBreaking(bool enable);
 
     void stop();
+
+    void disableMotorSafety();
+    void enableMotorSafety();
+
+    void testPeriodic();
 
 };
 

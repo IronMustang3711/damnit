@@ -3,7 +3,7 @@
 #include "UpperTiltPosition.h"
 #include "StowClamp.h"
 
-GoToSwitch::GoToSwitch() {
+GoToSwitch::GoToSwitch() : frc::CommandGroup("Go To Switch") {
 	// stow clamp
 	AddSequential(new StowClamp);  // Hide clamp
 

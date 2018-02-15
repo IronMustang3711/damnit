@@ -14,17 +14,28 @@ DriveForward::DriveForward(double distanceInches)
 
 void DriveForward::Initialize() {
     double amt = distance == 0.0 ? SmartDashboard::GetNumber("fwd", 12.0) : distance;
+    Robot::chassis->disableMotorSafety();
     Robot::chassis->driveForward_mm(amt);
 }
 
 bool DriveForward::IsFinished() {
-    return Robot::chassis->driveStraightIsOnTarget();
+
+	if( Robot::chassis->driveStraightIsOnTarget()){
+		onTargetCount++;
+	}
+	return onTargetCount >= 10;
 }
 
 void DriveForward::End() {
     Robot::chassis->stop();
+    Robot::chassis->enableMotorSafety();
+
 }
 
 DriveForward::DriveForward() : DriveForward(0.0) {
 
+}
+
+void DriveForward::Execute() {
+	Robot::chassis->mm_Periodic(distance);
 }

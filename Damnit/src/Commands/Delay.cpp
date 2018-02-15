@@ -1,6 +1,6 @@
 #include "Delay.h"
 
-Delay::Delay(double timeout) : TimedCommand(timeout) {
+Delay::Delay(double timeout) : TimedCommand("Delay("+std::to_string(timeout)+")", timeout) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 }

@@ -63,10 +63,13 @@ void RobotMap::init() {
 	clampTiltEncoder->SetDistancePerPulse(1.0);
 	clampTiltEncoder->SetPIDSourceType(frc::PIDSourceType::kDisplacement);
 	chassisLeftFront.reset(new WPI_TalonSRX(1));
-	chassisLeftFront->SetName("chassis", "left front");
+	chassisLeftFront->SetName("Chassis", "left front");
+	chassisLeftFront->SetSensorPhase(true);
 
 	chassisLeftRear.reset(new WPI_TalonSRX(2));
 	chassisLeftRear->SetName("Chassis", "left rear");
+	chassisLeftRear->SetInverted(false);
+	chassisLeftFront->SetInverted(false);
 
 	chassisLeftSide = std::make_shared<frc::SpeedControllerGroup>(
 			*chassisLeftFront, *chassisLeftRear);
@@ -74,18 +77,25 @@ void RobotMap::init() {
 
 	chassisRightFront.reset(new WPI_TalonSRX(3));
 	chassisRightFront->SetName("Chassis", "right front");
+	chassisRightFront->SetSensorPhase(true);
 
 	chassisRightRear1.reset(new WPI_TalonSRX(4));
 	chassisRightRear1->SetName("Chassis", "right rear");
 
+	chassisRightFront->SetInverted(true);
+	chassisRightRear1->SetInverted(true);
+
+
 	chassisRightSide = std::make_shared<frc::SpeedControllerGroup>(
 			*chassisRightFront, *chassisRightRear1);
+	chassisRightSide->SetInverted(true);
+
 	chassisRightSide->SetName("Chassis", "RightSide");
 	chassisDifferentialDrive.reset(
 			new frc::DifferentialDrive(*chassisLeftSide, *chassisRightSide));
 	chassisDifferentialDrive->SetName("Chassis", "Differential Drive");
-	chassisDifferentialDrive->SetSafetyEnabled(true);
-	chassisDifferentialDrive->SetExpiration(0.5);
+	chassisDifferentialDrive->SetSafetyEnabled(false);
+	chassisDifferentialDrive->SetExpiration(1.0);
 	chassisDifferentialDrive->SetMaxOutput(1.0);
 
 	clampClampMotor.reset(new frc::Spark(2));
@@ -106,5 +116,6 @@ void RobotMap::init() {
 
 	ahrs.reset(new AHRS(frc::SPI::Port::kMXP));
 	ahrs->SetName("Robot","ahrs");
+
 
 }

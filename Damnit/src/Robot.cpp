@@ -61,7 +61,7 @@ void Robot::RobotInit() {
 
 	frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
-	frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
+	//frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
 	frc::SmartDashboard::PutData(RobotMap::ahrs.get());
 }
 
@@ -78,6 +78,13 @@ void Robot::DisabledInit(){
 
 void Robot::DisabledPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
+	if(RobotController::GetUserButton()){
+		Robot::clamp->reset();
+		Robot::clampTilt->reset();
+		Robot::upperTilt->reset();
+		Robot::bucket->reset();
+		Robot::chassis->resetEncoders();
+	}
 }
 
 void Robot::AutonomousInit() {
@@ -107,5 +114,15 @@ void Robot::TeleopPeriodic() {
 	frc::Scheduler::GetInstance()->Run();
 }
 
+
+void Robot::TestPeriodic() {
+	Robot::chassis->testPeriodic();
+}
+
+
 START_ROBOT_CLASS(Robot)
 
+void Robot::TestInit() {
+	Robot::chassis->enableInductiveBreaking(false);
+
+}
