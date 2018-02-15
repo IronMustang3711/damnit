@@ -11,8 +11,8 @@
 
 #include <Robot.h>
 #include "DriveForward.h"
-#include "GoToSwitch.h"
-#include "DumpCube.h"
+#include "Commands/GoToSwitch.h"
+#include "Commands/DumpCube.h"
 #include "Spin.h"
 
 

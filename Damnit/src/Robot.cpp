@@ -17,7 +17,7 @@
 #include <RobotBase.h>
 #include <auto/AutoBuilder.h>
 #include <auto/DontDoAnything.h>
-#include <Commands/DriveForward.h>
+#include <auto/DriveForward.h>
 #include "auto/positions.h"
 #include "Robot.h"
 
