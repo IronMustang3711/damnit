@@ -16,8 +16,6 @@ class DriveForward : public frc::Command {
 public:
     explicit DriveForward(double distanceInches);
 
-    DriveForward();
-
 protected:
     void Initialize() override;
     void Execute() override;

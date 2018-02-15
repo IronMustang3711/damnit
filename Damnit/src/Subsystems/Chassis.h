@@ -48,8 +48,7 @@ public:
 
     void curvatureDrive(double fwd, double rotate, bool quickTurn);
 
-
-    void driveForward_mm(double distanceInches);
+	void mm_driveForward_init();
     void mm_Periodic(double distanceInches);
 
     bool driveStraightIsOnTarget();

@@ -124,9 +124,8 @@ void Chassis::TankDrive(std::shared_ptr<Joystick> stickPosition) {
     differentialDrive->ArcadeDrive(y, z, false);
 }
 
-void Chassis::driveForward_mm(double distanceInches) {
+void Chassis::mm_driveForward_init() {
     prepareForAutonomous();
-    //configure closed loop settings
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->Config_kP(SLOT, 0.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
@@ -141,23 +140,20 @@ void Chassis::driveForward_mm(double distanceInches) {
 
     }
 
-    llvm::outs() << "about to move " << inches_to_encoder_ticks(distanceInches) << " ticks. \n";
 
-
-    //not yet supported:
-//    leftRear->ConfigRemoteFeedbackFilter(
-//            leftFront->GetDeviceID(), RemoteSensorSource::RemoteSensorSource_TalonSRX_SelectedSensor, 0, TIMEOUT);
     leftRear->Follow(*leftFront);
 
-
-//    rightRear1->ConfigRemoteFeedbackFilter(
-//            rightFront->GetDeviceID(), RemoteSensorSource::RemoteSensorSource_TalonSRX_SelectedSensor, 0, TIMEOUT);
     rightRear1->Follow(*rightFront);
+}
 
-// ### START ###
+void Chassis::mm_Periodic(double distanceInches) {
+    leftRear->Set(ControlMode::Follower,leftFront->GetDeviceID());
+    rightRear1->Set(ControlMode::Follower,rightFront->GetDeviceID());
+
     for (const auto t : {leftFront.get(), rightFront.get()}) {
         t->Set(ControlMode::MotionMagic, inches_to_encoder_ticks(distanceInches));
     }
+
 
 }
 
@@ -230,14 +226,7 @@ void Chassis::enableMotorSafety() {
 
 }
 
-void Chassis::mm_Periodic(double distanceInches) {
-    for (const auto t : {leftFront.get(), rightFront.get()}) {
-        t->Set(ControlMode::MotionMagic, inches_to_encoder_ticks(distanceInches));
-    }
-   leftRear->Set(ControlMode::Follower,leftFront->GetDeviceID());
-   rightRear1->Set(ControlMode::Follower,rightFront->GetDeviceID());
 
-}
 
 void Chassis::testPeriodic() {
 //	llvm::outs() << "left encoder: " << leftFront->GetSelectedSensorPosition(0)
@@ -247,3 +236,5 @@ void Chassis::testPeriodic() {
 //			<<"rf "<<rightFront->GetMotorOutputPercent()
 //			<<"rr "<<rightRear1->GetMotorOutputPercent() <<"\n";
 }
+
+

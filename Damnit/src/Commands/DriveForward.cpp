@@ -13,9 +13,9 @@ DriveForward::DriveForward(double distanceInches)
 }
 
 void DriveForward::Initialize() {
-    double amt = distance == 0.0 ? SmartDashboard::GetNumber("fwd", 12.0) : distance;
+    //double amt = distance == 0.0 ? SmartDashboard::GetNumber("fwd", 12.0) : distance;
     Robot::chassis->disableMotorSafety();
-    Robot::chassis->driveForward_mm(amt);
+    Robot::chassis->mm_driveForward_init();
 }
 
 bool DriveForward::IsFinished() {
@@ -29,10 +29,6 @@ bool DriveForward::IsFinished() {
 void DriveForward::End() {
     Robot::chassis->stop();
     Robot::chassis->enableMotorSafety();
-
-}
-
-DriveForward::DriveForward() : DriveForward(0.0) {
 
 }
 
@@ -71,7 +67,7 @@ DriveForwardGyroEncoder::DriveForwardGyroEncoder(double distanceInches, double t
 
 double DriveForwardGyroEncoder::encoderValue() {
     return (RobotMap::chassisLeftFront->GetSensorCollection().GetQuadraturePosition()
-            + RobotMap::chassisRightFront->GetSensorCollection().GetQuadraturePosition()) / 2;
+            + RobotMap::chassisRightFront->GetSensorCollection().GetQuadraturePosition()) / 2.0;
 }
 
 void DriveForwardGyroEncoder::PIDWrite(double output) {
