@@ -20,7 +20,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -Wformat=2 -Wall -Wextra -pedan
 #doesnt seem to work on windows:
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdiagnostics-color=always")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -Og -g3" CACHE STRING "" FORCE)
-set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g" CACHE STRING "" FORCE) # still want debugging for release?
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -g" CACHE STRING "" FORCE) # TODO: Look at this
 
 set(LINKER_FLAGS "-pthread -rdynamic")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${LINKER_FLAGS}")
@@ -72,9 +72,9 @@ target_link_libraries(FRCUserProgram
                 CTRE_PhoenixCCI 
                 navx_frc_cpp 
                 wpi
-                ${LINKER_FLAGS}) #TODO add additional libs here
+        ${LINKER_FLAGS})
 
-
+#TODO: point ant to the correct binary
 add_custom_target("deploy"
         COMMAND ant -f ${CMAKE_CURRENT_SOURCE_DIR}/build.xml
         DEPENDS FRCUserProgram)
@@ -83,7 +83,6 @@ add_custom_target("deploy"
 
 # additional target to perform clang-format run, requires clang-format
 
-# get all project files
 file(GLOB_RECURSE ALL_SOURCE_FILES *.cpp *.h)
 
 
@@ -92,6 +91,5 @@ add_custom_target(
         COMMAND clang-format
         -style=file
         -i
-        ${ALL_SOURCE_FILES}
-)
+        ${ALL_SOURCE_FILES})
 
