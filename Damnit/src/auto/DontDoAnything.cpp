@@ -4,12 +4,12 @@
 
 #include "DontDoAnything.h"
 
-DontDoAnything::DontDoAnything() {
+DontDoAnything::DontDoAnything() : frc::Command("don't do anything") {
 
 }
 
 void DontDoAnything::Initialize() {
-    Command::Initialize();
+
 }
 
 bool DontDoAnything::IsFinished() {
