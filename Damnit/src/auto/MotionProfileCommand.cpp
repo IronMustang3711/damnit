@@ -5,7 +5,7 @@
  *      Author: jason
  */
 
-#include <motion/MotionProfileCommand.h>
+#include <auto/MotionProfileCommand.h>
 #include <Robot.h>
 #include "profile.h"
 
