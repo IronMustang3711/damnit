@@ -84,7 +84,7 @@ void UpperTiltPosition::Execute() {
 	// now determine if we are in velocity or position control.
 	double currentPosition = Robot::upperTilt->GetPosition();
 	double distanceToTarget = m_setpoint - currentPosition;
-	SmartDashboard::PutNumber("Upper", currentPosition);
+	//SmartDashboard::PutNumber("Upper", currentPosition);
 
 	if (velocityControl &&                        // are we controlling velocity?
 			fabs(distanceToTarget) < PIDband) {  // are we near target?

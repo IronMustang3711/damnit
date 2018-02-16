@@ -116,7 +116,7 @@ void BucketTiltPosition::Execute() {
 		// now determine if we are in velocity or position control.
         currentPosition= Robot::bucket->GetPosition();
         double distanceToTarget = bucketSetpoint - currentPosition;
-		SmartDashboard::PutNumber("Upper", currentPosition);
+		//SmartDashboard::PutNumber("Upper", currentPosition);
 
 		if (velocityControl &&                        // are we controlling velocity?
 				fabs(distanceToTarget) < PIDband) {  // are we near target?
@@ -160,7 +160,7 @@ void BucketTiltPosition::Execute() {
 		prevTime = currentTime;
 
 	}
-	SmartDashboard::PutNumber("Bucket",currentPosition);
+	//SmartDashboard::PutNumber("Bucket",currentPosition);
 }
 
 // Make this return true when this Command no longer needs to run execute()

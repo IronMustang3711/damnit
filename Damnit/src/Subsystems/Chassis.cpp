@@ -71,17 +71,14 @@ void Chassis::InitDefaultCommand() {
 }
 
 void Chassis::Periodic() {
-//    SmartDashboard::PutNumberArray("encoder position",
-//    		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadraturePosition(),
-//									(double)rightFront->GetSensorCollection().GetQuadraturePosition()});
-SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
-	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
-	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
-}));
-	//SmartDashboard::PutNumberArray("encoder positions", {double(leftFront->GetSelectedSensorPosition(0)});
 
-   // SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
-   // SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
+//SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
+//	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
+//	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
+//}));
+
+    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
+    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
 
 //    SmartDashboard::PutNumberArray("encoder velocity",
 //       		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadratureVelocity(),
@@ -94,9 +91,9 @@ SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
    llvm::SmallVector<double,4> outputs;
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
     	outputs.push_back(t->GetMotorOutputPercent());
-    //	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
+    	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
     }
-    SmartDashboard::PutNumberArray("MotorOutputs", outputs);
+   // SmartDashboard::PutNumberArray("MotorOutputs", outputs);
 
     if(leftFront->GetControlMode() ==ControlMode::MotionMagic){
     for(const auto t : {leftFront.get(),rightFront.get()}){

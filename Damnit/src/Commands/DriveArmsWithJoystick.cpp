@@ -31,8 +31,8 @@ void DriveArmsWithJoystick::Initialize() {
 void DriveArmsWithJoystick::Execute() {
 	double xAxis = Robot::oi->getControlJoystick()->GetRawAxis(0);
 	double yAxis = Robot::oi->getControlJoystick()->GetRawAxis(1);
-	SmartDashboard::PutNumber("joyX",xAxis);
-	SmartDashboard::PutNumber("joyY",yAxis);
+	//SmartDashboard::PutNumber("joyX",xAxis);
+	//SmartDashboard::PutNumber("joyY",yAxis);
 	Robot::upperTilt->upperMotor->Set(yAxis);
 }
 

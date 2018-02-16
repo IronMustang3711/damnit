@@ -77,24 +77,24 @@ OI::OI() {
 	driveJoystick.reset(new frc::Joystick(0));
 
 // SmartDashboard Buttons
-	frc::SmartDashboard::PutData("Clamp Close",new ClampPosition(0));
-	frc::SmartDashboard::PutData("Clamp Open", new ClampPosition(152));  // 220 also see ClampPosition.cpp %rod15
-	frc::SmartDashboard::PutData("Clamp to Home",	new ClampTiltPosition(82));  // %rod15
-    frc::SmartDashboard::PutData("Clamp to Switch", new ClampTiltPosition(206)); // %rod15
-    frc::SmartDashboard::PutData("Clamp Down", new ClampTiltPosition(336)); //%rod15
-    frc::SmartDashboard::PutData("Bucket Zero", new BucketTiltPosition(0));
-    frc::SmartDashboard::PutData("Bucket Home", new BucketTiltPosition(-6)); // %rod15
-    frc::SmartDashboard::PutData("BucketCarry (100)", new BucketTiltPosition(100));
-    frc::SmartDashboard::PutData("Bucket to Switch", new BucketTiltPosition(80));
-    frc::SmartDashboard::PutData("Bucket to Scale)", new BucketTiltPosition(205));
-    frc::SmartDashboard::PutData("BucketAutoDump", new BucketTiltPosition(200));
-    frc::SmartDashboard::PutData("Dump Cube", new DumpCube());
-    frc::SmartDashboard::PutData("UpperTilt2Home", new UpperTiltPosition(0));
-    frc::SmartDashboard::PutData("UpperTilt2Switch", new UpperTiltPosition(150));
-    frc::SmartDashboard::PutData("UpperTilt2Scale", new UpperTiltPosition(430));
-    frc::SmartDashboard::PutData("StowClamp", new StowClamp());
-    frc::SmartDashboard::PutData("GoToSwitch", new GoToSwitch());
-    frc::SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
+//	frc::SmartDashboard::PutData("Clamp Close",new ClampPosition(0));
+//	frc::SmartDashboard::PutData("Clamp Open", new ClampPosition(152));  // 220 also see ClampPosition.cpp %rod15
+//	frc::SmartDashboard::PutData("Clamp to Home",	new ClampTiltPosition(82));  // %rod15
+//    frc::SmartDashboard::PutData("Clamp to Switch", new ClampTiltPosition(206)); // %rod15
+//    frc::SmartDashboard::PutData("Clamp Down", new ClampTiltPosition(336)); //%rod15
+//    frc::SmartDashboard::PutData("Bucket Zero", new BucketTiltPosition(0));
+//    frc::SmartDashboard::PutData("Bucket Home", new BucketTiltPosition(-6)); // %rod15
+//    frc::SmartDashboard::PutData("BucketCarry (100)", new BucketTiltPosition(100));
+//    frc::SmartDashboard::PutData("Bucket to Switch", new BucketTiltPosition(80));
+//    frc::SmartDashboard::PutData("Bucket to Scale)", new BucketTiltPosition(205));
+//    frc::SmartDashboard::PutData("BucketAutoDump", new BucketTiltPosition(200));
+//    frc::SmartDashboard::PutData("Dump Cube", new DumpCube());
+//    frc::SmartDashboard::PutData("UpperTilt2Home", new UpperTiltPosition(0));
+//    frc::SmartDashboard::PutData("UpperTilt2Switch", new UpperTiltPosition(150));
+//    frc::SmartDashboard::PutData("UpperTilt2Scale", new UpperTiltPosition(430));
+//    frc::SmartDashboard::PutData("StowClamp", new StowClamp());
+//    frc::SmartDashboard::PutData("GoToSwitch", new GoToSwitch());
+//    frc::SmartDashboard::PutData("Autonomous Command", new AutonomousCommand());
 
     frc::SmartDashboard::PutData(new ResetDriveTrainEncoders());
 //	frc::SmartDashboard::PutData(new ResetClampEncoder());

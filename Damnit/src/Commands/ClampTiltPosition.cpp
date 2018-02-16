@@ -61,7 +61,7 @@ void ClampTiltPosition::Execute() {
 	// now determine if we are in velocity or position control.
 	double currentPosition = Robot::clampTilt->GetPosition();
 	double distanceToTarget = m_setpoint - currentPosition;
-	SmartDashboard::PutNumber("Lower", currentPosition);
+	//SmartDashboard::PutNumber("Lower", currentPosition);
 
 	if (fabs(distanceToTarget) < PIDband) {
 		if (velocityControl) {
