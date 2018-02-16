@@ -118,10 +118,11 @@ void Chassis::TankDrive(std::shared_ptr<Joystick> stickPosition) {
     double y = -stickPosition->GetY();
     double z = stickPosition->GetZ();
 
-    // y and z cubed, results in less drive around zero input
-    y = pow(y, 3);
-    z = pow(z, 3);
-    z = z * 0.6;
+	// y and z cubed, results in less drive around zero input
+	y = pow(y,3);
+	z = pow(z,3);
+	z = z * 0.6;
+	z += -0.1 * y;  // counter the curve to the right %rod15b
 
     differentialDrive->ArcadeDrive(y, z, false);
 }
