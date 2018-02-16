@@ -47,7 +47,10 @@ void Chassis::InitDefaultCommand() {
 
 void Chassis::Periodic() {
     // Put code here to be run every loop
-
+	float lf = leftFront->GetSelectedSensorPosition(0);  // left forward encoder %rod15
+	float rf = rightFront->GetSelectedSensorPosition(0); // right forward encoder
+	SmartDashboard::PutNumber("Left", lf);
+	SmartDashboard::PutNumber("Right", rf);
 }
 
 
@@ -63,6 +66,7 @@ void Chassis::TankDrive(std::shared_ptr<Joystick>stickPosition) {
 	y = pow(y,3);
 	z = pow(z,3);
 	z = z * 0.6;
+	z += -0.1 * y;  // counter the curve to the right %rod15b
 
 	differentialDrive->ArcadeDrive(y,z,false);
 }

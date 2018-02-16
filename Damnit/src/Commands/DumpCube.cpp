@@ -6,7 +6,7 @@
 DumpCube::DumpCube() {
 	AddSequential(new BucketTiltPosition(200));  // 200 is selecto dump
 	AddSequential(new Delay(0.5));
-	AddSequential(new BucketTiltPosition(-20));  // Back to home
+	AddSequential(new BucketTiltPosition(-6));  // Back to home  %rod15
 
 
 }
