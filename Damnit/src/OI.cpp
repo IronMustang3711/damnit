@@ -110,12 +110,12 @@ OI::OI() {
 
    // frc::SmartDashboard::PutData(new Spin());
    // frc::SmartDashboard::PutNumber("fwd", 12.0);
-    frc::SmartDashboard::PutData(new DriveForward());
-	frc::SmartDashboard::PutData(new DumbDriveForward());
-	frc::SmartDashboard::PutData(new DriveForwardGyroEncoder());
-    frc::SmartDashboard::PutData(new AutonomousCommand());
-    frc::SmartDashboard::PutData(new AutoBuilder());
-    frc::SmartDashboard::PutData(new MotionProfileCommand());
+//    frc::SmartDashboard::PutData(new DriveForward());
+//	frc::SmartDashboard::PutData(new DumbDriveForward());
+//	frc::SmartDashboard::PutData(new DriveForwardGyroEncoder());
+//    frc::SmartDashboard::PutData(new AutonomousCommand());
+//    frc::SmartDashboard::PutData(new AutoBuilder());
+//    frc::SmartDashboard::PutData(new MotionProfileCommand());
 
 }
 
