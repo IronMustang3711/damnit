@@ -156,8 +156,9 @@ FieldModel::FieldModel() : frc::Subsystem("Field model") {
     targetChooser.AddObject("switch",AutoTarget::SWITCH);
     targetChooser.AddObject("scale",AutoTarget::SCALE);
 
-    SmartDashboard::PutData(&allianceChooser);
-    SmartDashboard::PutData(&startChooser);
+//    SmartDashboard::PutData(&allianceChooser);
+//    SmartDashboard::PutData(&startChooser);
+//    SmartDashboard::PutData(&targetChooser);
 
     auto sd_table = nt::NetworkTableInstance::GetDefault().GetTable("SmartDashboard");
 
@@ -175,16 +176,18 @@ FieldModel::FieldModel() : frc::Subsystem("Field model") {
 
 
 
-    SmartDashboard::SetDefaultString("FIELD","LRL");
+  //  SmartDashboard::SetDefaultString("FIELD","LRL");
 
     sd_table->GetEntry("FIELD").AddListener([](const nt::EntryNotification& event){
         auto value =  event.value->GetString();
-        llvm::outs() << "FIELD(ENTRY): "
-                     << value
-                     << "valid? = "
-                     <<  (std::get<0>(parse_field_layout_message(value))
-                          != TargetLocation::INVALID)
-                     << '\n';
+        SmartDashboard::PutBoolean("message valid", (std::get<0>(parse_field_layout_message(value))
+                          != TargetLocation::INVALID));
+//        llvm::outs() << "FIELD(ENTRY): "
+//                     << value
+//                     << "valid? = "
+//                     <<  (std::get<0>(parse_field_layout_message(value))
+//                          != TargetLocation::INVALID)
+//                     << '\n';
 
     },nt::EntryListenerFlags::kUpdate);
 
@@ -204,11 +207,16 @@ FieldModel::FieldModel() : frc::Subsystem("Field model") {
 }
 
 void FieldModel::update() {
-    SmartDashboard::PutBoolean("field message is valid",fieldLayoutIsValid());
-    SmartDashboard::PutString("field message",getFieldLayoutMessage());
-    SmartDashboard::PutString("alliance",to_string(getAlliance()));
-    SmartDashboard::PutString("start position",to_string(getStartPosition()));
-    SmartDashboard::PutString("target position",to_string(getFieldLayout()));
+  //  SmartDashboard::PutBoolean("field message is valid", fieldLayoutIsValid());
+//    		std::get<0>(parse_field_layout_message(
+//    				SmartDashboard::GetString("FIELD",
+//    						DriverStation::GetInstance().GetGameSpecificMessage())
+//    ))!= TargetLocation::INVALID);
+
+//    SmartDashboard::PutString("field message",getFieldLayoutMessage());
+//    SmartDashboard::PutString("alliance",to_string(getAlliance()));
+//    SmartDashboard::PutString("start position",to_string(getStartPosition()));
+//    SmartDashboard::PutString("target position",to_string(getFieldLayout()));
 
 }
 

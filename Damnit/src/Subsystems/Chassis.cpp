@@ -74,14 +74,14 @@ void Chassis::Periodic() {
 //    SmartDashboard::PutNumberArray("encoder position",
 //    		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadraturePosition(),
 //									(double)rightFront->GetSensorCollection().GetQuadraturePosition()});
-//SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
-//	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
-//	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
-//}));
+SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
+	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
+	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
+}));
 	//SmartDashboard::PutNumberArray("encoder positions", {double(leftFront->GetSelectedSensorPosition(0)});
 
-    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
-    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
+   // SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
+   // SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
 
 //    SmartDashboard::PutNumberArray("encoder velocity",
 //       		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadratureVelocity(),
@@ -91,10 +91,12 @@ void Chassis::Periodic() {
 
     SmartDashboard::PutString("chassis command", GetCurrentCommand() == nullptr? "null" : GetCurrentCommand()->GetName());
 
-
+   llvm::SmallVector<double,4> outputs;
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-    	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
+    	outputs.push_back(t->GetMotorOutputPercent());
+    //	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
     }
+    SmartDashboard::PutNumberArray("MotorOutputs", outputs);
 
     if(leftFront->GetControlMode() ==ControlMode::MotionMagic){
     for(const auto t : {leftFront.get(),rightFront.get()}){
@@ -127,12 +129,12 @@ void Chassis::TankDrive(std::shared_ptr<Joystick> stickPosition) {
 void Chassis::mm_driveForward_init() {
     prepareForAutonomous();
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-        t->Config_kP(SLOT, 0.0, TIMEOUT);
+        t->Config_kP(SLOT, 1.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 0.0, TIMEOUT);
         t->Config_kF(SLOT, FGain, TIMEOUT);
 
-        constexpr double cruise_velocity = 0.2 * max_encoder_rate;
+        constexpr double cruise_velocity = 0.5 * max_encoder_rate;
         constexpr double max_accel = 0.5 * cruise_velocity;
 
         t->ConfigMotionCruiseVelocity(static_cast<int>(cruise_velocity), TIMEOUT);
@@ -168,6 +170,8 @@ void Chassis::prepareForAutonomous() {
         t->EnableVoltageCompensation(true);
     }
     resetEncoders();
+
+   // disableMotorSafety();
 }
 
 void Chassis::prepareForTeleop() {
@@ -176,6 +180,7 @@ void Chassis::prepareForTeleop() {
         t->EnableVoltageCompensation(false);
         t->SetNeutralMode(NeutralMode::Coast); // reduce the chances of tipping ( hopefully).
     }
+    //enableMotorSafety();
 }
 
 bool Chassis::driveStraightIsOnTarget() {
@@ -210,7 +215,7 @@ void Chassis::curvatureDrive(double fwd, double rotate, bool quickTurn) {
 }
 
 void Chassis::disableMotorSafety() {
-	differentialDrive->SetSafetyEnabled(false);
+	//differentialDrive->SetSafetyEnabled(false);
 
 	 for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
 		 t->SetSafetyEnabled(false);

@@ -16,21 +16,28 @@
 #include "Spin.h"
 
 
-AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO") {
-//    Requires(Robot::chassis.get());
-//    Requires(Robot::clamp.get());
-//    Requires(Robot::clampTilt.get());
-//    Requires(Robot::bucket.get());
-//    Requires(Robot::upperTilt.get());
+AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO(probably wont work)") {
+    Requires(Robot::chassis.get());
+    Requires(Robot::clamp.get());
+    Requires(Robot::clampTilt.get());
+    Requires(Robot::bucket.get());
+    Requires(Robot::upperTilt.get());
 
-    AddSequential(new DriveForward(42.0));
+    AddSequential(new DriveForward(60.0));
 
 
     AddSequential(new GoToSwitch());
     AddSequential(new DumpCube());
+
 
     AddSequential(new DriveForward(-12.0));
     AddSequential(new Spin());
 
 }
 
+void AutonomousCommand::End() {
+	Robot::bucket->Disable();
+	Robot::upperTilt->Disable();
+	Robot::clampTilt->Disable();
+	Robot::clamp->Disable();
+}

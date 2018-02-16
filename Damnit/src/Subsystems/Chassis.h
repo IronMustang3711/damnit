@@ -63,11 +63,13 @@ public:
     void enableInductiveBreaking(bool enable);
 
     void stop();
+    void testPeriodic();
 
+
+private:
     void disableMotorSafety();
     void enableMotorSafety();
 
-    void testPeriodic();
 
 };
 

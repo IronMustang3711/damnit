@@ -14,7 +14,7 @@
 
 class DriveForward : public frc::Command {
 public:
-    explicit DriveForward(double distanceInches);
+    explicit DriveForward(double distanceInches=60.0);
 
 protected:
     void Initialize() override;
@@ -35,7 +35,7 @@ private:
 
 class DumbDriveForward : public frc::TimedCommand {
 public:
-    explicit DumbDriveForward(double time = 2.0);
+    explicit DumbDriveForward(double time = 2.5);
 
 protected:
     void Execute() override;
@@ -50,7 +50,7 @@ class DriveForwardGyroEncoder : public frc::Command,
                                 public frc::PIDSource,
                                 public frc::PIDOutput {
 public:
-    explicit DriveForwardGyroEncoder(double distanceInches = 48.0, double timeout = 0.0);
+    explicit DriveForwardGyroEncoder(double distanceInches = 60.0, double timeout = 5.0);
 
     double encoderValue();
 
