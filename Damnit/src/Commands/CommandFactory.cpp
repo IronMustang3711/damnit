@@ -23,7 +23,7 @@ Command *commands::ClampTilts::to_bucket() {
 
 
 Command *commands::Clamps::open() {
-    return new ClampPosition(0,config.clamp.open_threshold);
+    return new ClampPosition(config.clamp.open_setpoint,config.clamp.open_threshold);
 }
 
 Command *commands::Clamps::close() {

@@ -6,7 +6,7 @@
 
 RobotConfig ProductionConfig {
         .clamp = {
-                .open_setpoint = 152,
+                .open_setpoint = 130,
                 .open_threshold = 100,
                 .to_home = 84,
                 .to_switch = 215

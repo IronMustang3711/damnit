@@ -6,8 +6,6 @@
 #include "ToggleDirection.h"
 
 ToggleDirection::ToggleDirection() : frc::InstantCommand("toggle direction") {
-
-
 }
 
 void ToggleDirection::Initialize() {

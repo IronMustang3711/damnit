@@ -135,10 +135,10 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-	SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
-	SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
-	SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
-	SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
+//	SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
+//	SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
+//	SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
+//	SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
 	frc::Scheduler::GetInstance()->Run();
 }
 
