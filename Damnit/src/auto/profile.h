@@ -8,7 +8,7 @@
 
 namespace mp {
 
-    constexpr double TIME_STEP = 0.001;
+    constexpr double TIME_STEP = 0.01;
 
     struct Prof {
         double leftPosition;
@@ -16,6 +16,11 @@ namespace mp {
         double rightPosition;
         double rightVelocity;
     };
+
+    typedef std::array<Prof, 666> RIGHT_TO_SWITCH_PROFS_t;
+    typedef std::array<Prof,809> RIGHT_TO_SCALE_PROFS_t;
 //todo: constexpr
-    extern std::array<Prof,757> PROFS;
+    extern RIGHT_TO_SWITCH_PROFS_t PROFS;
+
+    extern RIGHT_TO_SCALE_PROFS_t RIGHT_HOOK_TO_SCALE;
 }

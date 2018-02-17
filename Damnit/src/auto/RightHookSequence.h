@@ -7,7 +7,7 @@
 #include <Commands/CommandGroup.h>
 
 struct RightHookSequence : public frc::CommandGroup{
-    RightHookSequence();
+    RightHookSequence(bool toSwitch=true);
 
 };
 

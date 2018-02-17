@@ -1,31 +1,36 @@
+//
+// Created by Jason Markham on 2/17/18.
+//
+
+#include "MotionProfileCommand2.h"
+
 /*
- * MotionProfileCommand.cpp
+ * MotionProfileCommand2.cpp
  *
  *  Created on: Feb 14, 2018
  *      Author: jason
  */
 
-#include <auto/MotionProfileCommand.h>
 #include <Robot.h>
 #include "profile.h"
 
 using namespace mp;
-
+using namespace frc;
 //TODO: remove timeout once this is working.
-MotionProfileCommand::MotionProfileCommand() : frc::Command("Motion Profile", 5.0) {
+MotionProfileCommand2::MotionProfileCommand2() : frc::Command("Motion Profile", 5.0) {
     auto c = Robot::chassis.get();
     Requires(c);
 
     left = RobotMap::chassisLeftFront.get();
     right = RobotMap::chassisRightFront.get();
 
-    notifier = std::make_unique<Notifier>(&MotionProfileCommand::update, this);
+    notifier = std::make_unique<Notifier>(&MotionProfileCommand2::update, this);
 
 }
 
-void MotionProfileCommand::Initialize() {
+void MotionProfileCommand2::Initialize() {
 
-    it = PROFS.cbegin();
+    it = RIGHT_HOOK_TO_SCALE.cbegin();
 
 
     for (auto t : {left, right}) {
@@ -74,7 +79,7 @@ void MotionProfileCommand::Initialize() {
     notifier->StartPeriodic(0.005);
 }
 
-void MotionProfileCommand::Execute() {
+void MotionProfileCommand2::Execute() {
     update();
     fill();
     for (auto t : {left, right}) {
@@ -89,7 +94,7 @@ void MotionProfileCommand::Execute() {
             t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Hold);
             Cancel();
         } else {
-            DriverStation::ReportError("something weird happening in MotionProfileCommand::Execute");
+            DriverStation::ReportError("something weird happening in MotionProfileCommand2::Execute");
         }
 
         //TODO more diagnostic messages from status
@@ -114,20 +119,20 @@ void MotionProfileCommand::Execute() {
 
 }
 
-bool MotionProfileCommand::IsFinished() {
+bool MotionProfileCommand2::IsFinished() {
     return IsTimedOut();
 }
 
-void MotionProfileCommand::End() {
+void MotionProfileCommand2::End() {
     notifier->Stop();
 }
 
-void MotionProfileCommand::update() {
+void MotionProfileCommand2::update() {
     for (auto t : {left, right}) t->ProcessMotionProfileBuffer();
 
 }
 
-void MotionProfileCommand::fill(ProfIter stop) {
+void MotionProfileCommand2::fill(ProfIter stop) {
     TrajectoryPoint leftPoint{};
     TrajectoryPoint rightPoint{};
 
@@ -135,8 +140,8 @@ void MotionProfileCommand::fill(ProfIter stop) {
            && !right->IsMotionProfileTopLevelBufferFull()
            && it != stop) {
 
-        leftPoint.zeroPos = rightPoint.zeroPos = (it == &PROFS.front());
-        leftPoint.isLastPoint = rightPoint.isLastPoint = (it == &PROFS.back());
+        leftPoint.zeroPos = rightPoint.zeroPos = (it == &RIGHT_HOOK_TO_SCALE.front());
+        leftPoint.isLastPoint = rightPoint.isLastPoint = (it == &RIGHT_HOOK_TO_SCALE.back());
         leftPoint.timeDur = rightPoint.timeDur = TrajectoryDuration_10ms;
 
         leftPoint.position = it->leftPosition;
