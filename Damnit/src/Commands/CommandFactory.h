@@ -14,10 +14,10 @@ namespace commands {
     public:
         explicit ClampTilts(const RobotConfig& config);
 
-         Command* to_switch();
-         Command* to_cube();
-         Command* to_bucket();
-         Command* to_home();
+         frc::Command* to_switch();
+         frc::Command* to_cube();
+         frc::Command* to_bucket();
+         frc::Command* to_home();
 
         static ClampTilts& getInstance();
 
@@ -26,30 +26,30 @@ namespace commands {
         const RobotConfig& config;
     public:
         explicit Clamps(const RobotConfig& config);
-        Command* open();
-        Command* close();
-        Command* toggle();
+        frc::Command* open();
+        frc::Command* close();
+        frc::Command* toggle();
         static Clamps& getInstance();
 
-        Command *to_home();
+        frc::Command *to_home();
 
-        Command *to_switch();
+        frc::Command *to_switch();
     };
     class Buckets{
         const RobotConfig& config;
     public:
         explicit Buckets(const RobotConfig& config);
-        Command* to_home();
-        Command* to_home_tweak(double setpoint);
-        Command* to_switch();
-        Command* auto_level();
-        Command* auto_dump();
+        frc::Command* to_home();
+        frc::Command* to_home_tweak(double setpoint);
+        frc::Command* to_switch();
+        frc::Command* auto_level();
+        frc::Command* auto_dump();
         static Buckets& getInstance();
 
-        Command *to_zero();
+        frc::Command *to_zero();
 
-        Command *to_scale();
-        Command* winch_prep();
+        frc::Command *to_scale();
+        frc::Command* winch_prep();
     };
 }
 

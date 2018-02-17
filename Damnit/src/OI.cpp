@@ -46,6 +46,7 @@
 #include "Commands/GoToScale.h"
 #include "Commands/ResetEncoders.h"
 #include <llvm/raw_ostream.h>
+#include <Commands/Command.h>
 
 OI::OI() {
 	auto clamps = commands::Clamps::getInstance();
