@@ -83,25 +83,25 @@ void Chassis::Periodic() {
 //    SmartDashboard::PutNumberArray("encoder velocity",
 //       		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadratureVelocity(),
 //   									(double)rightFront->GetSensorCollection().GetQuadratureVelocity()});
-    SmartDashboard::PutNumber("encoder velocity(left)", (double)leftFront->GetSelectedSensorVelocity(0));
-    SmartDashboard::PutNumber("encoder velocity(right)", (double)rightFront->GetSelectedSensorVelocity(0));
+  //  SmartDashboard::PutNumber("encoder velocity(left)", (double)leftFront->GetSelectedSensorVelocity(0));
+  //  SmartDashboard::PutNumber("encoder velocity(right)", (double)rightFront->GetSelectedSensorVelocity(0));
 
     SmartDashboard::PutString("chassis command", GetCurrentCommand() == nullptr? "null" : GetCurrentCommand()->GetName());
 
-   llvm::SmallVector<double,4> outputs;
-    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-    	outputs.push_back(t->GetMotorOutputPercent());
-    	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
-    }
+//   llvm::SmallVector<double,4> outputs;
+//    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
+//    	outputs.push_back(t->GetMotorOutputPercent());
+//    	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
+//    }
    // SmartDashboard::PutNumberArray("MotorOutputs", outputs);
 
-    if(leftFront->GetControlMode() ==ControlMode::MotionMagic){
-    for(const auto t : {leftFront.get(),rightFront.get()}){
-    		SmartDashboard::PutNumber("closed loop error: "+t->GetName(), t->GetClosedLoopError(SLOT));
-    		SmartDashboard::PutNumber("closed loop target: "+t->GetName(), t->GetClosedLoopTarget(SLOT));
-
-    }
-    }
+//    if(leftFront->GetControlMode() ==ControlMode::MotionMagic){
+//    for(const auto t : {leftFront.get(),rightFront.get()}){
+//    		SmartDashboard::PutNumber("closed loop error: "+t->GetName(), t->GetClosedLoopError(SLOT));
+//    		SmartDashboard::PutNumber("closed loop target: "+t->GetName(), t->GetClosedLoopTarget(SLOT));
+//
+//    }
+//    }
 
 
 }
@@ -206,6 +206,7 @@ void Chassis::enableInductiveBreaking(bool enable) {
 }
 
 void Chassis::ArcadeDrive(double fwd, double rotate) {
+    if(reversed) rotate = -rotate;
     differentialDrive->ArcadeDrive(fwd, rotate, false);
 
 }
@@ -240,6 +241,10 @@ void Chassis::testPeriodic() {
 //			<< "lr "<<leftRear->GetMotorOutputPercent()
 //			<<"rf "<<rightFront->GetMotorOutputPercent()
 //			<<"rr "<<rightRear1->GetMotorOutputPercent() <<"\n";
+}
+
+void Chassis::toggleDirection() {
+    reversed = !reversed;
 }
 
 
