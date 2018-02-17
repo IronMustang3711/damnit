@@ -175,7 +175,7 @@ void Chassis::prepareForTeleop() {
 
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->EnableVoltageCompensation(false);
-        t->SetNeutralMode(NeutralMode::Coast); // reduce the chances of tipping ( hopefully).
+        //t->SetNeutralMode(NeutralMode::Coast); // reduce the chances of tipping ( hopefully).
     }
     //enableMotorSafety();
 }

@@ -110,7 +110,7 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
-    Robot::chassis->prepareForAutonomous();
+   // Robot::chassis->prepareForAutonomous();
 	llvm::outs() << "starting auto\n";
 
     autonomousCommand = getAutoCommand();
@@ -129,7 +129,7 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-    Robot::chassis->prepareForTeleop();
+   // Robot::chassis->prepareForTeleop();
 	if (autonomousCommand != nullptr)
 		autonomousCommand->Cancel();
 }
