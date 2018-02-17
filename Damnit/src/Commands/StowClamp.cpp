@@ -3,6 +3,6 @@
 #include "ClampTiltPosition.h"
 
 StowClamp::StowClamp() : frc::CommandGroup("Stow Clamp") {
-	AddSequential(new ClampPosition(220));  // Open Clamp
-	AddSequential(new ClampTiltPosition(0));  // stow below
+	AddSequential(commands::Clamps::getInstance().open());//(new ClampPosition(220));  // Open Clamp
+	AddSequential(commands::ClampTilts::getInstance().to_home());//(new ClampTiltPosition(0));  // stow below
 }

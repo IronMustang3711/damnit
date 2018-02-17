@@ -7,6 +7,6 @@ GoToScale::GoToScale() : frc::CommandGroup("Go To Scale") {
 	// stow clamp
 	AddSequential(new StowClamp);  // Hide clamp
 
-	AddParallel(new BucketTiltPosition(100));  // Put bucket in auto level
+	AddParallel(commands::Buckets::getInstance().auto_level());//(new BucketTiltPosition(100));  // Put bucket in auto level
 	AddParallel(new UpperTiltPosition(430));  // move arm to scale
 }
