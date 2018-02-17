@@ -87,21 +87,14 @@ private:
     std::shared_ptr<nt::NetworkTable> autoTable;
 
 
-    DumbDriveForward auto_dumbFwd;
-    AutoBuilder auto_builder;
-    AutonomousCommand auto_seq;
-    DriveForwardGyroEncoder auto_fwd_ge;
-    DriveForward auto_fwd_mm;
-    MotionProfileCommand auto_profiled;
+//    DumbDriveForward* auto_dumbFwd;
+//    AutoBuilder* auto_builder;
+    AutonomousCommand* auto_seq;
+    DriveForwardGyroEncoder* auto_fwd_ge;
+    DriveForward* auto_fwd_mm;
+    MotionProfileCommand* auto_profiled;
 
-    const std::map<std::string, frc::Command *> autos {
-            {"auto builder(x)",             &auto_builder},
-            {"simple auto sequence",        &auto_seq},
-            {"drive forward(timed)",        &auto_dumbFwd},
-            {"drive forward(gyro+encoder)", &auto_fwd_ge},
-            {"drive forward(profiled)",     &auto_fwd_mm},
-            {"experimental switch auto(x)", &auto_profiled}
-    };
+     std::map<std::string, frc::Command *> autos;
     std::vector<std::string> keys;
 
 };

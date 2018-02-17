@@ -124,7 +124,7 @@ void UpperTiltPosition::Execute() {
 			drivePower = -maxPower;
 		Robot::upperTilt->upperMotor->Set(drivePower);
 
-	/*	printf("et,sp,cp,dt,vc,cv,tv,d2s,dv,dp %5.2f %3.0f %3.0f %3.0f %d %3.0f %3.0f %3.0f %3.0f %4.2f \n",
+		printf("et,sp,cp,dt,vc,cv,tv,d2s,dv,dp %5.2f %3.0f %3.0f %3.0f %d %3.0f %3.0f %3.0f %3.0f %4.2f \n",
 		elapsedTime,
 		m_setpoint,
 		currentPosition,
@@ -135,7 +135,7 @@ void UpperTiltPosition::Execute() {
 		distanceToStop,
 		desiredVelocity,
 		drivePower);
-*/
+
 
 	}
 	prevPosition = currentPosition;
