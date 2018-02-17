@@ -17,6 +17,7 @@ void DriveForward::Initialize() {
     //double amt = distance == 0.0 ? SmartDashboard::GetNumber("fwd", 12.0) : distance;
    // Robot::chassis->disableMotorSafety();
     Robot::chassis->mm_driveForward_init();
+    onTargetCount = 0;
 }
 
 bool DriveForward::IsFinished() {
@@ -24,7 +25,7 @@ bool DriveForward::IsFinished() {
     if (Robot::chassis->driveStraightIsOnTarget()) {
         onTargetCount++;
     }
-    return onTargetCount >= 10;
+    return onTargetCount >= 10 || IsTimedOut();
 }
 
 void DriveForward::End() {

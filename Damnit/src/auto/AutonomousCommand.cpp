@@ -10,6 +10,7 @@
 
 
 #include <Robot.h>
+#include <Commands/StowBucket.h>
 #include "DriveForward.h"
 #include "Commands/GoToSwitch.h"
 #include "Commands/DumpCube.h"
@@ -23,15 +24,15 @@ AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO(probably wont w
     Requires(Robot::bucket.get());
     Requires(Robot::upperTilt.get());
 
-    AddSequential(new DriveForward(60.0));
+    AddSequential(new DriveForward(150.0)); //144
 
 
     AddSequential(new GoToSwitch());
     AddSequential(new DumpCube());
 
 
-    AddSequential(new DriveForward(-12.0));
-    AddSequential(new Spin());
+    AddSequential(new DriveForward(-12.0),1.0);
+    AddParallel(new StowBucket(),2.0);
 
 }
 

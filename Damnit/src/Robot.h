@@ -18,6 +18,7 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <map>
+#include <auto/RightHookSequence.h>
 
 #include "RobotMap.h"
 
@@ -97,6 +98,7 @@ private:
     DriveForward* auto_fwd_mm;
     MotionProfileCommand* auto_profiled;
     DontDoAnything* do_nothing;
+    RightHookSequence* right_hook;
 
      std::map<std::string, frc::Command *> autos;
     std::vector<std::string> keys;

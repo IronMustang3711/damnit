@@ -16,13 +16,13 @@ constexpr int encoder_ticks_per_rev = 1410;
 
 constexpr double distance_per_rev = wheel_diameter * pi; //18.8495
 
-constexpr double encoder_ticks_per_inch = encoder_ticks_per_rev / distance_per_rev; //74.802823
+constexpr double encoder_ticks_per_inch = 130;//encoder_ticks_per_rev / distance_per_rev; //74.802823
 
 //constexpr double max_fps = 4.0;
 
 //constexpr double max_encoder_rate_per_sec = max_fps * 12.0 * encoder_ticks_per_inch;
 
-constexpr double max_encoder_rate = 1100.0;//max_encoder_rate_per_sec / 10.0;
+constexpr double max_encoder_rate = 1300.0;//max_encoder_rate_per_sec / 10.0;
 
 
 constexpr double FGain = 1023.0 / (max_encoder_rate - 0.1 * max_encoder_rate);
@@ -126,13 +126,13 @@ void Chassis::TankDrive(std::shared_ptr<Joystick> stickPosition) {
 void Chassis::mm_driveForward_init() {
     prepareForAutonomous();
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-        t->Config_kP(SLOT, 1.0, TIMEOUT);
+        t->Config_kP(SLOT, 10.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 0.0, TIMEOUT);
         t->Config_kF(SLOT, FGain, TIMEOUT);
 
         constexpr double cruise_velocity = 0.5 * max_encoder_rate;
-        constexpr double max_accel = 0.5 * cruise_velocity;
+        constexpr double max_accel =0.5 * cruise_velocity;
 
         t->ConfigMotionCruiseVelocity(static_cast<int>(cruise_velocity), TIMEOUT);
         t->ConfigMotionAcceleration(static_cast<int>(max_accel), TIMEOUT);
@@ -157,7 +157,10 @@ void Chassis::mm_Periodic(double distanceInches) {
 }
 
 void Chassis::resetEncoders() {
-    for (const auto t : {leftFront.get(), rightFront.get()}) t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
+    for (const auto t : {leftFront.get(), rightFront.get()}){
+      //  t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
+        t->SetSelectedSensorPosition(0,SLOT,TIMEOUT);
+    }
 }
 
 void Chassis::prepareForAutonomous() {
@@ -184,7 +187,7 @@ bool Chassis::driveStraightIsOnTarget() {
 	double leftErr = leftFront->GetClosedLoopError(SLOT);
 	double rightErr = rightFront->GetClosedLoopError(SLOT);
 	llvm::outs() << "err: left="<<leftErr<<" right="<<rightErr <<" \n";
-    return leftErr < 1.0 && rightErr < 1.0;
+    return std::abs(leftErr) < 6.0 && std::abs(rightErr) < 6.0;
 
 }
 

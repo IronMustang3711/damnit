@@ -9,5 +9,5 @@ GoToSwitch::GoToSwitch() : frc::CommandGroup("Go To Switch") {
 	AddSequential(new StowClamp);  // Hide clamp
 
 	AddParallel(Buckets::getInstance().to_home_tweak(-16));//new BucketTiltPosition(-16));  // Put bucket in auto level
-	AddParallel(Buckets::getInstance().to_switch());//new UpperTiltPosition(150));  // move arm to switch
+	AddParallel(new UpperTiltPosition(100));//(Buckets::getInstance().to_switch());//new UpperTiltPosition(150));  // move arm to switch
 }
