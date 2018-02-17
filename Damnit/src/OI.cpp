@@ -51,7 +51,7 @@
 OI::OI() {
 	auto clamps = commands::Clamps::getInstance();
 	auto clamp_tilts = commands::ClampTilts::getInstance();
-	auto buckets = commands::Buckets::getInstance();
+//	auto buckets = commands::Buckets::getInstance();
 
 	llvm::outs() << "OI\n";
 	// Process operator interface input here.
