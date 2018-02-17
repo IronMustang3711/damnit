@@ -19,7 +19,7 @@ RobotConfig ProductionConfig {
 
         .bucket_tilt = {
                 .home_setpoint = -6,
-                .winch_prep = 217
+                .winch_prep = 212
         },
         .driveTrain = {
                 .rotation_offset_multiplier = -0.1

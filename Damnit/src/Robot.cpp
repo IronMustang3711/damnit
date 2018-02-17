@@ -162,16 +162,32 @@ void Robot::RobotPeriodic() {
 
 void Robot::initAutoChooser() {
     llvm::outs() <<"initAutoChooser\n";
+
+    /*
+     *
+     *     DumbDriveForward* auto_dumbFwd;
+//    AutoBuilder* auto_builder;
+    AutonomousCommand* auto_seq;
+    DriveForwardGyroEncoder* auto_fwd_ge;
+    DriveForward* auto_fwd_mm;
+    MotionProfileCommand* auto_profiled;
+    DontDoAnything do_nothing;
+     */
+    auto_dumbFwd = new DumbDriveForward;
     auto_seq = new AutonomousCommand;
     auto_fwd_ge = new DriveForwardGyroEncoder;
     auto_fwd_mm = new DriveForward;
      auto_profiled = new MotionProfileCommand;
+     do_nothing = new DontDoAnything;
 
     autos =  {
-            {"simple auto sequence",        auto_seq},
-            {"drive forward(gyro+encoder)", auto_fwd_ge},
-            {"drive forward(profiled)",     auto_fwd_mm},
-            {"experimental switch auto(x)", auto_profiled}
+    		{"don't do anything",do_nothing },
+    		{"drive forward(timed)", auto_dumbFwd},
+        {"simple auto sequence",        auto_seq},
+        {"drive forward(gyro+encoder)", auto_fwd_ge},
+        {"drive forward(profiled)",     auto_fwd_mm},
+        {"experimental switch auto(x)", auto_profiled}
+
     };
 
 
