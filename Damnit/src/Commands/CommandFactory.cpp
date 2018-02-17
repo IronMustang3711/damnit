@@ -71,6 +71,10 @@ Command *commands::Buckets::to_scale() {
     return new BucketTiltPosition(205);
 }
 
+Command *commands::Buckets::winch_prep() {
+    return new BucketTiltPosition(config.bucket_tilt.winch_prep);
+}
+
 commands::ClampTilts &commands::ClampTilts::getInstance() {
     static ClampTilts inst(Robot::config);
     return inst;

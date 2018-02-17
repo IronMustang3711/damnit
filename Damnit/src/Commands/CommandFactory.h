@@ -49,6 +49,7 @@ namespace commands {
         Command *to_zero();
 
         Command *to_scale();
+        Command* winch_prep();
     };
 }
 

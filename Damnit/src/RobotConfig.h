@@ -29,6 +29,7 @@ struct RobotConfig {
 
         struct BucketTilt {
             double home_setpoint;
+            double winch_prep;
         };
         BucketTilt bucket_tilt;
 
