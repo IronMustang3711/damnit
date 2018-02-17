@@ -38,7 +38,7 @@ void ClampPosition::Initialize() {
     	if (clampOpen)
     		Robot::clamp->SetSetpoint(0);  // close clamp
     	else
-    		Robot::clamp->SetSetpoint(220); // open clamp 220 is in oi.cpp also
+    		Robot::clamp->SetSetpoint(152); // open clamp 220 is in oi.cpp also %rod15
     	clampOpen = !clampOpen;
     }
     else{

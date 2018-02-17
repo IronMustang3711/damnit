@@ -79,10 +79,9 @@ void Robot::RobotInit() {
 
 
 
-	//frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
+	frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
 	frc::SmartDashboard::PutData(RobotMap::ahrs.get());
-	frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
-	frc::Scheduler::GetInstance()->SetName("scheduler");
+
 
 }
 
