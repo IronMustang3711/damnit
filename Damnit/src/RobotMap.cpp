@@ -68,26 +68,32 @@ void RobotMap::init() {
 
 	chassisLeftRear.reset(new WPI_TalonSRX(2));
 	chassisLeftRear->SetName("Chassis", "left rear");
+
 	chassisLeftRear->SetInverted(false);
 	chassisLeftFront->SetInverted(false);
 
+	chassisLeftRear->Follow(*chassisRightFront.get());
+
 	chassisLeftSide = std::make_shared<frc::SpeedControllerGroup>(
-			*chassisLeftFront, *chassisLeftRear);
+			*chassisLeftFront);
 	chassisLeftSide->SetName("Chassis", "LeftSide");
 
 	chassisRightFront.reset(new WPI_TalonSRX(3));
 	chassisRightFront->SetName("Chassis", "right front");
+
 	chassisRightFront->SetSensorPhase(true);
 
 	chassisRightRear1.reset(new WPI_TalonSRX(4));
 	chassisRightRear1->SetName("Chassis", "right rear");
+
+	chassisRightRear1->Follow(*chassisRightFront.get());
 
 	chassisRightFront->SetInverted(true);
 	chassisRightRear1->SetInverted(true);
 
 
 	chassisRightSide = std::make_shared<frc::SpeedControllerGroup>(
-			*chassisRightFront, *chassisRightRear1);
+			*chassisRightFront);
 	chassisRightSide->SetInverted(true);
 
 	chassisRightSide->SetName("Chassis", "RightSide");

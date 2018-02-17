@@ -79,7 +79,7 @@ void Robot::RobotInit() {
 
 
 
-	frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
+	//frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
 	frc::SmartDashboard::PutData(RobotMap::ahrs.get());
 
 
@@ -135,10 +135,10 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
-//	SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
-//	SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
-//	SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
-//	SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
+	SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
+	SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
+	SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
+	SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
 	frc::Scheduler::GetInstance()->Run();
 }
 
@@ -161,6 +161,18 @@ void Robot::RobotPeriodic() {
 }
 
 void Robot::initAutoChooser() {
+    llvm::outs() <<"initAutoChooser\n";
+    auto_seq = new AutonomousCommand;
+    auto_fwd_ge = new DriveForwardGyroEncoder;
+    auto_fwd_mm = new DriveForward;
+     auto_profiled = new MotionProfileCommand;
+
+    autos =  {
+            {"simple auto sequence",        auto_seq},
+            {"drive forward(gyro+encoder)", auto_fwd_ge},
+            {"drive forward(profiled)",     auto_fwd_mm},
+            {"experimental switch auto(x)", auto_profiled}
+    };
 
 
     for(const auto& elem : autos){
