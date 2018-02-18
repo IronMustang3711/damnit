@@ -24,7 +24,7 @@ AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO(probably wont w
     Requires(Robot::bucket.get());
     Requires(Robot::upperTilt.get());
 
-    AddSequential(new DriveForward(150.0)); //144
+    AddSequential(new DriveForward(105.0)); //144
 
 
     AddSequential(new GoToSwitch());
