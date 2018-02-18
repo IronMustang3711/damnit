@@ -99,6 +99,7 @@ private:
     MotionProfileCommand* auto_profiled;
     DontDoAnything* do_nothing;
     RightHookSequence* right_hook;
+    RightHookSequence* right_to_scale;
 
      std::map<std::string, frc::Command *> autos;
     std::vector<std::string> keys;

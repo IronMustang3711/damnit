@@ -170,6 +170,7 @@ void Robot::initAutoChooser() {
     auto_profiled = new MotionProfileCommand;
     do_nothing = new DontDoAnything;
     right_hook = new RightHookSequence;
+    right_to_scale = new RightHookSequence(false);
 
     autos = {
             {"don't do anything", do_nothing},
@@ -177,8 +178,9 @@ void Robot::initAutoChooser() {
             {"simple auto sequence", auto_seq},
             {"drive forward(gyro+encoder)", auto_fwd_ge},
             {"drive forward(profiled)", auto_fwd_mm},
-            {"experimental switch auto(x)", auto_profiled},
-            {"right hook", right_hook}
+            {"emotion profile(right)", auto_profiled},
+            {"right hook", right_hook},
+            {"right hook to scale", right_to_scale}
 
     };
 
