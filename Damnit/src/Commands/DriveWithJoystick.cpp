@@ -30,7 +30,7 @@ void DriveWithJoystick::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveWithJoystick::Execute() {
-	Robot::chassis->TankDrive(Robot::oi->getDriveJoystick());  // %rod1
+    Robot::chassis->TeleopDrive(Robot::oi->getDriveJoystick());  // %rod1
 
 }
 
