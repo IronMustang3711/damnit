@@ -16,13 +16,19 @@
 #include "Commands/Command.h"
 #include "CommandFactory.h"
 
-/**
- *
- *
- * @author ExampleAuthor
- */
+namespace bucket_tilt {
+
+	 struct Config {
+		double home_setpoint = -6;
+		double winch_prep_setpoint = 212;
+	};
+	constexpr Config COMPETITION_CONFIG{};
+
+	constexpr Config PROTO_CONFIG{-15,-217};
+}
 class BucketTiltPosition: public frc::Command {
 	friend class commands::Buckets;
+	
 
 	explicit BucketTiltPosition(double setpoint);
 

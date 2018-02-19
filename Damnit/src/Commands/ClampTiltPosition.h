@@ -23,6 +23,19 @@
  */
 class ClampTiltPosition: public frc::Command {
 
+	struct Config {
+		double cube_setpoint = 336;
+		double bucket_setpoint = 82;
+		double switch_setpoint = 206;
+
+	};
+
+	void ProtoBotConfig(Config& c){
+		c.cube_setpoint = 357;
+		c.bucket_setpoint = 82;
+		c.switch_setpoint = 215;
+	}
+
 	friend class commands::ClampTilts;
 
 	explicit ClampTiltPosition(double setpoint);

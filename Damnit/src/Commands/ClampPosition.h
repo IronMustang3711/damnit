@@ -23,6 +23,23 @@
  */
 class ClampPosition: public frc::Command {
 	friend class commands::Clamps;
+	//Production Robot values set as default.
+
+	struct Config {
+		double open_threshold = 100;
+		double open_setpoint = 130.0;
+		double home_setpoint = 84.0;
+		double switch_setpoint = 215.0;
+
+
+	};
+
+	static inline void ProtoBotConfig(Config& c){
+		c.open_threshold = 200;
+		c.open_setpoint = 220;
+		c.home_setpoint = 82;
+		c.switch_setpoint = 206;
+	}
 
 
 	explicit ClampPosition(double setpoint, double open_threshold);
