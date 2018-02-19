@@ -17,7 +17,7 @@
 using namespace mp;
 using namespace frc;
 //TODO: remove timeout once this is working.
-MotionProfileCommand2::MotionProfileCommand2() : frc::Command("Motion Profile", 5.0) {
+MotionProfileCommand2::MotionProfileCommand2() : frc::Command("Motion Profile 2", 12.0) {
     auto c = Robot::chassis.get();
     Requires(c);
 

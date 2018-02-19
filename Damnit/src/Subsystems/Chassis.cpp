@@ -16,7 +16,7 @@ constexpr int encoder_ticks_per_rev = 1410;
 
 constexpr double distance_per_rev = wheel_diameter * pi; //18.8495
 
-constexpr double encoder_ticks_per_inch = 130;//encoder_ticks_per_rev / distance_per_rev; //74.802823
+constexpr double encoder_ticks_per_inch =  76.0;//130;//encoder_ticks_per_rev / distance_per_rev; //74.802823
 
 //constexpr double max_fps = 4.0;
 

@@ -1,56 +1,33 @@
-/*
- * MotionProfileCommand.cpp
- *
- *  Created on: Feb 14, 2018
- *      Author: jason
- */
+//
+// Created by Jason Markham on 2/19/18.
+//
 
-#include <auto/MotionProfileCommand.h>
 #include <Robot.h>
-#include "profile.h"
+#include "MotionProfileExecutor.h"
 
-using namespace mp;
-
-//TODO: remove timeout once this is working.
-MotionProfileCommand::MotionProfileCommand() : frc::Command("Motion Profile", 7.0) {
-    auto c = Robot::chassis.get();
-    Requires(c);
+MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double timeout,const std::vector<mp::Prof>& _profs)
+        : frc::Command(name,timeout), profiles(_profs)
+{
+    Requires(Robot::chassis.get());
 
     left = RobotMap::chassisLeftFront.get();
     right = RobotMap::chassisRightFront.get();
 
-    notifier = std::make_unique<Notifier>(&MotionProfileCommand::update, this);
+    notifier = std::make_unique<Notifier>(&MotionProfileExecutor::update, this);
+
 
 }
 
-void MotionProfileCommand::Initialize() {
-
-    it = PROFS.cbegin();
-
-
+void MotionProfileExecutor::Initialize() {
+    fillIndex = 0;
     for (auto t : {left, right}) {
         t->SelectProfileSlot(SLOT, TIMEOUT);
-
-
-        /*
-         *
-        t->Config_kP(SLOT, 10.0, TIMEOUT);
-        t->Config_kI(SLOT, 0.0, TIMEOUT);
-        t->Config_kD(SLOT, 0.0, TIMEOUT);
-        t->Config_kF(SLOT, FGain, TIMEOUT);
-         */
-
         constexpr double FGain = (1.0/*percent*/ * 1023.0/*10 bit SRX max*/) / 1300.0; /*max v*/
 
         t->Config_kF(SLOT, FGain, TIMEOUT);
         t->Config_kP(SLOT, 25.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 10.0, TIMEOUT);
-
-//        t->Config_kF(SLOT, 0.8, TIMEOUT);
-//        t->Config_kP(SLOT, 20.0, TIMEOUT);
-//        t->Config_kI(SLOT, 0.1, TIMEOUT);
-//        t->Config_kD(SLOT, 30.0, TIMEOUT);
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
@@ -70,11 +47,12 @@ void MotionProfileCommand::Initialize() {
     }
 
     fill();
-
     notifier->StartPeriodic(0.005);
+
+
 }
 
-void MotionProfileCommand::Execute() {
+void MotionProfileExecutor::Execute() {
     update();
     fill();
     for (auto t : {left, right}) {
@@ -95,61 +73,62 @@ void MotionProfileCommand::Execute() {
         //TODO more diagnostic messages from status
 
 
-        SmartDashboard::PutNumber("error: " + t->GetName(),
+        SmartDashboard::PutNumber("profile error: " + t->GetName(),
                                   t->GetClosedLoopError(SLOT));
-        SmartDashboard::PutNumber("target: " + t->GetName(),
-                                  t->GetClosedLoopTarget(SLOT));
-        SmartDashboard::PutNumber("position: " + t->GetName(),
-                                  t->GetSelectedSensorPosition(SLOT));
-        SmartDashboard::PutNumber("velocity: " + t->GetName(),
-                                  t->GetSelectedSensorVelocity(SLOT));
-
-        SmartDashboard::PutNumber("trajectory position: " + t->GetName(),
-                                  t->GetActiveTrajectoryPosition());
-        SmartDashboard::PutNumber("trajectory velocity: " + t->GetName(),
-                                  t->GetActiveTrajectoryVelocity());
+//        SmartDashboard::PutNumber("target: " + t->GetName(),
+//                                  t->GetClosedLoopTarget(SLOT));
+//        SmartDashboard::PutNumber("position: " + t->GetName(),
+//                                  t->GetSelectedSensorPosition(SLOT));
+//        SmartDashboard::PutNumber("velocity: " + t->GetName(),
+//                                  t->GetSelectedSensorVelocity(SLOT));
+//
+//        SmartDashboard::PutNumber("trajectory position: " + t->GetName(),
+//                                  t->GetActiveTrajectoryPosition());
+//        SmartDashboard::PutNumber("trajectory velocity: " + t->GetName(),
+//                                  t->GetActiveTrajectoryVelocity());
 
     }
-
-
 }
 
-bool MotionProfileCommand::IsFinished() {
+bool MotionProfileExecutor::IsFinished() {
     return IsTimedOut();
 }
 
-void MotionProfileCommand::End() {
+void MotionProfileExecutor::End() {
     notifier->Stop();
 }
 
-void MotionProfileCommand::update() {
+void MotionProfileExecutor::update() {
     for (auto t : {left, right}) t->ProcessMotionProfileBuffer();
-
 }
 
-void MotionProfileCommand::fill(ProfIter stop) {
+void MotionProfileExecutor::fill() {
     TrajectoryPoint leftPoint{};
     TrajectoryPoint rightPoint{};
 
+
     while (!left->IsMotionProfileTopLevelBufferFull()
            && !right->IsMotionProfileTopLevelBufferFull()
-           && it != stop) {
+           && fillIndex < profiles.size()) {
 
-        leftPoint.zeroPos = rightPoint.zeroPos = (it == &PROFS.front());
-        leftPoint.isLastPoint = rightPoint.isLastPoint = (it == &PROFS.back());
+
+        leftPoint.zeroPos = rightPoint.zeroPos = (fillIndex == 0);
+        leftPoint.isLastPoint = rightPoint.isLastPoint = (fillIndex == profiles.size()-1);
         leftPoint.timeDur = rightPoint.timeDur = TrajectoryDuration_10ms;
 
-        leftPoint.position = it->leftPosition;
-        leftPoint.velocity = it->leftVelocity;
+        leftPoint.position = profiles[fillIndex].leftPosition;
+        leftPoint.velocity = profiles[fillIndex].leftVelocity;
 
 
-        rightPoint.position = it->rightPosition;
-        rightPoint.velocity = it->rightVelocity;
+        rightPoint.position =  profiles[fillIndex].rightPosition;
+        rightPoint.velocity =  profiles[fillIndex].rightVelocity;
 
         left->PushMotionProfileTrajectory(leftPoint);
         right->PushMotionProfileTrajectory(rightPoint);
 
-        it++;
+        fillIndex++;
     }
+
 }
+
 

@@ -47,6 +47,7 @@
 #include "Commands/ResetEncoders.h"
 #include <llvm/raw_ostream.h>
 #include <Commands/Command.h>
+#include <auto/MotionProfileCommand2.h>
 
 OI::OI() {
 	auto clamps = commands::Clamps::getInstance();
@@ -123,19 +124,21 @@ OI::OI() {
 
 
     frc::SmartDashboard::PutData(new ResetDriveTrainEncoders());
-	frc::SmartDashboard::PutData(new ResetAllEncoders());
+	//frc::SmartDashboard::PutData(new ResetAllEncoders());
 //	frc::SmartDashboard::PutData(new ResetClampEncoder());
 //	frc::SmartDashboard::PutData(new ResetClampTiltEncoder());
 //	frc::SmartDashboard::PutData(new ResetAllEncoders());
 
    // frc::SmartDashboard::PutData(new Spin());
    // frc::SmartDashboard::PutNumber("fwd", 12.0);
-//    frc::SmartDashboard::PutData(new DriveForward());
+    frc::SmartDashboard::PutData(new DriveForward());
 //	frc::SmartDashboard::PutData(new DumbDriveForward());
 //	frc::SmartDashboard::PutData(new DriveForwardGyroEncoder());
 //    frc::SmartDashboard::PutData(new AutonomousCommand());
 //    frc::SmartDashboard::PutData(new AutoBuilder());
-//    frc::SmartDashboard::PutData(new MotionProfileCommand());
+    frc::SmartDashboard::PutData(new MotionProfileCommand());
+	frc::SmartDashboard::PutData(new MotionProfileCommand2());
+
 
 }
 
