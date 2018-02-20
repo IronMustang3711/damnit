@@ -10,6 +10,7 @@
 
 
 #include <PIDController.h>
+#include <Robot.h>
 
 #include "Clamp.h"
 #include "RobotMap.h"
@@ -73,4 +74,8 @@ void Clamp::reset() {
     clampMotor->StopMotor();
     clampEncoder.reset();
 
+}
+
+const chassis::Config &chassis::getConfig() {
+    return Robot::isCompetitionRobot ? chassis::COMPETITION_CONFIG : chassis::PROTO_CONFIG;
 }

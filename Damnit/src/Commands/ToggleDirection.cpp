@@ -10,7 +10,8 @@ ToggleDirection::ToggleDirection() : frc::InstantCommand("toggle direction") {
 }
 
 void ToggleDirection::Initialize() {
-    RobotMap::chassisLeftSide->SetInverted(!RobotMap::chassisLeftSide->GetInverted());
-    RobotMap::chassisRightSide->SetInverted(!RobotMap::chassisRightSide->GetInverted());
+    //RobotMap::chassisLeftSide->SetInverted(!RobotMap::chassisLeftSide->GetInverted());
+    //RobotMap::chassisRightSide->SetInverted(!RobotMap::chassisRightSide->GetInverted());
     Robot::chassis->toggleDirection();
+   // DriverStation::ReportError("toggle");
 }

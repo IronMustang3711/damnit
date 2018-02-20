@@ -40,6 +40,7 @@ std::unique_ptr<OI> Robot::oi;
 std::shared_ptr<Winch> Robot::winch;
 RobotConfig Robot::config;
 
+bool Robot::isCompetitionRobot = true; //TODO !
 
 void Robot::RobotInit() {
     config = ProductionConfig; //TODO!

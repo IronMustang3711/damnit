@@ -38,20 +38,7 @@ void DriveForward::Execute() {
     Robot::chassis->mm_Periodic(distance);
 }
 
-/************* DumbDriveForward ***************/
-DumbDriveForward::DumbDriveForward(double time) : TimedCommand("Drive Forward(timed)", // + std::to_string(time) + ")",
-                                                               time) {
-    Requires(Robot::chassis.get());
-}
 
-
-void DumbDriveForward::Execute() {
-    Robot::chassis->curvatureDrive(0.4, 0.0, false);
-}
-
-void DumbDriveForward::End() {
-    Command::End();
-}
 
 /************* DriveForwardGyroEncoder ***************/
 
@@ -118,3 +105,17 @@ bool DriveForwardGyroEncoder::IsFinished() {
     return IsTimedOut() || pid.OnTarget() || (pid.GetError() < -50.0);
 }
 
+/************* DumbDriveForward ***************/
+DumbDriveForward::DumbDriveForward(double time) : TimedCommand("Drive Forward(timed)", // + std::to_string(time) + ")",
+                                                               time) {
+    Requires(Robot::chassis.get());
+}
+
+
+void DumbDriveForward::Execute() {
+    Robot::chassis->curvatureDrive(0.4, 0.0, false);
+}
+
+void DumbDriveForward::End() {
+    Command::End();
+}

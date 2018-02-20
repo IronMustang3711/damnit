@@ -120,7 +120,7 @@ void Chassis::Periodic() {
 // here. Call these from Commands.
 
 // add tank drive  %rod1
-void Chassis::TankDrive(std::shared_ptr<Joystick> stickPosition) {
+void Chassis::TeleopDrive(std::shared_ptr<Joystick> stickPosition) {
     double y = -stickPosition->GetY();
     double z = stickPosition->GetZ();
 
@@ -215,7 +215,12 @@ void Chassis::enableInductiveBreaking(bool enable) {
 }
 
 void Chassis::ArcadeDrive(double fwd, double rotate) {
-    if(reversed) rotate = -rotate;
+    if(reversed) {
+        rotate = -1.0 * rotate;
+        fwd = -1.0 * fwd;
+    }
+
+
     differentialDrive->ArcadeDrive(fwd, rotate, false);
 
 }
@@ -254,6 +259,7 @@ void Chassis::testPeriodic() {
 
 void Chassis::toggleDirection() {
     reversed = !reversed;
+    DriverStation::ReportError("reversed="+reversed? "true" : "false");
 }
 
 
