@@ -18,7 +18,7 @@
 namespace bucket_tilt {
 
     struct Config {
-        double home_setpoint = -6;
+        double home_setpoint = -17;  //TODO test me! possible values: -6, -14,-15,-20
         double winch_prep_setpoint = 212;
         double switch_setpoint = 150;
         double scale_setpoint = 205;
@@ -32,7 +32,7 @@ namespace bucket_tilt {
 
 class BucketTiltPosition : public frc::Command {
 
-public:
+protected:
 
     explicit BucketTiltPosition(double setpoint);
 
@@ -96,6 +96,7 @@ class BucketTiltToWinch : public BucketTiltPosition {
 public:
     BucketTiltToWinch();
 };
+
 
 
 #endif
