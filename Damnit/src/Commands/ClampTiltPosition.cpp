@@ -148,3 +148,7 @@ void ClampTiltPosition::End() {
 void ClampTiltPosition::Interrupted() {
   End();
 }
+
+const clamp_tilt::Config &clamp_tilt::getConfig() {
+    return Robot::isCompetitionRobot ? clamp_tilt::COMPETITION_CONFIG : clamp_tilt::PROTO_CONFIG;
+}

@@ -16,6 +16,19 @@
 #include "Commands/Command.h"
 #include "CommandFactory.h"
 
+namespace clamp {
+	struct Config {
+		double open_setpoint = 130.0;
+		double open_threshold = 100.0;
+		double home_setpoint = 84.0;
+		double switch_setpoint = 206.0;
+	};
+	constexpr Config COMPETITION_CONFIG{};
+	constexpr Config PROTO_CONFIG{220.0,200.0,82.0,206.0};
+
+	const Config& getConfig();
+}
+
 /**
  *
  *

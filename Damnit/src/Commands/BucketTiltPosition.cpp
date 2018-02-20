@@ -192,3 +192,7 @@ void BucketTiltPosition::End() {
 void BucketTiltPosition::Interrupted() {
   End();
 }
+
+const bucket_tilt::Config &bucket_tilt::getConfig() {
+    return Robot::isCompetitionRobot ? bucket_tilt::COMPETITION_CONFIG : bucket_tilt::PROTO_CONFIG;
+}

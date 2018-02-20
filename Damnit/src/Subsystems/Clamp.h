@@ -16,7 +16,16 @@
 #include <Commands/PIDSubsystem.h>
 #include <SpeedController.h>
 #include <Encoder.h>
+namespace chassis {
+	struct Config {
+		double rotation_offset_multiplier = -0.1;
+	};
+	constexpr Config COMPETITION_CONFIG{};
+	constexpr Config PROTO_CONFIG{0.0};
 
+	const Config& getConfig();
+
+}
 /**
  *
  *

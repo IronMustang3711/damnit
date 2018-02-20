@@ -82,3 +82,7 @@ void ClampPosition::End() {
 void ClampPosition::Interrupted() {
 
 }
+
+const clamp::Config& clamp::getConfig() {
+    return Robot::isCompetitionRobot ? clamp::COMPETITION_CONFIG : clamp::PROTO_CONFIG;
+}

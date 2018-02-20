@@ -23,8 +23,9 @@ namespace bucket_tilt {
 		double winch_prep_setpoint = 212;
 	};
 	constexpr Config COMPETITION_CONFIG{};
-
 	constexpr Config PROTO_CONFIG{-15,-217};
+
+    const Config& getConfig();
 }
 class BucketTiltPosition: public frc::Command {
 	friend class commands::Buckets;
