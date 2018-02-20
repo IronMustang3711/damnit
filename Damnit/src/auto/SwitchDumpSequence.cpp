@@ -11,9 +11,7 @@
 SwitchDumpSequence::SwitchDumpSequence() : frc::CommandGroup("switch dump") {
     AddSequential(new GoToSwitch());
     AddSequential(new DumpCube());
-
     AddSequential(new StowBucket());
-
    // AddSequential(new DriveForward(-12.0),1.0);
    // AddParallel(new StowBucket(),2.0);
 
