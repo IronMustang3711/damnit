@@ -18,7 +18,7 @@
 namespace upper_tilt {
 	struct Config {
 		double scale_setpoint = 430.0;
-		double switch_setpoint = 100.0;
+		double switch_setpoint = 124.0;
 		double winch_setpoint = 500.0;
 	};
 	constexpr Config COMPETITION_CONFIG{};
