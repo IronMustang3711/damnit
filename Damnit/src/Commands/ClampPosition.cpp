@@ -86,3 +86,18 @@ void ClampPosition::Interrupted() {
 const clamp::Config& clamp::getConfig() {
     return Robot::isCompetitionRobot ? clamp::COMPETITION_CONFIG : clamp::PROTO_CONFIG;
 }
+
+ClampOpen::ClampOpen()
+        : ClampPosition(clamp::getConfig().open_setpoint,clamp::getConfig().open_threshold)  {
+
+}
+
+ClampHome::ClampHome()
+        : ClampPosition(clamp::getConfig().home_setpoint,clamp::getConfig().open_threshold){
+
+}
+
+ClampSwitch::ClampSwitch()
+:ClampPosition(clamp::getConfig().switch_setpoint,clamp::getConfig().open_threshold){
+
+}

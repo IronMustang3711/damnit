@@ -152,3 +152,24 @@ void ClampTiltPosition::Interrupted() {
 const clamp_tilt::Config &clamp_tilt::getConfig() {
     return Robot::isCompetitionRobot ? clamp_tilt::COMPETITION_CONFIG : clamp_tilt::PROTO_CONFIG;
 }
+
+ClampTiltToSwitch::ClampTiltToSwitch() :
+ClampTiltPosition(clamp_tilt::getConfig().switch_setpoint){
+
+}
+
+ClampTiltToBucket::ClampTiltToBucket() :
+ClampTiltPosition(clamp_tilt::getConfig().bucket_setpoint){}
+
+ClampTiltToCube::ClampTiltToCube() :
+ClampTiltPosition(clamp_tilt::getConfig().cube_setpoint){
+}
+
+ClampTiltToggle::ClampTiltToggle() :
+ClampTiltPosition(-1){
+
+}
+
+ClampTiltToHome::ClampTiltToHome() : ClampTiltPosition(0) {
+
+}

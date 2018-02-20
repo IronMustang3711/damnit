@@ -164,3 +164,23 @@ void UpperTiltPosition::End() {
 void UpperTiltPosition::Interrupted() {
   End();
 }
+
+const upper_tilt::Config &upper_tilt::getConfig() {
+    return Robot::isCompetitionRobot ? COMPETITION_CONFIG : PROTO_CONFIG;
+}
+
+UpperTiltToSwitch::UpperTiltToSwitch() : UpperTiltPosition(upper_tilt::getConfig().switch_setpoint) {
+
+}
+
+UpperTiltToScale::UpperTiltToScale() :UpperTiltPosition(upper_tilt::getConfig().scale_setpoint) {
+
+}
+
+UpperTiltToWinch::UpperTiltToWinch() : UpperTiltPosition(upper_tilt::getConfig().winch_setpoint) {
+
+}
+
+UpperTiltToHome::UpperTiltToHome(): UpperTiltPosition(0) {
+
+}

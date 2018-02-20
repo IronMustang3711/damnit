@@ -196,3 +196,23 @@ void BucketTiltPosition::Interrupted() {
 const bucket_tilt::Config &bucket_tilt::getConfig() {
     return Robot::isCompetitionRobot ? bucket_tilt::COMPETITION_CONFIG : bucket_tilt::PROTO_CONFIG;
 }
+
+BucketTiltToSwitch::BucketTiltToSwitch() :
+		BucketTiltPosition(bucket_tilt::getConfig().switch_setpoint) {}
+
+BucketTiltAutoLevel::BucketTiltAutoLevel() :
+BucketTiltPosition(100){}
+
+BucketTiltToHome::BucketTiltToHome()
+		: BucketTiltPosition(bucket_tilt::getConfig().home_setpoint){
+
+}
+
+BucketTiltToScale::BucketTiltToScale()
+: BucketTiltPosition(bucket_tilt::getConfig().scale_setpoint){
+}
+
+BucketTiltToWinch::BucketTiltToWinch() :
+BucketTiltPosition(bucket_tilt::getConfig().winch_prep_setpoint){
+
+}
