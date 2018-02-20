@@ -76,6 +76,9 @@ private:
     void disableMotorSafety();
     void enableMotorSafety();
 
+	double VlPrev=0;
+	double VrPrev=0;
+
 
 };
 

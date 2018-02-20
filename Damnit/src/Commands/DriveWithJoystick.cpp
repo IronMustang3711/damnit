@@ -24,7 +24,7 @@ DriveWithJoystick::DriveWithJoystick(): frc::Command("Drive With Joystick") {
 
 // Called just before this Command runs the first time
 void DriveWithJoystick::Initialize() {
-    Robot::chassis->prepareForTeleop();
+    Robot::chassis->prepareForAutonomous();
 
 }
 

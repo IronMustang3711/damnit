@@ -19,6 +19,7 @@ MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double tim
 }
 
 void MotionProfileExecutor::Initialize() {
+    Robot::chassis->prepareForAutonomous();
     fillIndex = 0;
     for (auto t : {left, right}) {
         t->SelectProfileSlot(SLOT, TIMEOUT);

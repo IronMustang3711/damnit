@@ -9,15 +9,15 @@
 #include "RRScale_profile.h"
 #include "RRSwitch_profile.h"
 
-CRSwitch::CRSwitch() : MotionProfileExecutor("Center->Right Switch",6.0,mp::CRSwitch) {
+CRSwitch::CRSwitch() : MotionProfileExecutor("Center->Right Switch",12.0,mp::CRSwitch) {
 
 }
 
-CRScale::CRScale(): MotionProfileExecutor("Center->Right Scale",6.0,mp::CRScale)  {
+CRScale::CRScale(): MotionProfileExecutor("Center->Right Scale",12.0,mp::CRScale)  {
 
 }
 
-Straight_10ft::Straight_10ft() : MotionProfileExecutor("straight 10ft",7.0,mp::DriveStraight_10ft) {
+Straight_10ft::Straight_10ft() : MotionProfileExecutor("straight 10ft",10.0,mp::DriveStraight_10ft) {
 
 }
 
@@ -25,6 +25,6 @@ RRScale::RRScale() : MotionProfileExecutor("Right->Right Scale", 12.0,mp::RRScal
 
 }
 
-RRSwitch::RRSwitch() : MotionProfileExecutor("Right->Right Switch",7.0,mp::RRSwitch) {
+RRSwitch::RRSwitch() : MotionProfileExecutor("Right->Right Switch",10.0,mp::RRSwitch) {
 
 }

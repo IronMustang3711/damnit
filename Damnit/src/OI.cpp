@@ -48,6 +48,8 @@
 #include <llvm/raw_ostream.h>
 #include <Commands/Command.h>
 #include <auto/MotionProfileCommand2.h>
+#include <auto/SwitchDumpSequence.h>
+#include <auto/ScaleDumpSequence.h>
 
 OI::OI() {
 	auto clamps = commands::Clamps::getInstance();
@@ -138,6 +140,9 @@ OI::OI() {
 //    frc::SmartDashboard::PutData(new AutoBuilder());
     frc::SmartDashboard::PutData(new MotionProfileCommand());
 	frc::SmartDashboard::PutData(new MotionProfileCommand2());
+
+	frc::SmartDashboard::PutData(new SwitchDumpSequence());
+	frc::SmartDashboard::PutData(new ScaleDumpSequence());
 
 
 }

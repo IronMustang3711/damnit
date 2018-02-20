@@ -17,6 +17,7 @@ namespace mp {
         double rightVelocity;
     };
 
+
     typedef std::array<Prof, 592> RIGHT_TO_SWITCH_PROFS_t;
     typedef std::array<Prof,1046> RIGHT_TO_SCALE_PROFS_t;
     typedef std::array<Prof,728> CENTER_TO_RIGHT_SWTICH_t;
