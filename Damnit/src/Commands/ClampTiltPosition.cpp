@@ -165,10 +165,10 @@ ClampTiltToCube::ClampTiltToCube() :
 ClampTiltPosition(clamp_tilt::getConfig().cube_setpoint){
 }
 
-ClampTiltToggle::ClampTiltToggle() :
-ClampTiltPosition(-1){
-
-}
+//ClampTiltToggle::ClampTiltToggle() :
+//ClampTiltPosition(-1){
+//
+//}
 
 ClampTiltToHome::ClampTiltToHome() : ClampTiltPosition(0) {
 

@@ -88,10 +88,10 @@ public:
     ClampTiltToCube();
 };
 
-class ClampTiltToggle : public ClampTiltPosition {
-public:
-    ClampTiltToggle();
-};
+//class ClampTiltToggle : public ClampTiltPosition {
+//public:
+//    ClampTiltToggle();
+//};
 
 class ClampTiltToHome : public ClampTiltPosition {
 public:
