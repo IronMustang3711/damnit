@@ -10,36 +10,40 @@
 #include "Subsystems/Chassis.h"
 
 ResetDriveTrainEncoders::ResetDriveTrainEncoders() : frc::InstantCommand("reset drivetrain encoders") {
-	 Requires(Robot::chassis.get());
+    Requires(Robot::chassis.get());
 }
+
 void ResetDriveTrainEncoders::Execute() {
-	Robot::chassis->resetEncoders();
+    Robot::chassis->resetEncoders();
 }
 
-ResetBucketEncoder::ResetBucketEncoder() : frc::InstantCommand("reset bucket encoder"){
-	Requires(Robot::bucket.get());
+ResetBucketEncoder::ResetBucketEncoder() : frc::InstantCommand("reset bucket encoder") {
+    Requires(Robot::bucket.get());
 }
+
 void ResetBucketEncoder::Execute() {
-	Robot::bucket->reset();
+    Robot::bucket->reset();
 }
 
-ResetClampEncoder::ResetClampEncoder() : frc::InstantCommand("reset clamp encoder"){
-	Requires(Robot::clamp.get());
+ResetClampEncoder::ResetClampEncoder() : frc::InstantCommand("reset clamp encoder") {
+    Requires(Robot::clamp.get());
 }
+
 void ResetClampEncoder::Execute() {
-	Robot::clamp->reset();
+    Robot::clamp->reset();
 }
 
 ResetClampTiltEncoder::ResetClampTiltEncoder() : frc::InstantCommand("reset clamp tilt encoder") {
-	Requires(Robot::clampTilt.get());
-}
-void ResetClampTiltEncoder::Execute() {
-	Robot::clampTilt->reset();
+    Requires(Robot::clampTilt.get());
 }
 
-ResetAllEncoders::ResetAllEncoders() : frc::CommandGroup("reset all encoders"){
-	AddSequential(new ResetDriveTrainEncoders());
-	AddSequential(new ResetBucketEncoder());
-	AddSequential(new ResetClampEncoder());
-	AddSequential(new ResetClampTiltEncoder());
+void ResetClampTiltEncoder::Execute() {
+    Robot::clampTilt->reset();
+}
+
+ResetAllEncoders::ResetAllEncoders() : frc::CommandGroup("reset all encoders") {
+    AddSequential(new ResetDriveTrainEncoders());
+    AddSequential(new ResetBucketEncoder());
+    AddSequential(new ResetClampEncoder());
+    AddSequential(new ResetClampTiltEncoder());
 }
