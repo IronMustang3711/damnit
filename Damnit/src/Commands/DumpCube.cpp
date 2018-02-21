@@ -1,5 +1,5 @@
 #include "DumpCube.h"
-#include "bucketTiltPosition.h"
+#include "BucketTiltPosition.h"
 #include "UpperTiltPosition.h"
 #include "Delay.h"
 DumpCube::DumpCube() : frc::CommandGroup("Dump Cube") {

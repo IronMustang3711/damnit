@@ -13,7 +13,7 @@
 
 class SwitchAuto : public frc::CommandGroup {
 
-    MotionProfileExecutor* mp;
+   // MotionProfileExecutor* mp;
 
 public:
     explicit SwitchAuto(MotionProfileExecutor* exec);

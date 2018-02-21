@@ -1,5 +1,5 @@
 #include "StowBucket.h"
-#include "bucketTiltPosition.h"
+#include "BucketTiltPosition.h"
 #include "UpperTiltPosition.h"
 #include "StowClamp.h"
 StowBucket::StowBucket() : frc::CommandGroup("Stow Bucket"){

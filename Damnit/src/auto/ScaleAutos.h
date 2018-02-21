@@ -15,7 +15,7 @@ class ScaleAutos {
 
 
 class ScaleAuto : public frc::CommandGroup {
-    MotionProfileExecutor* mp;
+   // MotionProfileExecutor* mp;
 public:
     explicit ScaleAuto(MotionProfileExecutor* exec);
 };

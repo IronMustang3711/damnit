@@ -12,9 +12,9 @@
 constexpr double pi = 3.14159265358979323846;
 
 constexpr double wheel_diameter = 6.0;
-constexpr int encoder_ticks_per_rev = 1410;
+//constexpr int encoder_ticks_per_rev = 1410;
 
-constexpr double distance_per_rev = wheel_diameter * pi; //18.8495
+//constexpr double distance_per_rev = wheel_diameter * pi; //18.8495
 
 constexpr double encoder_ticks_per_inch =  76.0;//130;//encoder_ticks_per_rev / distance_per_rev; //74.802823
 
@@ -259,8 +259,7 @@ void Chassis::testPeriodic() {
 }
 
 void Chassis::toggleDirection() {
-    reversed = !reversed;
-    DriverStation::ReportError("reversed="+reversed? "true" : "false");
+    reversed = !reversed;    
 }
 
 Chassis::Chassis() : Chassis(chassis_config::getConfig().rotation_correction) {

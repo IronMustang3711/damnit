@@ -41,7 +41,6 @@
 
 #include "OI.h"
 
-class FieldModel;
 
 class Robot : public frc::TimedRobot {
 public:
