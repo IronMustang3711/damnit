@@ -1,7 +1,7 @@
 #ifndef Delay_H
 #define Delay_H
 
-#include "Commands/TimedCommand.h"
+#include <Commands/TimedCommand.h>
 
 
 class Delay : public frc::TimedCommand {

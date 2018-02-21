@@ -13,7 +13,7 @@
 #define CLAMPPOSITION_H
 
 
-#include "Commands/Command.h"
+#include <Commands/Command.h>
 
 namespace clamp {
     struct Config {

@@ -18,7 +18,7 @@
 #include <SmartDashboard/SmartDashboard.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <map>
-#include <auto/RightHookSequence.h>
+#include "auto/RightHookSequence.h"
 
 #include "RobotMap.h"
 

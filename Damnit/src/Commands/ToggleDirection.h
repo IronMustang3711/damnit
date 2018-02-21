@@ -13,7 +13,7 @@ public:
     ToggleDirection();
 
 protected:
-    void Initialize();
+    void Initialize() override;
 
 };
 

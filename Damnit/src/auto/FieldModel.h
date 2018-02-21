@@ -109,7 +109,7 @@ struct FieldModel : public frc::Subsystem{
 
     static FieldModel& getInstance();
 
-    friend std::ostream &operator<<(std::ostream &os, const FieldModel &model);
+   // friend std::ostream &operator<<(std::ostream &os, const FieldModel &model);
 
 
 };

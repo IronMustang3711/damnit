@@ -74,7 +74,6 @@ target_link_libraries(FRCUserProgram
                 wpi
         ${LINKER_FLAGS})
 
-#TODO: point ant to the correct binary
 add_custom_target("deploy"
         COMMAND ant -f ${CMAKE_CURRENT_SOURCE_DIR}/build.xml
         DEPENDS FRCUserProgram)

@@ -9,13 +9,7 @@
 #include <Commands/CommandGroup.h>
 #include "MotionProfileExecutors.h"
 
-class ScaleAutos {
-
-};
-
-
 class ScaleAuto : public frc::CommandGroup {
-   // MotionProfileExecutor* mp;
 public:
     explicit ScaleAuto(MotionProfileExecutor* exec);
 };
