@@ -97,7 +97,7 @@ ClampClose::ClampClose()
 
 }
 
-//ClampToggle::ClampToggle()
-//:ClampPosition(clamp::getConfig().,clamp::getConfig().open_threshold){
-//
-//}
+ClampToggle::ClampToggle()
+:ClampPosition(-1,clamp::getConfig().open_threshold){
+
+}

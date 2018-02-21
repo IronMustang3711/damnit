@@ -17,7 +17,7 @@
 
 namespace clamp {
     struct Config {
-        double open_setpoint = 130.0;
+        double open_setpoint = 152.0;
         double open_threshold = 100.0;
         double close_setpoint = 84.0;
         //double switch_setpoint = 206.0;
@@ -71,9 +71,9 @@ public:
     ClampClose();
 };
 
-//class ClampToggle : public ClampPosition {
-//public:
-//    ClampToggle();
-//};
+class ClampToggle : public ClampPosition {
+public:
+    ClampToggle();
+};
 
 #endif

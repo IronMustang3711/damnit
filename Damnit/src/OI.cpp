@@ -61,7 +61,7 @@ OI::OI() {
 	driveArms->WhileHeld(new DriveArmsWithJoystick());
 
 	toggleClamp.reset(new frc::JoystickButton(controlJoystick.get(), 2));
-	toggleClamp->WhenPressed(new ClampTiltToggle());//(new ClampPosition(-1));// toggle special see clampPosition.cpp
+	toggleClamp->WhenPressed(new ClampToggle());//(new ClampPosition(-1));// toggle special see clampPosition.cpp
 	clamp2Switch.reset(new frc::JoystickButton(controlJoystick.get(), 3));
 	clamp2Switch->WhenPressed(new ClampTiltToSwitch()); //(new ClampTiltPosition(215));   // clamp to switch
 	clamp2Down.reset(new frc::JoystickButton(controlJoystick.get(), 4));
