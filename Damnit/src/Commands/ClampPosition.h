@@ -19,11 +19,11 @@ namespace clamp {
     struct Config {
         double open_setpoint = 130.0;
         double open_threshold = 100.0;
-        double home_setpoint = 84.0;
-        double switch_setpoint = 206.0;
+        double close_setpoint = 84.0;
+        //double switch_setpoint = 206.0;
     };
     constexpr Config COMPETITION_CONFIG{};
-    constexpr Config PROTO_CONFIG{220.0, 200.0, 82.0, 206.0};
+    constexpr Config PROTO_CONFIG{220.0, 200.0, 82.0};
 
     const Config &getConfig();
 }
@@ -66,14 +66,14 @@ public:
     ClampOpen();
 };
 
-class ClampHome : public ClampPosition {
+class ClampClose : public ClampPosition {
 public:
-    ClampHome();
+    ClampClose();
 };
 
-class ClampSwitch : public ClampPosition {
-public:
-    ClampSwitch();
-};
+//class ClampToggle : public ClampPosition {
+//public:
+//    ClampToggle();
+//};
 
 #endif

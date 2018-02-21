@@ -97,6 +97,11 @@ public:
     BucketTiltToWinch();
 };
 
+class BucketTiltAutoDump : public BucketTiltPosition {
+public:
+    BucketTiltAutoDump();
+};
+
 
 
 #endif

@@ -216,3 +216,8 @@ BucketTiltToWinch::BucketTiltToWinch() :
 BucketTiltPosition(bucket_tilt::getConfig().winch_prep_setpoint){
 
 }
+
+BucketTiltAutoDump::BucketTiltAutoDump() :
+BucketTiltPosition(200){
+
+}

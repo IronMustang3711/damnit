@@ -92,12 +92,12 @@ ClampOpen::ClampOpen()
 
 }
 
-ClampHome::ClampHome()
-        : ClampPosition(clamp::getConfig().home_setpoint,clamp::getConfig().open_threshold){
+ClampClose::ClampClose()
+        : ClampPosition(clamp::getConfig().close_setpoint,clamp::getConfig().open_threshold){
 
 }
 
-ClampSwitch::ClampSwitch()
-:ClampPosition(clamp::getConfig().switch_setpoint,clamp::getConfig().open_threshold){
-
-}
+//ClampToggle::ClampToggle()
+//:ClampPosition(clamp::getConfig().,clamp::getConfig().open_threshold){
+//
+//}
