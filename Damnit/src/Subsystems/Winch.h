@@ -1,5 +1,4 @@
-#ifndef winch_H
-#define winch_H
+#pragma once
 
 #include <memory>
 #include <Commands/Subsystem.h>
@@ -7,15 +6,10 @@
 
 class Winch : public Subsystem {
 private:
-	// It's desirable that everything possible under private except
-	// for methods that implement subsystem capabilities
-	std::shared_ptr<frc::SpeedController> winchMotor;
+    std::shared_ptr<frc::SpeedController> winchMotor;
 
 public:
-	Winch();
-	void InitDefaultCommand() override;
+    Winch();
 
-	void driveWinch(double speed);
+    void driveWinch(double speed);
 };
-
-#endif  // winch_H
