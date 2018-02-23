@@ -17,7 +17,7 @@ PrepWinch::PrepWinch() : frc::CommandGroup("prepare winch for latching") {
     g2->AddSequential(new Delay(0.5));
     g2->AddParallel(new BucketTiltToWinch());//(new BucketTiltPosition(217)); //212
 
-    AddSequential(new BucketTiltToHome(),0.2);
+    AddSequential(new BucketTiltAllTheWayBack(),0.2);
     AddParallel(g2);
     AddParallel(new UpperTiltToWinch()); //508
 

@@ -103,6 +103,8 @@ private:
      std::map<std::string, frc::Command *> autos;
     std::vector<std::string> keys;
 
+    Commands commands;
+
 };
 
 #endif

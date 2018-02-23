@@ -39,7 +39,7 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
     //dump cube
     AddSequential(new BucketTiltAutoLevel());
     AddSequential(new Delay(0.5));
-    AddSequential(new BucketTiltToHome());//
+    AddSequential(new BucketTiltAllTheWayBack());//
     //dump cube
 
     AddSequential(myGroup);

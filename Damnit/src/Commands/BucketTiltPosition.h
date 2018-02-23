@@ -81,9 +81,9 @@ public:
     BucketTiltToSwitch();
 };
 
-class BucketTiltToHome : public BucketTiltPosition {
+class BucketTiltAllTheWayBack : public BucketTiltPosition {
 public:
-    BucketTiltToHome();
+    BucketTiltAllTheWayBack();
 };
 
 class BucketTiltAutoLevel : public BucketTiltPosition {
@@ -104,6 +104,11 @@ public:
 class BucketTiltAutoDump : public BucketTiltPosition {
 public:
     BucketTiltAutoDump();
+};
+
+class BucketTiltToHome : public BucketTiltPosition {
+public:
+    BucketTiltToHome();
 };
 
 

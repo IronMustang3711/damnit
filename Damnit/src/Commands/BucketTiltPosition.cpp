@@ -200,7 +200,7 @@ const bucket_tilt::Config &bucket_tilt::getConfig() {
 BucketTiltToSwitch::BucketTiltToSwitch() :
         BucketTiltPosition(bucket_tilt::getConfig().switch_setpoint) {}
 
-BucketTiltToHome::BucketTiltToHome()
+BucketTiltAllTheWayBack::BucketTiltAllTheWayBack()
         : BucketTiltPosition(bucket_tilt::getConfig().home_setpoint) {}
 
 BucketTiltToScale::BucketTiltToScale()
@@ -214,3 +214,6 @@ BucketTiltAutoDump::BucketTiltAutoDump() :
 
 BucketTiltAutoLevel::BucketTiltAutoLevel() :
         BucketTiltPosition(100) {}
+
+BucketTiltToHome::BucketTiltToHome() : BucketTiltPosition(0.0) {
+}

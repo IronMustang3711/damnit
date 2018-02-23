@@ -18,5 +18,19 @@ public:
     void UsePIDOutput(double output) override;
 
     void reset();
+
+    void open();
+
+    void close();
+
+
+private:
+    double open_setpoint = 152.0;
+    double close_setpoint = 84.0;
+
+    static constexpr double PROTO_OPEN_SETPOINT = 140.0;
+    static constexpr double PROTO_CLOSE_SETPOINT = 82.0;
+
+    static constexpr double MAX_OUT = 0.7;
 };
 

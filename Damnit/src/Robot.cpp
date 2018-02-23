@@ -80,7 +80,7 @@ lvuser@roboRIO-3711-FRC:~$ echo "PROTO" > robot_name
     // which commands extend), subsystems are not guaranteed to be
     // yet. Thus, their requires() statements may grab null pointers. Bad
     // news. Don't move it.
-    oi = std::make_unique<OI>();
+    oi = std::make_unique<OI>(commands);
 
     initAutoChooser();
 
@@ -118,7 +118,7 @@ void Robot::DisabledInit() {
     if (autonomousCommand != nullptr)
         autonomousCommand->Cancel();
 
-    ReaderBoard::getInstance().reportDisabled()
+    ReaderBoard::getInstance().reportDisabled();
 }
 
 void Robot::DisabledPeriodic() {
@@ -148,7 +148,7 @@ void Robot::AutonomousInit() {
         DriverStation::ReportError("null auto command!");
     }
 
-    ReaderBoard::getInstance().reportAuto()
+    ReaderBoard::getInstance().reportAuto();
 }
 
 void Robot::AutonomousPeriodic() {
@@ -176,7 +176,7 @@ void Robot::TestPeriodic() {
 }
 
 
-START_ROBOT_CLASS(Robot)
+
 
 void Robot::TestInit() {
     //Robot::chassis->enableInductiveBreaking(false);
@@ -269,3 +269,4 @@ frc::Command *Robot::getAutoCommand() {
 
 
 
+START_ROBOT_CLASS(Robot)
