@@ -16,10 +16,19 @@ struct ReaderBoard {
 
     static ReaderBoard& getInstance();
 
-    void postMessage(std::string key, std::string value);
+    void reportClampOpen();
+    void reportClampClose();
+    void reportAuto();
+    void reportTeleop();
+    void reportInit();
+    void reportDisabled();
+
+
+
 
 private:
     ReaderBoard();
+    void postMessage(std::string key, std::string value);
     std::shared_ptr<nt::NetworkTable> tbl;
 
 
