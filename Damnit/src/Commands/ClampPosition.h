@@ -23,7 +23,7 @@ namespace clamp {
         //double switch_setpoint = 206.0;
     };
     constexpr Config COMPETITION_CONFIG{};
-    constexpr Config PROTO_CONFIG{220.0, 200.0, 82.0};
+    constexpr Config PROTO_CONFIG{140.0, 100.0, 55.0};
 
     const Config &getConfig();
 }

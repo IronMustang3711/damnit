@@ -105,13 +105,13 @@ void Chassis::Periodic() {
 //    }
    // SmartDashboard::PutNumberArray("MotorOutputs", outputs);
 
-//    if(leftFront->GetControlMode() ==ControlMode::MotionMagic){
-//    for(const auto t : {leftFront.get(),rightFront.get()}){
-//    		SmartDashboard::PutNumber("closed loop error: "+t->GetName(), t->GetClosedLoopError(SLOT));
-//    		SmartDashboard::PutNumber("closed loop target: "+t->GetName(), t->GetClosedLoopTarget(SLOT));
-//
-//    }
-//    }
+    if(leftFront->GetControlMode() ==ControlMode::MotionMagic) {
+        for (const auto t : {leftFront.get(), rightFront.get()}) {
+            SmartDashboard::PutNumber("closed loop error: " + t->GetName(), t->GetClosedLoopError(SLOT));
+            SmartDashboard::PutNumber("closed loop target: " + t->GetName(), t->GetClosedLoopTarget(SLOT));
+
+        }
+    }
 
 
 }
@@ -136,13 +136,13 @@ void Chassis::TeleopDrive(std::shared_ptr<Joystick> stickPosition) {
 void Chassis::mm_driveForward_init() {
     prepareForAutonomous();
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-        t->Config_kP(SLOT, 10.0, TIMEOUT);
+        t->Config_kP(SLOT, 0.0, TIMEOUT);
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 0.0, TIMEOUT);
         t->Config_kF(SLOT, FGain, TIMEOUT);
 
-        constexpr double cruise_velocity = 0.5 * max_encoder_rate;
-        constexpr double max_accel =0.5 * cruise_velocity;
+        constexpr double cruise_velocity = 0.4 * max_encoder_rate;
+        constexpr double max_accel =0.3 * cruise_velocity;
 
         t->ConfigMotionCruiseVelocity(static_cast<int>(cruise_velocity), TIMEOUT);
         t->ConfigMotionAcceleration(static_cast<int>(max_accel), TIMEOUT);

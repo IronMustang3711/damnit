@@ -24,7 +24,7 @@ namespace bucket_tilt {
         double scale_setpoint = 205;
     };
     constexpr Config COMPETITION_CONFIG{};
-    constexpr Config PROTO_CONFIG{-15, 217, 150, 205};
+    constexpr Config PROTO_CONFIG{-12, 217, 150, 205};
 
     const Config &getConfig();
 }
