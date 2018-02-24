@@ -68,19 +68,19 @@ struct Commands {
 
     Delay halfSecondDelay{0.5};
 
-    CommandGroup stowClamp{"stow clamp"};
-
-    CommandGroup goToScale{"go to scale"};
-    CommandGroup goToSwitch{"go to switch"};
-    CommandGroup stowBucket{"stow bucket"};
-
-    CommandGroup delayedBucketTiltToWinch{"delayed bucket tilt to winch"};
-    CommandGroup winchPrep{"winch prep*"};
-
-    CommandGroup dumpCube{"dump cube"};
-
-    CommandGroup switchDumpSequence{"switch dump sequence *"};
-    CommandGroup scaleDumpSequence{"scale dump sequence*"};
+//    CommandGroup stowClamp{"stow clamp"};
+//
+//    CommandGroup goToScale{"go to scale"};
+//    CommandGroup goToSwitch{"go to switch"};
+//    CommandGroup stowBucket{"stow bucket"};
+//
+//    CommandGroup delayedBucketTiltToWinch{"delayed bucket tilt to winch"};
+//    CommandGroup winchPrep{"winch prep*"};
+//
+//    CommandGroup dumpCube{"dump cube"};
+//
+//    CommandGroup switchDumpSequence{"switch dump sequence *"};
+//    CommandGroup scaleDumpSequence{"scale dump sequence*"};
 
 
 

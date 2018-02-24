@@ -230,10 +230,10 @@ void Robot::initAutoChooser() {
 
    // };
 
-
-    for (const auto &elem : autos) {
-        SmartDashboard::PutData(elem.second);
-    }
+//
+//    for (const auto &elem : autos) {
+//        SmartDashboard::PutData(elem.second);
+//    }
 
     keys.clear();
     keys.reserve(autos.size());
