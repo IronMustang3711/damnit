@@ -32,6 +32,14 @@ Commands::Commands() {
     dumpCube.AddSequential(&halfSecondDelay);
     dumpCube.AddSequential(&bucketTiltBack);
 
+    switchDumpSequence.AddSequential(&goToSwitch);
+    switchDumpSequence.AddSequential(&dumpCube);
+    switchDumpSequence.AddSequential(&stowBucket);
+
+    scaleDumpSequence.AddSequential(&goToScale);
+    scaleDumpSequence.AddSequential(&dumpCube);
+    scaleDumpSequence.AddSequential(&stowBucket);
+
 
     for (auto c : std::initializer_list<Sendable*> {
             &clampOpen,
@@ -53,6 +61,8 @@ Commands::Commands() {
             &upperTiltToWinch,
             &winchUp,
             &winchDown,
+            &winchHold,
+            &winchDisable,
             &driveArmsWithJoystick,
             &toggleDirection,
             &halfSecondDelay,

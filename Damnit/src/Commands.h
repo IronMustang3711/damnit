@@ -6,24 +6,23 @@
 #define DAMNIT_COMMANDS_H
 
 
-#include <Commands/DriveArmsWithJoystick.h>
-#include <Commands/ClampPosition.h>
-#include <Commands/ToggleCommand.h>
-#include <Commands/ClampTiltPosition.h>
-#include <Commands/GoToScale.h>
-#include <Commands/GoToSwitch.h>
-#include <Commands/DumpCube.h>
-#include <Commands/StowBucket.h>
-#include <Commands/WinchUp.h>
-#include <Commands/WinchDown.h>
-#include <Commands/PrepWinch.h>
-#include <Commands/ToggleDirection.h>
+#include "Commands/DriveArmsWithJoystick.h"
+#include "Commands/ClampPosition.h"
+#include "Commands/ToggleCommand.h"
+#include "Commands/ClampTiltPosition.h"
+#include "Commands/GoToScale.h"
+#include "Commands/GoToSwitch.h"
+#include "Commands/DumpCube.h"
+#include "Commands/StowBucket.h"
+#include "Commands/WinchCommands.h"
+#include "Commands/PrepWinch.h"
+#include "Commands/ToggleDirection.h"
 #include <SmartDashboard/SmartDashboard.h>
-#include <Commands/BucketTiltPosition.h>
-#include <Commands/UpperTiltPosition.h>
-#include <Commands/Delay.h>
-#include <Commands/DriveWithJoystick.h>
-#include <Commands/CurvatureDrive.h>
+#include "Commands/BucketTiltPosition.h"
+#include "Commands/UpperTiltPosition.h"
+#include "Commands/Delay.h"
+#include "Commands/DriveWithJoystick.h"
+#include "Commands/CurvatureDrive.h"
 
 struct Commands {
 
@@ -53,6 +52,8 @@ struct Commands {
 
     WinchUp winchUp;
     WinchDown winchDown;
+    WinchHold winchHold;
+    WinchDisable winchDisable;
 
 
 
