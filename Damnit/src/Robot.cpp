@@ -137,6 +137,7 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
     // Robot::chassis->prepareForAutonomous();
     llvm::outs() << "starting auto\n";
+    ReaderBoard::getInstance().reportAuto();
 
     fieldModel.update();
 
@@ -146,11 +147,11 @@ void Robot::AutonomousInit() {
     if (autonomousCommand != nullptr) {
         autonomousCommand->Start();
         DriverStation::ReportWarning("starting auto command: " + autonomousCommand->GetName());
+        ReaderBoard::getInstance().reportAutoName(autonomousCommand->GetName());
     } else {
         DriverStation::ReportError("null auto command!");
     }
 
-    ReaderBoard::getInstance().reportAuto();
 }
 
 void Robot::AutonomousPeriodic() {

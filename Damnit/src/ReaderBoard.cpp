@@ -6,11 +6,11 @@
 #include "ReaderBoard.h"
 
 ReaderBoard::ReaderBoard() {
-   tbl = nt::NetworkTableInstance::GetDefault().GetTable("matrixPanel");
+    tbl = nt::NetworkTableInstance::GetDefault().GetTable("matrixPanel");
 }
 
 void ReaderBoard::postMessage(std::string key, std::string value) {
-    tbl->PutString(key,value);
+    tbl->PutString(key, value);
 }
 
 ReaderBoard &ReaderBoard::getInstance() {
@@ -19,25 +19,57 @@ ReaderBoard &ReaderBoard::getInstance() {
 }
 
 void ReaderBoard::reportClampOpen() {
-    postMessage("clamp","open");
+    postMessage("clamp", "open");
 }
 
 void ReaderBoard::reportClampClose() {
-    postMessage("clamp","close");
+    postMessage("clamp", "close");
 }
 
 void ReaderBoard::reportTeleop() {
-    postMessage("mode","teleop");
+    postMessage("mode", "teleop");
 }
 
 void ReaderBoard::reportAuto() {
-    postMessage("mode","auto");
+    postMessage("mode", "auto");
 }
 
 void ReaderBoard::reportInit() {
-    postMessage("mode","init"); //TODO: ("initialized", "true") ?
+    postMessage("mode", "init"); //TODO: ("initialized", "true") ?
 }
 
 void ReaderBoard::reportDisabled() {
-    postMessage("mode","disabled");
+    postMessage("mode", "disabled");
+}
+
+void ReaderBoard::reportAutoName(const std::string &name) {
+    postMessage("auto", name);
+}
+
+void ReaderBoard::reportDump() {
+    postMessage("bucket", "dump");
+}
+
+void ReaderBoard::reportBucketToSwitch() {
+    postMessage("bucket", "switch");
+}
+
+void ReaderBoard::reportBucketToScale() {
+    postMessage("bucket", "scale");
+}
+
+void ReaderBoard::reportWinchUp() {
+    postMessage("winch", "up");
+}
+
+void ReaderBoard::reportClampTiltToHome() {
+    postMessage("clampTilt", "home");
+}
+
+void ReaderBoard::reportClampTiltToCube() {
+    postMessage("clampTilt", "cube");
+}
+
+void ReaderBoard::reportClampTiltToSwitch() {
+    postMessage("clampTilt", "switch");
 }

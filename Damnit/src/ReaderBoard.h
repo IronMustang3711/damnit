@@ -19,10 +19,17 @@ struct ReaderBoard {
     void reportClampOpen();
     void reportClampClose();
     void reportAuto();
+    void reportAutoName(const std::string& name);
     void reportTeleop();
     void reportInit();
     void reportDisabled();
-
+    void reportDump();
+    void reportBucketToSwitch();
+    void reportBucketToScale();
+    void reportWinchUp();
+    void reportClampTiltToHome();
+    void reportClampTiltToCube();
+    void reportClampTiltToSwitch();
 
 
 
