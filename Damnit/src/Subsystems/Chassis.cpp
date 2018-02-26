@@ -69,7 +69,8 @@ void Chassis::Periodic() {
 //    }
     // SmartDashboard::PutNumberArray("MotorOutputs", outputs);
 
-    if (leftFront->GetControlMode() == ControlMode::MotionMagic) {
+    if (leftFront->GetControlMode() == ControlMode::MotionMagic
+       || leftFront->GetControlMode() == ControlMode ::MotionProfile) {
         for (const auto t : {leftFront.get(), rightFront.get()}) {
             SmartDashboard::PutNumber("closed loop error: " + t->GetName(), t->GetClosedLoopError(SLOT));
             SmartDashboard::PutNumber("closed loop target: " + t->GetName(), t->GetClosedLoopTarget(SLOT));
@@ -85,6 +86,11 @@ void Chassis::Periodic() {
 void Chassis::TeleopDrive(std::shared_ptr<Joystick> stickPosition) {
     double y = -stickPosition->GetY();
     double z = stickPosition->GetZ();
+
+    if (reversed) {
+        z = -1.0 * z;
+        y = -1.0 * y;
+    }
 
     // y and z cubed, results in less drive around zero input
     y = pow(y, 3);
@@ -177,14 +183,7 @@ void Chassis::enableInductiveBreaking(bool enable) {
 }
 
 void Chassis::ArcadeDrive(double fwd, double rotate) {
-    if (reversed) {
-        rotate = -1.0 * rotate;
-        fwd = -1.0 * fwd;
-    }
-
-
     differentialDrive->ArcadeDrive(fwd, rotate, false);
-
 }
 
 void Chassis::curvatureDrive(double fwd, double rotate, bool quickTurn) {
@@ -192,8 +191,6 @@ void Chassis::curvatureDrive(double fwd, double rotate, bool quickTurn) {
 }
 
 void Chassis::disableMotorSafety() {
-    //differentialDrive->SetSafetyEnabled(false);
-
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->SetSafetyEnabled(false);
     }
@@ -220,6 +217,7 @@ void Chassis::testPeriodic() {
 
 void Chassis::toggleDirection() {
     reversed = !reversed;
+    SmartDashboard::PutBoolean("drive reversed?",reversed);
 }
 
 Chassis::Chassis() : Chassis(chassis_config::getConfig().rotation_correction) {
