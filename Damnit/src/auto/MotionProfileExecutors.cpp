@@ -14,13 +14,15 @@
 #include "LLScale_profile.h"
 #include "LLSwitch_profile.h"
 #include "RFwd_profile.h"
+#include "RLScale_profile.h"
+
 CRSwitch::CRSwitch() : MotionProfileExecutor("Center->Right Switch",12.0,mp::CRSwitch) {
 
 }
 
-CRScale::CRScale(): MotionProfileExecutor("Center->Right Scale",12.0,mp::CRScale)  {
-
-}
+//CRScale::CRScale(): MotionProfileExecutor("Center->Right Scale",12.0,mp::CRScale)  {
+//
+//}
 
 Straight_10ft::Straight_10ft() : MotionProfileExecutor("straight 10ft",10.0,mp::DriveStraight_10ft) {
 
@@ -34,8 +36,8 @@ RRSwitch::RRSwitch() : MotionProfileExecutor("Right->Right Switch",10.0,mp::RRSw
 
 }
 
-CLScale::CLScale() : MotionProfileExecutor("center->left scale",12,mp::CLScale) {
-}
+//CLScale::CLScale() : MotionProfileExecutor("center->left scale",12,mp::CLScale) {
+//}
 
 CLSwitch::CLSwitch() : MotionProfileExecutor("center->left switch",10,mp::CLSwitch){
 }
@@ -53,4 +55,7 @@ LLSwitch::LLSwitch() : MotionProfileExecutor("left->left switch", 10, mp::LLSwit
 
 RFwd::RFwd() : MotionProfileExecutor("right fwd",10,mp::RFwd){
 
+}
+
+RLScale::RLScale() :MotionProfileExecutor("right->left scale",12,mp::RLScale) {
 }

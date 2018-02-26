@@ -19,3 +19,7 @@ ScaleAuto::ScaleAuto(MotionProfileExecutor *exec) {
 LLScaleAuto::LLScaleAuto() : ScaleAuto(new LLScale){}
 
 RRScaleAuto::RRScaleAuto() : ScaleAuto(new RRScale()) {}
+
+RLScaleAuto::RLScaleAuto() : ScaleAuto(new RLScale()) {
+
+}
