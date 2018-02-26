@@ -1,12 +1,11 @@
 //
 // Created by Jason Markham on 2/23/18.
-//
 
-#ifndef DAMNIT_WINCHCOMMANDS_H
-#define DAMNIT_WINCHCOMMANDS_H
+#pragma once
 
 
 #include <Commands/Command.h>
+#include <Commands/InstantCommand.h>
 
 class WinchCommand : public frc::Command {
 public:
@@ -27,10 +26,8 @@ class WinchHold : public WinchCommand {
 public:
    inline WinchHold() : WinchCommand("winch hold",0.3){}
 };
-class WinchDisable : public WinchCommand {
-public:
-    inline WinchDisable(): WinchCommand("winch disable",0.0){}
-};
+
+
 class WinchUp: public WinchCommand {
 public:
     inline WinchUp() : WinchCommand("winch up",0.8){}
@@ -41,4 +38,11 @@ public:
     inline WinchDown() : WinchCommand("winch down", -0.7){}
 };
 
-#endif //DAMNIT_WINCHCOMMANDS_H
+
+class WinchDisable : public frc::InstantCommand {
+public:
+    WinchDisable();
+
+protected:
+    void Execute() override;
+};
