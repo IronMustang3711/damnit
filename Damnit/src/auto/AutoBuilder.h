@@ -8,6 +8,7 @@
 
 #include <Commands/Command.h>
 #include <Commands/InstantCommand.h>
+#include "FieldModel.h"
 
 class AutoBuilder : public frc::InstantCommand{
 public:
@@ -15,6 +16,11 @@ public:
 
 protected:
     void Initialize() override ;
+
+private:
+    Command* centerStartingPoint(TargetLocation switchLocation);
+    Command* leftStartingPoint(TargetLocation switchLocation, TargetLocation scaleLocation);
+    Command* rightStartingPoint(TargetLocation switchLocation, TargetLocation scaleLocation);
 
 };
 

@@ -34,6 +34,7 @@
 
 #include "OI.h"
 
+#include "auto/FieldModel.h"
 
 class Robot : public frc::TimedRobot {
 public:
@@ -88,7 +89,7 @@ private:
 
     Commands commands;
 
-    FieldModel fieldModel;
+    FieldModel fieldModel{};
 
 };
 

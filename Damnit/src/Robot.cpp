@@ -214,7 +214,8 @@ void Robot::initAutoChooser() {
             new LFwd,
             new RFwd,
             new RLScale,
-            new RLScaleAuto
+            new RLScaleAuto,
+            new AutoBuilder
     };
     for(auto a : as){
       autos[a->GetName()] = a;

@@ -54,6 +54,7 @@ enum class Alliance {
     BLUE
 };
 
+//TODO: this is dumb - replace this with a regular struct.
 typedef std::tuple<TargetLocation, TargetLocation> FieldAutoLayout;
 
 
