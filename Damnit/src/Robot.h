@@ -88,6 +88,8 @@ private:
 
     Commands commands;
 
+    FieldModel fieldModel;
+
 };
 
 #endif

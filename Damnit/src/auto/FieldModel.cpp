@@ -156,9 +156,9 @@ FieldModel::FieldModel() : frc::Subsystem("Field model") {
     targetChooser.AddObject("switch",AutoTarget::SWITCH);
     targetChooser.AddObject("scale",AutoTarget::SCALE);
 
-//    SmartDashboard::PutData(&allianceChooser);
-//    SmartDashboard::PutData(&startChooser);
-//    SmartDashboard::PutData(&targetChooser);
+    SmartDashboard::PutData(&allianceChooser);
+    SmartDashboard::PutData(&startChooser);
+    SmartDashboard::PutData(&targetChooser);
 
     auto sd_table = nt::NetworkTableInstance::GetDefault().GetTable("SmartDashboard");
 
@@ -207,16 +207,13 @@ FieldModel::FieldModel() : frc::Subsystem("Field model") {
 }
 
 void FieldModel::update() {
-  //  SmartDashboard::PutBoolean("field message is valid", fieldLayoutIsValid());
-//    		std::get<0>(parse_field_layout_message(
-//    				SmartDashboard::GetString("FIELD",
-//    						DriverStation::GetInstance().GetGameSpecificMessage())
-//    ))!= TargetLocation::INVALID);
+    SmartDashboard::PutBoolean("field message is valid", fieldLayoutIsValid());
 
-//    SmartDashboard::PutString("field message",getFieldLayoutMessage());
-//    SmartDashboard::PutString("alliance",to_string(getAlliance()));
-//    SmartDashboard::PutString("start position",to_string(getStartPosition()));
-//    SmartDashboard::PutString("target position",to_string(getFieldLayout()));
+
+    SmartDashboard::PutString("field message",getFieldLayoutMessage());
+    SmartDashboard::PutString("alliance",to_string(getAlliance()));
+    SmartDashboard::PutString("start position",to_string(getStartPosition()));
+    SmartDashboard::PutString("target position",to_string(getFieldLayout()));
 
 }
 

@@ -138,6 +138,8 @@ void Robot::AutonomousInit() {
     // Robot::chassis->prepareForAutonomous();
     llvm::outs() << "starting auto\n";
 
+    fieldModel.update();
+
     autonomousCommand = getAutoCommand();
 
 
