@@ -15,6 +15,7 @@
 #include "Commands/GoToSwitch.h"
 #include "Commands/DumpCube.h"
 #include "Spin.h"
+#include "AutonomousCommand.h"
 
 
 AutonomousCommand::AutonomousCommand() : frc::CommandGroup("AUTO(probably wont work)") {

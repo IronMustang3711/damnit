@@ -156,17 +156,14 @@ void Robot::AutonomousPeriodic() {
 }
 
 void Robot::TeleopInit() {
-    // Robot::chassis->prepareForTeleop();
+    Robot::chassis->prepareForTeleop();
     if (autonomousCommand != nullptr)
         autonomousCommand->Cancel();
     ReaderBoard::getInstance().reportTeleop();
 }
 
 void Robot::TeleopPeriodic() {
-    SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
-    SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
-	SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
-	SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
+
     frc::Scheduler::GetInstance()->Run();
 }
 
@@ -186,35 +183,33 @@ void Robot::TestInit() {
 void Robot::RobotPeriodic() {
     //FieldModel::getInstance().update();
 
+    SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
+    SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
+    SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
+    SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
+
 }
 
 void Robot::initAutoChooser() {
     llvm::outs() << "initAutoChooser\n";
 
 
-    auto_dumbFwd = new DumbDriveForward;
-    auto_seq = new AutonomousCommand;
-    auto_fwd_ge = new DriveForwardGyroEncoder;
-    auto_fwd_mm = new DriveForward;
-    auto_profiled = new MotionProfileCommand;
-    do_nothing = new DontDoAnything;
-    right_hook = new RightHookSequence;
-    right_to_scale = new RightHookSequence(false);
 
     std::vector<Command*> as {
             new Straight_10ft,
             new RRSwitch,
-           // new RRSwitchAuto,
+            new RRSwitchAuto,
             new RRScale,
-          //  new RRScaleAuto,
+            new RRScaleAuto,
             new CRSwitch,
-            //new CRSwitchAuto,
-            new CRScale,
-            new CLScale,
+            new CRSwitchAuto,
             new CLSwitch,
-            new LFwd,
-            new LLScale,
+            new CLSwitchAuto,
             new LLSwitch,
+            new LLSwitchAuto,
+            new LLScale,
+            new LLScaleAuto,
+            new LFwd,
             new RFwd
     };
     for(auto a : as){
