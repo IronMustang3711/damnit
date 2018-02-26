@@ -10,6 +10,7 @@
 
 
 
+#include <ReaderBoard.h>
 #include "BucketTiltPosition.h"
 #include "Robot.h"
 
@@ -63,6 +64,7 @@ void BucketTiltPosition::Initialize() {
     bucketSetpoint = m_setpoint;
 
     if (m_setpoint == 200) { // special autodump code
+        ReaderBoard::getInstance().reportDump();
         if (Robot::upperTilt->GetPosition() > 250) // are we at scale?
             bucketSetpoint = 210; //Robot::bucket->SetSetpoint(210); // dump to scale
         else

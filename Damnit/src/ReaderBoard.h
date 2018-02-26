@@ -8,6 +8,7 @@
 
 #include <string>
 #include <utility>
+#include <memory>
 namespace nt{
     class NetworkTable;
 }
@@ -26,8 +27,10 @@ struct ReaderBoard {
     void reportDump();
     void reportBucketToSwitch();
     void reportBucketToScale();
-    void reportWinchUp();
+    //void reportWinchUp();
+    void reportWinch(const std::string commandName);
     void reportClampTiltToHome();
+    void reportClampTiltToBucket();
     void reportClampTiltToCube();
     void reportClampTiltToSwitch();
 

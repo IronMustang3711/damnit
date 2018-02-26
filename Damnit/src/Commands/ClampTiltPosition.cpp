@@ -10,6 +10,7 @@
 
 
 
+#include <ReaderBoard.h>
 #include "ClampTiltPosition.h"
 #include "Robot.h"
 
@@ -155,11 +156,31 @@ const clamp_tilt::Config &clamp_tilt::getConfig() {
 ClampTiltToSwitch::ClampTiltToSwitch() :
         ClampTiltPosition(clamp_tilt::getConfig().switch_setpoint) {}
 
+void ClampTiltToSwitch::Execute() {
+    ReaderBoard::getInstance().reportClampTiltToSwitch();
+    ClampTiltPosition::Execute();
+}
+
 ClampTiltToBucket::ClampTiltToBucket() :
         ClampTiltPosition(clamp_tilt::getConfig().bucket_setpoint) {}
+
+void ClampTiltToBucket::Execute() {
+    ReaderBoard::getInstance().reportClampTiltToBucket();
+    ClampTiltPosition::Execute();
+}
 
 ClampTiltToCube::ClampTiltToCube() :
         ClampTiltPosition(clamp_tilt::getConfig().cube_setpoint) {}
 
+void ClampTiltToCube::Execute() {
+    ReaderBoard::getInstance().reportClampTiltToCube();
+    ClampTiltPosition::Execute();
+}
+
 ClampTiltToHome::ClampTiltToHome()
         : ClampTiltPosition(0) {}
+
+void ClampTiltToHome::Execute() {
+    ReaderBoard::getInstance().reportClampTiltToHome();
+    ClampTiltPosition::Execute();
+}

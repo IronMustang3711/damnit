@@ -58,12 +58,11 @@ void ReaderBoard::reportBucketToScale() {
     postMessage("bucket", "scale");
 }
 
-void ReaderBoard::reportWinchUp() {
-    postMessage("winch", "up");
-}
-
 void ReaderBoard::reportClampTiltToHome() {
     postMessage("clampTilt", "home");
+}
+void ReaderBoard::reportClampTiltToBucket() {
+    postMessage("clampTilt", "bucket");
 }
 
 void ReaderBoard::reportClampTiltToCube() {
@@ -72,4 +71,8 @@ void ReaderBoard::reportClampTiltToCube() {
 
 void ReaderBoard::reportClampTiltToSwitch() {
     postMessage("clampTilt", "switch");
+}
+
+void ReaderBoard::reportWinch(const std::string commandName) {
+postMessage("winch",commandName);
 }

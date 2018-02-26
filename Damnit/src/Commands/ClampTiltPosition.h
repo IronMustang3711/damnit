@@ -44,7 +44,7 @@ public:
 
     void Initialize() override;
 
-    void Execute() override;
+    virtual void Execute() override;
 
     bool IsFinished() override;
 
@@ -76,26 +76,34 @@ private:
 class ClampTiltToSwitch : public ClampTiltPosition {
 public:
     ClampTiltToSwitch();
+
+protected:
+    void Execute() override;
 };
 
 class ClampTiltToBucket : public ClampTiltPosition {
 public:
     ClampTiltToBucket();
+
+protected:
+    void Execute() override ;
 };
 
 class ClampTiltToCube : public ClampTiltPosition {
 public:
     ClampTiltToCube();
-};
 
-//class ClampTiltToggle : public ClampTiltPosition {
-//public:
-//    ClampTiltToggle();
-//};
+protected:
+    void Execute() override;
+
+};
 
 class ClampTiltToHome : public ClampTiltPosition {
 public:
     ClampTiltToHome();
+
+protected:
+    void Execute() override ;
 };
 
 #endif
