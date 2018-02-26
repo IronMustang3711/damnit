@@ -67,9 +67,8 @@ void MotionProfileExecutor::Execute() {
         } else if (status.activePointValid && status.isLast) {
             t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Hold);
             Cancel();
-        } else {
-            DriverStation::ReportError("something weird happening in MotionProfileCommand::Execute");
         }
+
 
         //TODO more diagnostic messages from status
 
