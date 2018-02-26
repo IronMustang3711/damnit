@@ -146,7 +146,7 @@ void Chassis::prepareForAutonomous() {
         t->ConfigVoltageCompSaturation(11.0, TIMEOUT);
         t->EnableVoltageCompensation(true);
     }
-    resetEncoders();
+    //resetEncoders();
 
     // disableMotorSafety();
 }
