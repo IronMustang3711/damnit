@@ -29,6 +29,33 @@ public:
     RRSwitch();
 };
 
+class CLScale : public MotionProfileExecutor {
+public:
+    CLScale();
+};
+
+class CLSwitch : public MotionProfileExecutor {
+public:
+    CLSwitch();
+};
+
+class LFwd : public MotionProfileExecutor {
+public:
+    LFwd();
+};
+class LLScale : public MotionProfileExecutor {
+public:
+    LLScale();
+};
+class LLSwitch : public MotionProfileExecutor {
+public:
+    LLSwitch();
+};
+
+class RFwd : public MotionProfileExecutor {
+public:
+    RFwd();
+};
 
 
 #endif //DAMNIT_MOTIONPROFILEEXECUTORS_H
