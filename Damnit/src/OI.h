@@ -56,7 +56,7 @@ private:
 	std::shared_ptr<frc::JoystickButton> stowBucket;
 
 	std::shared_ptr<frc::JoystickButton> winchUp;
-	std::shared_ptr<frc::JoystickButton> winchDown;
+	std::shared_ptr<frc::JoystickButton> winchDisable;
 	std::shared_ptr<frc::JoystickButton> winchPrep;
 	std::shared_ptr<frc::JoystickButton> winchStop;
 	std::shared_ptr<frc::JoystickButton> dwinchUp;

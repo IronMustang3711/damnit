@@ -96,12 +96,12 @@ OI::OI( Commands& commands) {
 	stowBucket->WhenPressed(new StowBucket);  // Stow clamp, then bucket
 
 	winchUp.reset(new frc::JoystickButton(controlJoystick.get(), 11));
-	winchUp->WhenPressed(new WinchUp);
+	winchUp->WhileHeld(new WinchUp);
 	winchUp->WhenReleased(new WinchHold);
-	winchDown.reset(new frc::JoystickButton(controlJoystick.get(), 10));
-	winchDown->WhileHeld(new WinchDisable);
-	winchStop.reset(new JoystickButton(controlJoystick.get(),9));
-	winchStop->WhileHeld(new WinchDisable);
+	winchDisable.reset(new frc::JoystickButton(controlJoystick.get(), 10));
+	winchDisable->WhenPressed(new WinchDisable);
+//	winchStop.reset(new JoystickButton(controlJoystick.get(),9));
+//	winchStop->WhileHeld(new WinchDisable);
 	winchPrep.reset(new frc::JoystickButton(driveJoystick.get(),5));
 	winchPrep->WhenPressed(new PrepWinch);
 
@@ -109,7 +109,7 @@ OI::OI( Commands& commands) {
 	dwinchUp->WhileHeld(new WinchUp);
 	dwinchUp->WhenReleased(new WinchHold);
 	dwinchDown.reset(new frc::JoystickButton(driveJoystick.get(), 9));
-	dwinchDown->WhileHeld(new WinchDown);
+	dwinchDown->WhileHeld(new WinchDown); //TODO: make instant command?
 	dwinchStop.reset(new frc::JoystickButton(driveJoystick.get(),11));
 	dwinchStop->WhenPressed(new WinchDisable);
 
