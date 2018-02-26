@@ -101,7 +101,7 @@ bool AbstractClampCommand::IsFinished() {
 }
 
 void AbstractClampCommand::End() {
-    Robot::clamp->SetOutputRange(-0.2, 0.2);
+    Robot::clamp->SetOutputRange(-0.3, 0.3);
 }
 
 ClampOpen::ClampOpen() : AbstractClampCommand("clamp open") {

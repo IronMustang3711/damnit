@@ -25,7 +25,7 @@ private:
 
 class WinchHold : public WinchCommand {
 public:
-   inline WinchHold() : WinchCommand("winch hold",0.1){}
+   inline WinchHold() : WinchCommand("winch hold",0.3){}
 };
 class WinchDisable : public WinchCommand {
 public:
@@ -33,12 +33,12 @@ public:
 };
 class WinchUp: public WinchCommand {
 public:
-    inline WinchUp() : WinchCommand("winch up",0.5){}
+    inline WinchUp() : WinchCommand("winch up",0.8){}
 };
 
 class WinchDown : public WinchCommand {
 public:
-    inline WinchDown() : WinchCommand("winch down", -0.5){}
+    inline WinchDown() : WinchCommand("winch down", -0.7){}
 };
 
 #endif //DAMNIT_WINCHCOMMANDS_H

@@ -26,10 +26,10 @@ public:
 
 private:
     double open_setpoint = 152.0;
-    double close_setpoint = 84.0;
+    double close_setpoint = 27.0;
 
     static constexpr double PROTO_OPEN_SETPOINT = 140.0;
-    static constexpr double PROTO_CLOSE_SETPOINT = 82.0;
+    static constexpr double PROTO_CLOSE_SETPOINT = 45.0;
 
     static constexpr double MAX_OUT = 0.7;
 };
