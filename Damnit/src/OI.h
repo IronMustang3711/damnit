@@ -20,8 +20,8 @@
 class DriveStation : public frc::GenericHID {
 public:
 	DriveStation();
-	inline double GetX(JoystickHand hand = kRightHand) const override {return 0.0;};
-	double GetY(frc::GenericHID::JoystickHand hand = kRightHand) const override { return 0.0;} ;
+	inline double GetX(JoystickHand) const override {return 0.0;};
+	double GetY(frc::GenericHID::JoystickHand) const override { return 0.0;} ;
 
 };
 class OI {
