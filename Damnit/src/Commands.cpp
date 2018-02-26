@@ -41,42 +41,44 @@ Commands::Commands() {
 //    scaleDumpSequence.AddSequential(&stowBucket);
 
 
-    for (auto c : std::initializer_list<Sendable*> {
-            &clampOpen,
-            &clampClose,
-            &clampToggle,
-            &clampTiltToSwitch,
-            &clampTiltToBucket,
-            &clampTiltToCube,
-            &clampTiltToHome,
-            &bucketTiltAutoLevel,
-            //&bucketTiltToScale,
-            &bucketTiltBack,
-            &bucketTiltAutoDump,
-            &bucketTiltToWinch,
-            &bucketTiltToHome,
-            &upperTiltToScale,
-            &upperTiltToSwitch,
-            &upperTiltToHome,
-            &upperTiltToWinch,
-            &winchUp,
-            &winchDown,
-            &winchHold,
-            &winchDisable,
-            &driveArmsWithJoystick,
-            &toggleDirection,
-            &halfSecondDelay,
-//            &stowClamp,
-//            &goToScale,
-//            &goToSwitch,
-//            &stowBucket,
-//            &delayedBucketTiltToWinch,
-//            &winchPrep,
-//            &dumpCube,
-//            &switchDumpSequence,
-//            &scaleDumpSequence
-
-    }) { SmartDashboard::PutData(c); }
+//    for (auto c : std::initializer_list<Sendable*> {
+//            &clampOpen,
+//            &clampClose,
+//            &clampToggle,
+//            &clampTiltToSwitch,
+//            &clampTiltToBucket,
+//            &clampTiltToCube,
+//            &clampTiltToHome,
+//            &bucketTiltAutoLevel,
+//            //&bucketTiltToScale,
+//            &bucketTiltBack,
+//            &bucketTiltAutoDump,
+//            &bucketTiltToWinch,
+//            &bucketTiltToHome,
+//            &upperTiltToScale,
+//            &upperTiltToSwitch,
+//            &upperTiltToHome,
+//            &upperTiltToWinch,
+////            &winchUp,
+////            &winchDown,
+////            &winchHold,
+////            &winchDisable,
+//            &driveArmsWithJoystick,
+//            &toggleDirection,
+//            &halfSecondDelay,
+////            &stowClamp,
+////            &goToScale,
+////            &goToSwitch,
+////            &stowBucket,
+////            &delayedBucketTiltToWinch,
+////            &winchPrep,
+////            &dumpCube,
+////            &switchDumpSequence,
+////            &scaleDumpSequence
+//
+//    }) {
+//        SmartDashboard::PutData(c);
+//    }
 
 
 }

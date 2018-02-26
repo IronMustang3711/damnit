@@ -50,10 +50,10 @@ struct Commands {
 
 
 
-    WinchUp winchUp;
-    WinchDown winchDown;
-    WinchHold winchHold;
-    WinchDisable winchDisable;
+//    WinchUp winchUp{};
+//    WinchDown winchDown{};
+//    WinchHold winchHold{};
+//    WinchDisable winchDisable{};
 
 
 
