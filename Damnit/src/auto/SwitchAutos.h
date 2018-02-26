@@ -7,10 +7,9 @@
 
 
 #include <Commands/CommandGroup.h>
-#include "MotionProfileExecutor.h"
-#include "MotionProfileExecutors.h"
 
 
+class MotionProfileExecutor;
 class SwitchAuto : public frc::CommandGroup {
 
    // MotionProfileExecutor* mp;
@@ -23,13 +22,22 @@ public:
 
 class RRSwitchAuto : public SwitchAuto {
 public:
-    inline RRSwitchAuto() : SwitchAuto(new RRSwitch()){};
+     RRSwitchAuto();
 };
 
 class CRSwitchAuto : public SwitchAuto {
 public:
-    inline CRSwitchAuto() : SwitchAuto(new CRSwitch()){};
+     CRSwitchAuto();
 };
+class CLSwitchAuto : public SwitchAuto {
+public:
+    CLSwitchAuto();
+};
+class LLSwitchAuto : public SwitchAuto {
+public:
+    LLSwitchAuto();;
+};
+
 
 
 #endif //DAMNIT_SWITCHAUTOS_H

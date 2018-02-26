@@ -7,7 +7,8 @@
 
 
 #include <Commands/CommandGroup.h>
-#include "MotionProfileExecutors.h"
+
+class MotionProfileExecutor;
 
 class ScaleAuto : public frc::CommandGroup {
 public:
@@ -16,8 +17,12 @@ public:
 
 class RRScaleAuto : public ScaleAuto {
 public:
-    inline RRScaleAuto() : ScaleAuto(new RRScale()) {}
+    RRScaleAuto();
 
+};
+class LLScaleAuto : public ScaleAuto {
+public:
+    LLScaleAuto();
 };
 
 #endif //DAMNIT_SCALEAUTOS_H

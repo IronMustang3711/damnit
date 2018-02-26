@@ -6,6 +6,7 @@
 #include "ScaleAutos.h"
 #include "ScaleDumpSequence.h"
 #include "DriveForward.h"
+#include "MotionProfileExecutors.h"
 
 ScaleAuto::ScaleAuto(MotionProfileExecutor *exec) {
     AddSequential(exec);
@@ -14,3 +15,7 @@ ScaleAuto::ScaleAuto(MotionProfileExecutor *exec) {
     AddParallel(new ClampTiltToCube());
 
 }
+
+LLScaleAuto::LLScaleAuto() : ScaleAuto(new LLScale){}
+
+RRScaleAuto::RRScaleAuto() : ScaleAuto(new RRScale()) {}

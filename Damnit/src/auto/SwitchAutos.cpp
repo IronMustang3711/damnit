@@ -8,6 +8,8 @@
 #include "SwitchAutos.h"
 #include "SwitchDumpSequence.h"
 #include "DriveForward.h"
+#include "MotionProfileExecutor.h"
+#include "MotionProfileExecutors.h"
 
 SwitchAuto::SwitchAuto(MotionProfileExecutor *exec) : frc::CommandGroup(exec->GetName()+" auto sequence") {
     AddSequential(exec);
@@ -15,3 +17,11 @@ SwitchAuto::SwitchAuto(MotionProfileExecutor *exec) : frc::CommandGroup(exec->Ge
     AddSequential(new DriveForward(-6.0),0.7);
     AddParallel(new ClampTiltToSwitch());
 }
+
+RRSwitchAuto::RRSwitchAuto() : SwitchAuto(new RRSwitch()){}
+
+CRSwitchAuto::CRSwitchAuto() : SwitchAuto(new CRSwitch()){}
+
+CLSwitchAuto::CLSwitchAuto() : SwitchAuto(new CLSwitch()){}
+
+LLSwitchAuto::LLSwitchAuto() : SwitchAuto(new LLSwitch()){}
