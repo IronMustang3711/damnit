@@ -39,9 +39,9 @@ public:
 };
 
 
-class WinchDisable : public frc::InstantCommand {
+class WinchDisable : public WinchCommand {
 public:
-    WinchDisable();
+  inline  WinchDisable() : WinchCommand("winch disable",0.0){}
 
 protected:
     void Execute() override;
