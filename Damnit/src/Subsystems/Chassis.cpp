@@ -42,26 +42,26 @@ void Chassis::Periodic() {
 //	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
 //}));
 
-    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
-    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
+//    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
+//    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
 
 //    SmartDashboard::PutNumberArray("encoder velocity",
 //       		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadratureVelocity(),
 //   									(double)rightFront->GetSensorCollection().GetQuadratureVelocity()});
 
-    auto vl = (double) leftFront->GetSelectedSensorVelocity(0);
-    auto vr = (double) rightFront->GetSelectedSensorVelocity(0);
-    SmartDashboard::PutNumber("encoder velocity(left)", vl);
-    SmartDashboard::PutNumber("encoder velocity(right)", vr);
+//    auto vl = (double) leftFront->GetSelectedSensorVelocity(0);
+//    auto vr = (double) rightFront->GetSelectedSensorVelocity(0);
+//    SmartDashboard::PutNumber("encoder velocity(left)", vl);
+//    SmartDashboard::PutNumber("encoder velocity(right)", vr);
 
-    SmartDashboard::PutNumber("encoder acc(left)", vl - VlPrev);
-    SmartDashboard::PutNumber("encoder acc(right)", vr - VrPrev);
+   // SmartDashboard::PutNumber("encoder acc(left)", vl - VlPrev);
+    //SmartDashboard::PutNumber("encoder acc(right)", vr - VrPrev);
 
-    VrPrev = vr;
-    VlPrev = vl;
+//    VrPrev = vr;
+//    VlPrev = vl;
 
-    SmartDashboard::PutString("chassis command",
-                              GetCurrentCommand() == nullptr ? "null" : GetCurrentCommand()->GetName());
+//    SmartDashboard::PutString("chassis command",
+//                              GetCurrentCommand() == nullptr ? "null" : GetCurrentCommand()->GetName());
 
 //   llvm::SmallVector<double,4> outputs;
 //    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
@@ -72,7 +72,7 @@ void Chassis::Periodic() {
 
     if (leftFront->GetControlMode() == ControlMode::MotionMagic
        || leftFront->GetControlMode() == ControlMode ::MotionProfile) {
-        for (const auto t : {leftFront.get(), rightFront.get()}) {
+        for (const auto t : {leftFront.get()/*, rightFront.get()*/}) {
             SmartDashboard::PutNumber("closed loop error: " + t->GetName(), t->GetClosedLoopError(SLOT));
             SmartDashboard::PutNumber("closed loop target: " + t->GetName(), t->GetClosedLoopTarget(SLOT));
 
@@ -218,7 +218,7 @@ void Chassis::testPeriodic() {
 
 void Chassis::toggleDirection() {
     reversed = !reversed;
-    SmartDashboard::PutBoolean("drive reversed?",reversed);
+  //  SmartDashboard::PutBoolean("drive reversed?",reversed);
 }
 
 Chassis::Chassis() : Chassis(chassis_config::getConfig().rotation_correction) {
