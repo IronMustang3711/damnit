@@ -29,7 +29,7 @@ UpperTiltPosition::UpperTiltPosition(double setpoint) : Command("Upper Tilt(" + 
     maxPower = 1.0;
     // with 1 14000rmp motor and 245:1 gearbox and a 1024 cpr encoder
     // maxVelocity is about 14000rpm/60/245 = 1 rps * 1024 counts/sec.
-    maxVelocity = 1000;  // 1024ppr 15000/250 rpm /60
+    maxVelocity = 800;  // 1024ppr 15000/250 rpm /60
     velocityP = 0.002;
     velocityFF = 1 / maxVelocity;
     acceleration = 600;  // accel to 300 counts/sec in one second

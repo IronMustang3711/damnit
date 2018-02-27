@@ -17,7 +17,7 @@
 
 namespace upper_tilt {
 	struct Config {
-		double scale_setpoint = 430.0;
+		double scale_setpoint = 400.0;
 		double switch_setpoint = 124.0;
 		double winch_setpoint = 498.0;
 	};
