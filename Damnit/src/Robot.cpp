@@ -184,7 +184,7 @@ void Robot::TestInit() {
 }
 
 void Robot::RobotPeriodic() {
-    //FieldModel::getInstance().update();
+    FieldModel::getInstance().update();
 
     SmartDashboard::PutNumber("Upper", Robot::upperTilt->GetPosition());
     SmartDashboard::PutNumber("Bucket", Robot::bucket->GetPosition());
