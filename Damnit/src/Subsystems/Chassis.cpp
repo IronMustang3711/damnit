@@ -88,7 +88,7 @@ void Chassis::TeleopDrive(std::shared_ptr<Joystick> stickPosition) {
     double z = stickPosition->GetZ();
 
     if (reversed) {
-        z = -1.0 * z;
+      //  z = 1.0 * z;
         y = -1.0 * y;
     }
 
