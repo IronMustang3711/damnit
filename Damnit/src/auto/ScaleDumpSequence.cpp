@@ -12,6 +12,7 @@
 #include <Commands/GoToScale.h>
 #include <Commands/StowClamp.h>
 #include "ScaleDumpSequence.h"
+#include "DriveForward.h"
 
 ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 
@@ -45,8 +46,11 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 //    AddSequential(myGroup);
 //    AddParallel(new BucketTiltAutoLevel);
 //    AddSequential(new StowBucket);
-    AddSequential(new GoToScale(),2.0);
-    AddSequential(new DumpCube());
+    AddSequential(new GoToScale(),3.0); //Warning: changing timeouts can result in the upper tilt spazzing out.
+
+    //AddSequential(new DriveForward(6.0));
+    AddParallel(g2);
+   // AddSequential(new DumpCube());
     AddSequential(new StowBucket());
 
 
