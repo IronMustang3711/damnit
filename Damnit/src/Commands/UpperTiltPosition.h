@@ -22,7 +22,7 @@ namespace upper_tilt {
 		double winch_setpoint = 498.0;
 	};
 	constexpr Config COMPETITION_CONFIG{}; //use default values from above
-	constexpr Config PROTO_CONFIG{/*scale  */ 430,
+	constexpr Config PROTO_CONFIG{/*scale  */ 400,
 								  /*switch */ 100,
                                   /*winch* */ 500};
 	const Config& getConfig();

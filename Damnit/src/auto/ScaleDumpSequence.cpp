@@ -32,19 +32,22 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 	AddParallel(new UpperTiltToScale());
      */
 
-    auto myGroup = new CommandGroup("stow,to scale,dump");
-    myGroup->AddSequential(new StowClamp);
-    myGroup->AddSequential(new UpperTiltToScale());
-    //myGroup->AddSequential(new DumpCube());
-    //dump cube
-    AddSequential(new BucketTiltAutoLevel());
-    AddSequential(new Delay(0.5));
-    AddSequential(new BucketTiltAllTheWayBack());//
-    //dump cube
-
-    AddSequential(myGroup);
-    AddParallel(new BucketTiltAutoLevel);
-    AddSequential(new StowBucket);
+//    auto myGroup = new CommandGroup("stow,to scale,dump");
+//    myGroup->AddSequential(new StowClamp);
+//    myGroup->AddSequential(new UpperTiltToScale());
+//    //myGroup->AddSequential(new DumpCube());
+//    //dump cube
+//    AddSequential(new BucketTiltAutoLevel());
+//    AddSequential(new Delay(0.5));
+//    AddSequential(new BucketTiltAllTheWayBack());//
+//    //dump cube
+//
+//    AddSequential(myGroup);
+//    AddParallel(new BucketTiltAutoLevel);
+//    AddSequential(new StowBucket);
+    AddSequential(new GoToScale(),2.0);
+    AddSequential(new DumpCube());
+    AddSequential(new StowBucket());
 
 
 
