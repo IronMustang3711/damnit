@@ -29,7 +29,7 @@ frc::Command *AutoSelector::getCommand() {
         return new DontDoAnything;
 
 
-    bool enableScaleAuto = Preferences::GetInstance()->GetBoolean("auto.scale.enable",true);
+    bool enableScaleAuto = Preferences::GetInstance()->GetBoolean("auto.scale.enable",false);
 
     string startPosition = chooser.GetSelected();
 
