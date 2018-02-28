@@ -23,6 +23,9 @@ public:
 
     void close();
 
+protected:
+    void Periodic() override ;
+
 
 private:
     double open_setpoint = 152.0;
