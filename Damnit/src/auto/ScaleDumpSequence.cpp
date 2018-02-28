@@ -51,7 +51,7 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
     //AddSequential(new DriveForward(6.0));
     //AddParallel(g2);
    // AddSequential(new DumpCube());
-    AddSequential(new StowBucket());
+    //AddSequential(new StowBucket());
 
 
 
