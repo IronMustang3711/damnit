@@ -43,7 +43,7 @@ void Clamp::reset() {
 void Clamp::open() {
     SetOutputRange(-MAX_OUT, MAX_OUT);
     SetSetpoint(open_setpoint);
-    ReaderBoard::getInstance().reportClampOpen();
+    ReaderBoard::reportClampOpen();
 
 
     Enable();
@@ -53,14 +53,14 @@ void Clamp::open() {
 void Clamp::close() {
     SetOutputRange(-MAX_OUT, MAX_OUT);
     SetSetpoint(close_setpoint);
-    ReaderBoard::getInstance().reportClampClose();
+    ReaderBoard::reportClampClose();
 
     Enable();
 }
 
 void Clamp::Periodic() {
     //TODO: remove when chattering issue is resolved.
-    SmartDashboard::PutString("clamp command", GetCurrentCommand() == nullptr ? "null" : GetCurrentCommand()->GetName());
-    SmartDashboard::PutNumber("clamp err",GetPIDController()->GetError());
-    SmartDashboard::PutNumber("clamp delta setpoint",GetPIDController()->GetDeltaSetpoint());
+//    SmartDashboard::PutString("clamp command", GetCurrentCommand() == nullptr ? "null" : GetCurrentCommand()->GetName());
+//    SmartDashboard::PutNumber("clamp err",GetPIDController()->GetError());
+//    SmartDashboard::PutNumber("clamp delta setpoint",GetPIDController()->GetDeltaSetpoint());
 }
