@@ -27,10 +27,11 @@ GoToScale::GoToScale() : frc::CommandGroup("Go To Scale") {
 
 
 	AddSequential(new StowClamp);
-	AddParallel(new BucketTiltAllTheWayBack());
+	//AddParallel(new BucketTiltAllTheWayBack(),0.5);
 
-	AddSequential(new UpperTiltToScale());
 	AddParallel(new BucketTiltAutoLevel);
+
+	AddParallel(new UpperTiltToScale());
 
 
 	//TODO: try this if the above sequence isnt working

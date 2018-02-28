@@ -20,7 +20,7 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 //    Requires(Robot::bucket.get());
 
     auto g2 = new frc::CommandGroup();
-    g2->AddSequential(new Delay(2.0));
+    g2->AddSequential(new Delay(1.0));
     g2->AddSequential(new DumpCube());
     g2->AddSequential(new StowBucket());
 
@@ -47,9 +47,9 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 //    AddParallel(new BucketTiltAutoLevel);
 //    AddSequential(new StowBucket);
     AddSequential(new GoToScale(),3.0); //Warning: changing timeouts can result in the upper tilt spazzing out.
-
+    AddSequential(new BucketTiltAutoDump());
     //AddSequential(new DriveForward(6.0));
-    AddParallel(g2);
+    //AddParallel(g2);
    // AddSequential(new DumpCube());
     AddSequential(new StowBucket());
 
