@@ -4,12 +4,33 @@
 #include "StowClamp.h"
 
 GoToScale::GoToScale() : frc::CommandGroup("Go To Scale") {
-	// stow clamp
+
+	/*  rod's original code:
+
+	 GoToScale...
+
+	 // stow clamp
 	AddSequential(new StowClamp);  // Hide clamp
 
-	//TODO: this is probably wrong.
-	AddParallel(new BucketTiltAllTheWayBack());//(new BucketTiltPosition(100));  // Put bucket in auto level
-	AddParallel(new UpperTiltToScale());  // move arm to scale
+	AddParallel(new BucketTiltPosition(100));  // Put bucket in auto level
+	AddParallel(new UpperTiltPosition(430));  // move arm to scale
+	 ----------------------------------------
+	 and GoToSwitch...
+
+	 // stow clamp
+	AddSequential(new StowClamp);  // Hide clamp
+
+	AddParallel(new BucketTiltPosition(100));  // Put bucket in auto level
+	AddParallel(new UpperTiltPosition(150));  // move arm to switch
+
+	 */
+
+
+	AddSequential(new StowClamp);
+	AddParallel(new BucketTiltAllTheWayBack());
+
+	AddSequential(new UpperTiltToScale());
+	AddParallel(new BucketTiltAutoLevel);
 
 
 	//TODO: try this if the above sequence isnt working
