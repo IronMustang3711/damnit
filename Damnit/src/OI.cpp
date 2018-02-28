@@ -23,7 +23,6 @@
 #include "auto/AutonomousCommand.h"
 #include "Commands/ToggleBreaking.h"
 #include "auto/MotionProfileCommand.h"
-#include "auto/AutoBuilder.h"
 #include "OI.h"
 
 #include <SmartDashboard/SmartDashboard.h>
