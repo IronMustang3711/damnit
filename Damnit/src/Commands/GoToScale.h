@@ -6,6 +6,10 @@
 class GoToScale : public frc::CommandGroup {
 public:
 	GoToScale();
+
+protected:
+	void Initialize() override ;
+
 };
 
 #endif  // GoToScale_H

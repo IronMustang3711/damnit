@@ -1,3 +1,4 @@
+#include <ReaderBoard.h>
 #include "GoToScale.h"
 #include "BucketTiltPosition.h"
 #include "UpperTiltPosition.h"
@@ -42,4 +43,9 @@ GoToScale::GoToScale() : frc::CommandGroup("Go To Scale") {
 //	AddSequential(new StowClamp);
 //	AddSequential(bucketTiltSequence);
 //	AddParallel(new UpperTiltToScale);
+}
+
+void GoToScale::Initialize() {
+    CommandGroup::Initialize();
+	ReaderBoard::reportGoToScale();
 }

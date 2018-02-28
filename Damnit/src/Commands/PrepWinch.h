@@ -6,6 +6,8 @@ class PrepWinch : public frc::CommandGroup {
 public:
     PrepWinch();
 
+protected:
+    void Initialize() override ;
 };
 
 

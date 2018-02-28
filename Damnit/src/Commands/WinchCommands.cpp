@@ -15,7 +15,7 @@ WinchCommand::WinchCommand(const llvm::Twine& name, double o) : frc::Command(nam
 }
 
 void WinchCommand::Execute() {
-    ReaderBoard::getInstance().reportWinch(GetName());
+    ReaderBoard::reportWinch(GetName());
     Robot::winch->driveWinch(output);
 }
 

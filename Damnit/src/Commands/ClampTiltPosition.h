@@ -79,6 +79,7 @@ public:
 
 protected:
     void Execute() override;
+    void Initialize() override ;
 };
 
 class ClampTiltToBucket : public ClampTiltPosition {
@@ -87,6 +88,7 @@ public:
 
 protected:
     void Execute() override ;
+    void Initialize() override ;
 };
 
 class ClampTiltToCube : public ClampTiltPosition {
@@ -95,6 +97,7 @@ public:
 
 protected:
     void Execute() override;
+    void Initialize() override ;
 
 };
 
@@ -104,6 +107,7 @@ public:
 
 protected:
     void Execute() override ;
+    void Initialize() override ;
 };
 
 #endif

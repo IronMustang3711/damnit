@@ -157,30 +157,47 @@ ClampTiltToSwitch::ClampTiltToSwitch() :
         ClampTiltPosition(clamp_tilt::getConfig().switch_setpoint) {}
 
 void ClampTiltToSwitch::Execute() {
-    ReaderBoard::getInstance().reportClampTiltToSwitch();
     ClampTiltPosition::Execute();
+}
+
+void ClampTiltToSwitch::Initialize() {
+    ClampTiltPosition::Initialize();
+    ReaderBoard::reportClampTiltToSwitch();
 }
 
 ClampTiltToBucket::ClampTiltToBucket() :
         ClampTiltPosition(clamp_tilt::getConfig().bucket_setpoint) {}
 
 void ClampTiltToBucket::Execute() {
-    ReaderBoard::getInstance().reportClampTiltToBucket();
     ClampTiltPosition::Execute();
+}
+
+void ClampTiltToBucket::Initialize() {
+    ClampTiltPosition::Initialize();
+    ReaderBoard::reportClampTiltToBucket();
 }
 
 ClampTiltToCube::ClampTiltToCube() :
         ClampTiltPosition(clamp_tilt::getConfig().cube_setpoint) {}
 
 void ClampTiltToCube::Execute() {
-    ReaderBoard::getInstance().reportClampTiltToCube();
     ClampTiltPosition::Execute();
+}
+
+void ClampTiltToCube::Initialize() {
+    ClampTiltPosition::Initialize();
+    ReaderBoard::reportClampTiltToCube();
 }
 
 ClampTiltToHome::ClampTiltToHome()
         : ClampTiltPosition(0) {}
 
 void ClampTiltToHome::Execute() {
-    ReaderBoard::getInstance().reportClampTiltToHome();
     ClampTiltPosition::Execute();
+}
+
+void ClampTiltToHome::Initialize() {
+    ClampTiltPosition::Initialize();
+    ReaderBoard::reportClampTiltToHome();
+
 }

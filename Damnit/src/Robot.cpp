@@ -97,7 +97,7 @@ lvuser@roboRIO-3711-FRC:~$ echo "PROTO" > robot_name
     //frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
     //frc::SmartDashboard::PutData(RobotMap::ahrs.get());
 
-    ReaderBoard::getInstance().reportInit();
+    ReaderBoard::reportInit();
 
 
 }
@@ -114,7 +114,7 @@ void Robot::DisabledInit() {
     if (autonomousCommand != nullptr)
         autonomousCommand->Cancel();
 
-    ReaderBoard::getInstance().reportDisabled();
+    ReaderBoard::reportDisabled();
 }
 
 void Robot::DisabledPeriodic() {
@@ -133,7 +133,7 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
     // Robot::chassis->prepareForAutonomous();
     llvm::outs() << "starting auto\n";
-    ReaderBoard::getInstance().reportAuto();
+    ReaderBoard::reportAuto();
 
 
     autonomousCommand = autoSelector->getCommand();//getAutoCommand();
@@ -142,7 +142,7 @@ void Robot::AutonomousInit() {
     if (autonomousCommand != nullptr) {
         autonomousCommand->Start();
         DriverStation::ReportWarning("starting auto command: " + autonomousCommand->GetName());
-        ReaderBoard::getInstance().reportAutoName(autonomousCommand->GetName());
+        ReaderBoard::reportAutoName(autonomousCommand->GetName());
     } else {
         DriverStation::ReportError("null auto command!");
     }
@@ -157,7 +157,7 @@ void Robot::TeleopInit() {
     Robot::chassis->prepareForTeleop();
     if (autonomousCommand != nullptr)
         autonomousCommand->Cancel();
-    ReaderBoard::getInstance().reportTeleop();
+    ReaderBoard::reportTeleop();
 }
 
 void Robot::TeleopPeriodic() {

@@ -9,36 +9,68 @@
 #include <string>
 #include <utility>
 #include <memory>
-namespace nt{
+
+namespace nt {
     class NetworkTable;
 }
 
 struct ReaderBoard {
 
-    static ReaderBoard& getInstance();
 
-    void reportClampOpen();
-    void reportClampClose();
-    void reportAuto();
-    void reportAutoName(const std::string& name);
-    void reportTeleop();
-    void reportInit();
-    void reportDisabled();
-    void reportDump();
-    void reportBucketToSwitch();
-    void reportBucketToScale();
+
+    static inline void reportClampOpen() { getInstance().postMessage("clamp", "open"); };
+
+    static inline void reportClampClose() { getInstance().postMessage("clamp", "close"); }
+
+    static inline void reportAuto() { getInstance().postMessage("mode", "auto"); };
+
+    static inline void reportAutoName(const std::string &name) {
+        getInstance().postMessage("auto", name);
+    };
+
+    static inline void reportTeleop() { getInstance().postMessage("mode", "teleop"); };
+
+    static inline void reportInit() { getInstance().postMessage("mode", "init"); };
+
+    static inline void reportDisabled() { getInstance().postMessage("mode", "disabled"); };
+
+    static inline void reportDump() { getInstance().postMessage("bucket", "dump"); };
+
+    static inline void reportBucketToSwitch() { getInstance().postMessage("bucket", "switch"); };
+
+    static inline void reportBucketToScale() { getInstance().postMessage("bucket", "scale"); };
+
     //void reportWinchUp();
-    void reportWinch(const std::string commandName);
-    void reportClampTiltToHome();
-    void reportClampTiltToBucket();
-    void reportClampTiltToCube();
-    void reportClampTiltToSwitch();
+    static inline void reportWinch(const std::string &commandName) {
+        getInstance().postMessage("winch", commandName);
+    }
+
+    static inline void reportClampTiltToHome() {
+        getInstance().postMessage("clampTilt", "home");
+    }
+
+    static inline void reportClampTiltToBucket() {
+        getInstance().postMessage("clampTilt", "bucket");
+    };
+
+    static inline void reportClampTiltToCube() { getInstance().postMessage("clampTilt", "cube"); };
+
+    static inline void reportClampTiltToSwitch() {
+        getInstance().postMessage("clampTilt", "switch");
+    };
 
 
+    static void reportWinch();
+
+    static void reportGoToSwitch();
+
+    static void reportGoToScale();
 
 private:
     ReaderBoard();
+    static ReaderBoard &getInstance();
     void postMessage(std::string key, std::string value);
+
     std::shared_ptr<nt::NetworkTable> tbl;
 
 

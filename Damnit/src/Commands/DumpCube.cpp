@@ -1,3 +1,4 @@
+#include <ReaderBoard.h>
 #include "DumpCube.h"
 #include "BucketTiltPosition.h"
 #include "UpperTiltPosition.h"
@@ -8,4 +9,9 @@ DumpCube::DumpCube() : frc::CommandGroup("Dump Cube") {
 	AddSequential(new BucketTiltAllTheWayBack());//(new BucketTiltPosition(-20));  // Back to home
 
 
+}
+
+void DumpCube::Initialize() {
+	CommandGroup::Initialize();
+	ReaderBoard::reportDump();
 }

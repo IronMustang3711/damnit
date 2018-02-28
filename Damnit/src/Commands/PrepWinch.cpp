@@ -3,6 +3,7 @@
 //
 
 #include <Robot.h>
+#include <ReaderBoard.h>
 #include "PrepWinch.h"
 #include "UpperTiltPosition.h"
 #include "BucketTiltPosition.h"
@@ -25,4 +26,9 @@ PrepWinch::PrepWinch() : frc::CommandGroup("prepare winch for latching") {
 
 
 
+}
+
+void PrepWinch::Initialize() {
+    CommandGroup::Initialize();
+    ReaderBoard::reportWinch();
 }

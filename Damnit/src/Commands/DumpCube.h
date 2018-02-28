@@ -6,6 +6,9 @@
 class DumpCube : public frc::CommandGroup {
 public:
 	DumpCube();
+
+protected:
+	void Initialize() override ;
 };
 
 #endif  // DumpCube_H
