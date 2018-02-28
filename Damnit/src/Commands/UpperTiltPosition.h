@@ -23,7 +23,7 @@ namespace upper_tilt {
 	};
 	constexpr Config COMPETITION_CONFIG{}; //use default values from above
 	constexpr Config PROTO_CONFIG{/*scale  */ 400,
-								  /*switch */ 100,
+								  /*switch */ 130,
                                   /*winch* */ 500};
 	const Config& getConfig();
 }
