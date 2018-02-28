@@ -42,7 +42,4 @@ public:
 class WinchDisable : public WinchCommand {
 public:
   inline  WinchDisable() : WinchCommand("winch disable",0.0){}
-
-protected:
-    void Execute() override;
 };

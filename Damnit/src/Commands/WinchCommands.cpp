@@ -23,10 +23,5 @@ void WinchCommand::End() {
     Robot::winch->driveWinch(0.0);
 }
 
-WinchDisable::WinchDisable() : InstantCommand("disable winch") {
 
-}
 
-void WinchDisable::Execute() {
-    Robot::winch->driveWinch(0.0);
-}
