@@ -99,7 +99,7 @@ lvuser@roboRIO-3711-FRC:~$ echo "PROTO" > robot_name
 
 
     //frc::SmartDashboard::PutData(RobotMap::subsystem1PowerDistributionPanel1.get());
-    frc::SmartDashboard::PutData(RobotMap::ahrs.get());
+    //frc::SmartDashboard::PutData(RobotMap::ahrs.get());
 
     ReaderBoard::getInstance().reportInit();
 

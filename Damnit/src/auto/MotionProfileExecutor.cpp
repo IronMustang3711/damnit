@@ -73,8 +73,8 @@ void MotionProfileExecutor::Execute() {
         //TODO more diagnostic messages from status
 
 
-        SmartDashboard::PutNumber("profile error: " + t->GetName(),
-                                  t->GetClosedLoopError(SLOT));
+//        SmartDashboard::PutNumber("profile error: " + t->GetName(),
+//                                  t->GetClosedLoopError(SLOT));
 //        SmartDashboard::PutNumber("target: " + t->GetName(),
 //                                  t->GetClosedLoopTarget(SLOT));
 //        SmartDashboard::PutNumber("position: " + t->GetName(),

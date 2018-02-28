@@ -28,5 +28,5 @@ void UpperTilt::reset() {
 }
 
 void UpperTilt::Periodic() {
-    SmartDashboard::PutString("upper_tilt:pid?", GetPIDController()->IsEnabled() ? "yes" : "no");
+    //SmartDashboard::PutString("upper_tilt:pid?", GetPIDController()->IsEnabled() ? "yes" : "no");
 }
