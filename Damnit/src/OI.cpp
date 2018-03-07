@@ -22,14 +22,11 @@
 #include "Commands/GoToSwitch.h"
 #include "Commands/GoToScale.h"
 #include "Commands/CurvatureDrive.h"
-#include "auto/Spin.h"
 #include "auto/DriveForward.h"
-#include "auto/AutonomousCommand.h"
 #include "Commands/ToggleBreaking.h"
 #include "auto/MotionProfileCommand.h"
 #include "OI.h"
 
-#include "auto/AutonomousCommand.h"
 #include "Commands/BucketTiltPosition.h"
 #include "Commands/ClampPosition.h"
 #include "Commands/ClampTiltPosition.h"
@@ -44,7 +41,6 @@
 #include "Commands/GoToScale.h"
 #include "Commands/ResetEncoders.h"
 
-#include "auto/MotionProfileCommand2.h"
 #include "auto/SwitchDumpSequence.h"
 #include "auto/ScaleDumpSequence.h"
 #include "Commands/WinchCommands.h"

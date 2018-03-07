@@ -72,7 +72,7 @@ void Chassis::Periodic() {
 
     if (leftFront->GetControlMode() == ControlMode::MotionMagic
        || leftFront->GetControlMode() == ControlMode ::MotionProfile) {
-        for (const auto t : {leftFront.get()/*, rightFront.get()*/}) {
+        for (const auto t : {leftFront.get(), rightFront.get()}) {
             SmartDashboard::PutNumber("closed loop error: " + t->GetName(), t->GetClosedLoopError(SLOT));
             SmartDashboard::PutNumber("closed loop target: " + t->GetName(), t->GetClosedLoopTarget(SLOT));
 
