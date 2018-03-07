@@ -26,9 +26,9 @@
 
 struct Commands {
 
-    ClampOpen clampOpen;
-    ClampClose clampClose;
-    ToggleCommand clampToggle{"toggle clamp", &clampOpen, &clampClose};
+//    ClampOpen clampOpen;
+//    ClampClose clampClose;
+//    ToggleCommand clampToggle{"toggle clamp", &clampOpen, &clampClose};
 
     ClampTiltToSwitch clampTiltToSwitch;
     ClampTiltToBucket clampTiltToBucket;

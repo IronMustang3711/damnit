@@ -13,7 +13,7 @@
 #include "ReaderBoard.h"
 #include "BucketTiltPosition.h"
 #include "Robot.h"
-
+#include "WPILib.h"
 const struct {
     float armPosition;
     float bucketPosition;
@@ -68,7 +68,7 @@ void BucketTiltPosition::Initialize() {
         if (Robot::upperTilt->GetPosition() > 250) // are we at scale?
             bucketSetpoint = 210; //Robot::bucket->SetSetpoint(210); // dump to scale
         else
-            bucketSetpoint = 80; //Robot::bucket->SetSetpoint(80); // dump to switch
+            bucketSetpoint = 70; //Robot::bucket->SetSetpoint(80); // dump to switch
     }
     if ((m_setpoint != 100) &&  // not gearing position to arm angle
         (fabs(bucketSetpoint - prevPosition) > PIDband)) {

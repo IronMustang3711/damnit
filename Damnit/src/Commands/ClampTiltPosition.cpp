@@ -109,17 +109,17 @@ void ClampTiltPosition::Execute() {
             drivePower = -maxPower;
         Robot::clampTilt->motor->Set(drivePower);
 
-        printf("et,sp,cp,dt,vc,cv,tv,d2s,dv,dp %5.2f %3.0f %3.0f %3.0f %d %3.0f %3.0f %3.0f %3.0f %4.2f \n",
-               elapsedTime,
-               m_setpoint,
-               currentPosition,
-               distanceToTarget,
-               velocityControl,
-               currentVelocity,
-               targetVelocity,
-               distanceToStop,
-               desiredVelocity,
-               drivePower);
+//        printf("et,sp,cp,dt,vc,cv,tv,d2s,dv,dp %5.2f %3.0f %3.0f %3.0f %d %3.0f %3.0f %3.0f %3.0f %4.2f \n",
+//               elapsedTime,
+//               m_setpoint,
+//               currentPosition,
+//               distanceToTarget,
+//               velocityControl,
+//               currentVelocity,
+//               targetVelocity,
+//               distanceToStop,
+//               desiredVelocity,
+//               drivePower);
 
 
     }
