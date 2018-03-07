@@ -2,9 +2,9 @@
 // Created by Jason Markham on 2/20/18.
 //
 
-#include <Commands/BucketTiltPosition.h>
-#include <Subsystems/ClampTilt.h>
-#include <Commands/ClampTiltPosition.h>
+#include "Commands/BucketTiltPosition.h"
+#include "Subsystems/ClampTilt.h"
+#include "Commands/ClampTiltPosition.h"
 #include "SwitchAutos.h"
 #include "SwitchDumpSequence.h"
 #include "DriveForward.h"

@@ -24,6 +24,7 @@
 #include "Commands/DriveWithJoystick.h"
 #include "Commands/CurvatureDrive.h"
 
+//TODO: remove this class!
 struct Commands {
 
     ClampOpen clampOpen;

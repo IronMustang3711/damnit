@@ -18,18 +18,18 @@ ReaderBoard &ReaderBoard::getInstance() {
     return instance;
 }
 
-void ReaderBoard::reportWinch() {
-    getInstance().postMessage("winch","prepare");
-
-}
-
-void ReaderBoard::reportGoToSwitch() {
-    getInstance().postMessage("robot","goToSwitch");
-}
-
-void ReaderBoard::reportGoToScale() {
-    getInstance().postMessage("robot","goToScale");
-}
+//void ReaderBoard::reportWinch() {
+//    getInstance().postMessage("winch","prepare");
+//
+//}
+//
+//void ReaderBoard::reportGoToSwitch() {
+//    getInstance().postMessage("robot","goToSwitch");
+//}
+//
+//void ReaderBoard::reportGoToScale() {
+//    getInstance().postMessage("robot","goToScale");
+//}
 
 //void ReaderBoard::reportClampOpen() {
 //    postMessage("clamp", "open");

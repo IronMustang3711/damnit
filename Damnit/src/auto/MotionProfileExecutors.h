@@ -11,11 +11,6 @@ class CRSwitch : public MotionProfileExecutor {
 public:
     CRSwitch();
 };
-//class CRScale : public  MotionProfileExecutor {
-//public:
-//    CRScale();
-//};
-
 class Straight_10ft : public  MotionProfileExecutor {
 public:
     Straight_10ft();
@@ -28,17 +23,10 @@ class RRSwitch : public  MotionProfileExecutor {
 public:
     RRSwitch();
 };
-
-//class CLScale : public MotionProfileExecutor {
-//public:
-//    CLScale();
-//};
-
 class CLSwitch : public MotionProfileExecutor {
 public:
     CLSwitch();
 };
-
 class LFwd : public MotionProfileExecutor {
 public:
     LFwd();
@@ -51,7 +39,6 @@ class LLSwitch : public MotionProfileExecutor {
 public:
     LLSwitch();
 };
-
 class RFwd : public MotionProfileExecutor {
 public:
     RFwd();

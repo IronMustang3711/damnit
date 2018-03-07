@@ -4,6 +4,7 @@
 
 #pragma once
 #include <Commands/ConditionalCommand.h>
+
 class ToggleCommand  : public frc::ConditionalCommand{
 public:
     ToggleCommand(const llvm::Twine &name, Command *onTrue, Command *onFalse);

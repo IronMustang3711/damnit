@@ -60,11 +60,17 @@ struct ReaderBoard {
     };
 
 
-    static void reportWinch();
+    static inline void reportWinch() {
+        getInstance().postMessage("winch","prepare");
+    };
 
-    static void reportGoToSwitch();
+    static inline void reportGoToSwitch() {
+        getInstance().postMessage("robot","goToSwitch");
+    }
 
-    static void reportGoToScale();
+    static inline void reportGoToScale() {
+        getInstance().postMessage("robot","goToScale");
+    }
 
 private:
     ReaderBoard();

@@ -2,20 +2,20 @@
 // Created by Jason Markham on 2/19/18.
 //
 
-#include <Robot.h>
-#include <Commands/Delay.h>
-#include <Commands/UpperTiltPosition.h>
-#include <Commands/BucketTiltPosition.h>
-#include <Commands/GoToSwitch.h>
-#include <Commands/DumpCube.h>
-#include <Commands/StowBucket.h>
-#include <Commands/GoToScale.h>
-#include <Commands/StowClamp.h>
+#include "Robot.h"
+#include "Commands/Delay.h"
+#include "Commands/UpperTiltPosition.h"
+#include "Commands/BucketTiltPosition.h"
+#include "Commands/GoToSwitch.h"
+#include "Commands/DumpCube.h"
+#include "Commands/StowBucket.h"
+#include "Commands/GoToScale.h"
+#include "Commands/StowClamp.h"
 #include "ScaleDumpSequence.h"
 #include "DriveForward.h"
 
 ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
-
+//TODO clean this up / remove if not being used
 //    Requires(Robot::upperTilt.get());
 //    Requires(Robot::bucket.get());
 

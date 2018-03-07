@@ -2,8 +2,7 @@
 // Created by Jason Markham on 2/16/18.
 //
 
-#include <RobotMap.h>
-#include <Robot.h>
+#include "Robot.h"
 #include "ToggleDirection.h"
 
 ToggleDirection::ToggleDirection() : frc::InstantCommand("toggle direction") {
