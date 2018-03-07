@@ -9,6 +9,7 @@
 #include "MotionProfileExecutors.h"
 #include "SwitchAutos.h"
 #include "ScaleAutos.h"
+#include <networktables/NetworkTableInstance.h>
 
 using namespace frc;
 using namespace std;
@@ -20,10 +21,17 @@ AutoSelector::AutoSelector() {
 
     SmartDashboard::PutData(&chooser);
 
+    //    autoTable = nt::NetworkTableInstance::GetDefault().GetTable("SmartDashboard")->GetSubTable("Auto Modes");
+    //    autoTable->Delete("options");
+    //    nt::NetworkTableInstance::GetDefault().Flush();
+
+   // auto selectedEntry = autoTable->GetEntry("selected");
+
 }
 
 frc::Command *AutoSelector::getCommand() {
     string msg = DriverStation::GetInstance().GetGameSpecificMessage();
+    DriverStation::ReportWarning("msg="+msg);
     bool valid = messageIsValid(msg);
     if (!valid)
         return new DontDoAnything;
@@ -31,12 +39,19 @@ frc::Command *AutoSelector::getCommand() {
 
     bool enableScaleAuto = Preferences::GetInstance()->GetBoolean("auto.scale.enable",false);
 
-    string startPosition = chooser.GetSelected();
 
+   string startPositionRaw = nt::NetworkTableInstance::GetDefault().GetTable("SmartDashboard")
+    		->GetSubTable("robot start position")->GetEntry("selected").GetString("none");
+    string startPosition = chooser.GetSelected();
+    DriverStation::ReportWarning("selected="+startPosition);
+    DriverStation::ReportWarning("startPositionRaw="+startPositionRaw);
+
+    startPosition = startPositionRaw;
     Command* ret=nullptr;
 
     if(startPosition == "left"){
         if(msg[0] == 'L'){
+        //	  ret = new DriveForward();
             ret = new LLSwitchAuto();
         }
         else if(msg[1]=='L' && enableScaleAuto){
@@ -60,15 +75,19 @@ frc::Command *AutoSelector::getCommand() {
     }
     else if(startPosition == "center"){
         if(msg[0] == 'L'){
+        //	  ret = new DriveForward();
             ret = new CLSwitchAuto();
         }
         else if(msg[0] == 'R') {
             ret = new CRSwitchAuto();
+        //	  ret = new DriveForward();
         }
     }
 
     if(ret == nullptr)
         ret = new DontDoAnything();
+
+    DriverStation::ReportWarning("chosen="+ret->GetName());
 
     return ret;
 

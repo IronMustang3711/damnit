@@ -30,7 +30,7 @@ public:
 
 class WinchUp: public WinchCommand {
 public:
-    inline WinchUp() : WinchCommand("winch up",0.8){}
+    inline WinchUp() : WinchCommand("winch up",1.0){}
 };
 
 class WinchDown : public WinchCommand {
