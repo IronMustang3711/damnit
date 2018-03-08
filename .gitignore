@@ -1,2 +1,4 @@
-Damnit/.idea
+.idea/
 build/
+.vs/
+CMakeSettings.json
