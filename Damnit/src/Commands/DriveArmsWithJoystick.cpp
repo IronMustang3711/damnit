@@ -31,9 +31,17 @@ void DriveArmsWithJoystick::Initialize() {
 void DriveArmsWithJoystick::Execute() {
 //	double xAxis = Robot::oi->getControlJoystick()->GetRawAxis(0);
 	double yAxis = Robot::oi->getControlJoystick()->GetRawAxis(1);
+
+	if (Robot::upperTilt->GetPosition() > 450){
+		if (yAxis > 0){
+			yAxis = 0;
+		}
+
+	}
+
 	//SmartDashboard::PutNumber("joyX",xAxis);
 	//SmartDashboard::PutNumber("joyY",yAxis);
-	Robot::upperTilt->upperMotor->Set(yAxis);
+	Robot::upperTilt->upperMotor->Set(yAxis * 0.5);
 }
 
 // Make this return true when this Command no longer needs to run execute()
