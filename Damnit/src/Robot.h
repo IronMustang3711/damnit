@@ -65,6 +65,8 @@ public:
 
 
 private:
+    void updateAllianceColor();
+
 
    // void initAutoChooser();
 

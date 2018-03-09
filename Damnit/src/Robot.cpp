@@ -162,6 +162,7 @@ void Robot::TeleopInit() {
     if (autonomousCommand != nullptr)
         autonomousCommand->Cancel();
     ReaderBoard::reportTeleop();
+    updateAllianceColor();
 }
 
 void Robot::TeleopPeriodic() {
@@ -189,6 +190,29 @@ void Robot::RobotPeriodic() {
     SmartDashboard::PutNumber("Lower", Robot::clampTilt->GetPosition());
     SmartDashboard::PutNumber("Clamp", Robot::clamp->GetPosition());
 
+}
+
+void Robot::updateAllianceColor() {
+	switch (DriverStation::GetInstance().GetAlliance()){
+	case DriverStation::kRed:
+		RobotMap::lightsRed->Set(true);
+		RobotMap::lightsGreen->Set(false);
+		RobotMap::lightsBlue->Set(false);
+
+		break;
+	case DriverStation::kBlue:
+		RobotMap::lightsBlue->Set(true);
+		RobotMap::lightsGreen->Set(false);
+		RobotMap::lightsRed->Set(false);
+
+		break;
+	case DriverStation::kInvalid:
+		RobotMap::lightsGreen->Set(true);
+
+		break;
+
+
+	}
 }
 
 //void Robot::initAutoChooser() {
@@ -275,3 +299,5 @@ void Robot::RobotPeriodic() {
 
 
 START_ROBOT_CLASS(Robot)
+
+
