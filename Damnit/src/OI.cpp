@@ -53,7 +53,7 @@ OI::OI( Commands* commands) {
 	stationButtons.reset(new DriveStation());
 
 	ds_clampToggle.reset(new frc::JoystickButton(stationButtons.get(),1));
-	ds_clampToggle->WhenPressed(new ToggleCommand("clamp toggle",new ClampOpen,new ClampClose));
+	ds_clampToggle->WhenPressed(static_cast<Command*>(new ToggleCommand("clamp toggle",new ClampOpen,new ClampClose)));
 	ds_clampToHome.reset(new frc::JoystickButton(stationButtons.get(),2));
 	ds_clampToHome->WhenPressed(&commands->clampTiltToBucket);
 	ds_clampToCube.reset(new frc::JoystickButton(stationButtons.get(),3));
@@ -76,7 +76,7 @@ OI::OI( Commands* commands) {
 	//TODO: when released, hold position
 
 	toggleClamp.reset(new frc::JoystickButton(controlJoystick.get(), 2));
-	toggleClamp->WhenPressed(new ToggleCommand("clamp toggle",new ClampOpen,new ClampClose));//(new ClampPosition(-1));// toggle special see clampPosition.cpp
+	toggleClamp->WhenPressed(static_cast<Command*>(new ToggleCommand("clamp toggle",new ClampOpen,new ClampClose)));//(new ClampPosition(-1));// toggle special see clampPosition.cpp
 	clamp2Switch.reset(new frc::JoystickButton(controlJoystick.get(), 3));
 	clamp2Switch->WhenPressed(&commands->clampTiltToSwitch); //(new ClampTiltPosition(215));   // clamp to switch
 	clamp2Down.reset(new frc::JoystickButton(controlJoystick.get(), 4));
@@ -158,15 +158,7 @@ OI::OI( Commands* commands) {
 //	frc::SmartDashboard::PutData(new ResetClampTiltEncoder());
 	//frc::SmartDashboard::PutData(new ResetAllEncoders());
 
-   // frc::SmartDashboard::PutData(new Spin());
-   // frc::SmartDashboard::PutNumber("fwd", 12.0);
-   // frc::SmartDashboard::PutData(new DriveForward());
-//	frc::SmartDashboard::PutData(new DumbDriveForward());
-//	frc::SmartDashboard::PutData(new DriveForwardGyroEncoder());
-//    frc::SmartDashboard::PutData(new AutonomousCommand());
-//    frc::SmartDashboard::PutData(new AutoBuilder());
-   // frc::SmartDashboard::PutData(new MotionProfileCommand());
-//	frc::SmartDashboard::PutData(new MotionProfileCommand2());
+
 
 	frc::SmartDashboard::PutData(new SwitchDumpSequence());
 	frc::SmartDashboard::PutData(new ScaleDumpSequence());
