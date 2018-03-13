@@ -42,17 +42,17 @@ void Chassis::Periodic() {
 //	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
 //}));
 
-//    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
-//    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
+    SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
+    SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
 
 //    SmartDashboard::PutNumberArray("encoder velocity",
 //       		llvm::ArrayRef<double>{(double)leftFront->GetSensorCollection().GetQuadratureVelocity(),
 //   									(double)rightFront->GetSensorCollection().GetQuadratureVelocity()});
 
-//    auto vl = (double) leftFront->GetSelectedSensorVelocity(0);
-//    auto vr = (double) rightFront->GetSelectedSensorVelocity(0);
-//    SmartDashboard::PutNumber("encoder velocity(left)", vl);
-//    SmartDashboard::PutNumber("encoder velocity(right)", vr);
+    auto vl = (double) leftFront->GetSelectedSensorVelocity(0);
+    auto vr = (double) rightFront->GetSelectedSensorVelocity(0);
+    SmartDashboard::PutNumber("encoder velocity(left)", vl);
+    SmartDashboard::PutNumber("encoder velocity(right)", vr);
 
    // SmartDashboard::PutNumber("encoder acc(left)", vl - VlPrev);
     //SmartDashboard::PutNumber("encoder acc(right)", vr - VrPrev);
