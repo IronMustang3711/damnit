@@ -47,6 +47,9 @@ class RLScale : public MotionProfileExecutor {
 public:
     RLScale();
 };
-
+class LRScale : public MotionProfileExecutor {
+public:
+    LRScale();
+};
 
 #endif //DAMNIT_MOTIONPROFILEEXECUTORS_H

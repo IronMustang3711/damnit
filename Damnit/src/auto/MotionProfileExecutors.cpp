@@ -15,6 +15,7 @@
 #include "LLSwitch_profile.h"
 #include "RFwd_profile.h"
 #include "RLScale_profile.h"
+#include "LRScale_profile.h"
 
 CRSwitch::CRSwitch() : MotionProfileExecutor("Center->Right Switch",6.0,mp::CRSwitch) {
 
@@ -58,4 +59,8 @@ RFwd::RFwd() : MotionProfileExecutor("right fwd",10,mp::RFwd){
 }
 
 RLScale::RLScale() :MotionProfileExecutor("right->left scale",12,mp::RLScale) {
+}
+
+LRScale::LRScale() : MotionProfileExecutor("left -> right scale",12,mp::LRScale) {
+
 }

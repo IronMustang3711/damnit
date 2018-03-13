@@ -20,6 +20,6 @@ LLScaleAuto::LLScaleAuto() : ScaleAuto(new LLScale){}
 
 RRScaleAuto::RRScaleAuto() : ScaleAuto(new RRScale()) {}
 
-RLScaleAuto::RLScaleAuto() : ScaleAuto(new RLScale()) {
+RLScaleAuto::RLScaleAuto() : ScaleAuto(new RLScale()) {}
 
-}
+LRScaleAuto::LRScaleAuto() : ScaleAuto(new LRScale()) {}

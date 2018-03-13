@@ -29,4 +29,9 @@ class RLScaleAuto : public ScaleAuto {
 public:
     RLScaleAuto();
 };
+
+class LRScaleAuto : public ScaleAuto {
+public:
+    LRScaleAuto();
+};
 #endif //DAMNIT_SCALEAUTOS_H
