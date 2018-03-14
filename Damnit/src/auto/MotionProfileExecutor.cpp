@@ -36,21 +36,22 @@ void MotionProfileExecutor::Initialize() {
 
 
     for (auto t : {left, right}) {
+        t->NeutralOutput();
 
+        t->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,PRIMARY_PID_IDX,TIMEOUT);
 
-        t->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,PRIMARY_PID,TIMEOUT);
+        t->NeutralOutput();
 
-
-
-        t->SelectProfileSlot(SLOT, PRIMARY_PID);
+       //TODO: is this necessary?
+        t->SelectProfileSlot(CLOSED_LOOP_SLOT, PRIMARY_PID_IDX);
         constexpr double FGain = /*1.0*/(0.9/*percent*/ * 1023.0/*10 bit SRX max*/) / 1100.0; /*max v*/
 
-        t->Config_kF(SLOT, FGain, TIMEOUT);
-        t->Config_kP(SLOT, 0.5, TIMEOUT); // 25
-        t->Config_kI(SLOT, 0.0, TIMEOUT);
-        t->Config_kD(SLOT, 0.0, TIMEOUT); //10
+        t->Config_kF(CLOSED_LOOP_SLOT, FGain, TIMEOUT);
+        t->Config_kP(CLOSED_LOOP_SLOT, 0.5, TIMEOUT); // 25
+        t->Config_kI(CLOSED_LOOP_SLOT, 0.0, TIMEOUT);
+        t->Config_kD(CLOSED_LOOP_SLOT, 0.0, TIMEOUT); //10
 
-        t->ConfigAllowableClosedloopError(PRIMARY_PID,10,TIMEOUT);
+        t->ConfigAllowableClosedloopError(PRIMARY_PID_IDX,10,TIMEOUT);
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
@@ -60,7 +61,7 @@ void MotionProfileExecutor::Initialize() {
         t->SetControlFramePeriod(Control_3_General, 10); //TODO: Control_6_MotProfAddTrajPoint?
 
 
-        t->NeutralOutput();
+        t->ChangeMotionControlFramePeriod(5);
 
         t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
 
@@ -68,11 +69,12 @@ void MotionProfileExecutor::Initialize() {
 
 
         t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
-        t->SetSelectedSensorPosition(0, SLOT, TIMEOUT);
+        t->SetSelectedSensorPosition(0, CLOSED_LOOP_SLOT, TIMEOUT);
 
     }
 
     fill();
+
     notifier->StartPeriodic(0.005);
 
     SmartDashboard::PutNumber("profile duration",getNominalDuration());
@@ -110,13 +112,13 @@ void MotionProfileExecutor::Execute() {
 
 
 //        SmartDashboard::PutNumber("profile error: " + t->GetName(),
-//                                  t->GetClosedLoopError(SLOT));
+//                                  t->GetClosedLoopError(CLOSED_LOOP_SLOT));
 //        SmartDashboard::PutNumber("target: " + t->GetName(),
-//                                  t->GetClosedLoopTarget(SLOT));
+//                                  t->GetClosedLoopTarget(CLOSED_LOOP_SLOT));
 //        SmartDashboard::PutNumber("position: " + t->GetName(),
-//                                  t->GetSelectedSensorPosition(SLOT));
+//                                  t->GetSelectedSensorPosition(CLOSED_LOOP_SLOT));
 //        SmartDashboard::PutNumber("velocity: " + t->GetName(),
-//                                  t->GetSelectedSensorVelocity(SLOT));
+//                                  t->GetSelectedSensorVelocity(CLOSED_LOOP_SLOT));
 //
 //        SmartDashboard::PutNumber("trajectory position: " + t->GetName(),
 //                                  t->GetActiveTrajectoryPosition());

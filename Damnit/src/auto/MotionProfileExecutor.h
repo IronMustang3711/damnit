@@ -29,8 +29,8 @@ protected:
 
     void update();
 
-    static constexpr int SLOT = 0;
-    static constexpr int PRIMARY_PID = 0;
+    static constexpr int CLOSED_LOOP_SLOT = 0;
+    static constexpr int PRIMARY_PID_IDX = 0;
     static constexpr int TIMEOUT = 10;
 
     void fill();

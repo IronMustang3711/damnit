@@ -34,10 +34,10 @@ void MotionProfileCommand::Initialize() {
 
         /*
          *
-        t->Config_kP(SLOT, 10.0, TIMEOUT);
-        t->Config_kI(SLOT, 0.0, TIMEOUT);
-        t->Config_kD(SLOT, 0.0, TIMEOUT);
-        t->Config_kF(SLOT, FGain, TIMEOUT);
+        t->Config_kP(CLOSED_LOOP_SLOT, 10.0, TIMEOUT);
+        t->Config_kI(CLOSED_LOOP_SLOT, 0.0, TIMEOUT);
+        t->Config_kD(CLOSED_LOOP_SLOT, 0.0, TIMEOUT);
+        t->Config_kF(CLOSED_LOOP_SLOT, FGain, TIMEOUT);
          */
 
         constexpr double FGain = (1.0/*percent*/ * 1023.0/*10 bit SRX max*/) / 1300.0; /*max v*/
@@ -47,10 +47,10 @@ void MotionProfileCommand::Initialize() {
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 10.0, TIMEOUT);
 
-//        t->Config_kF(SLOT, 0.8, TIMEOUT);
-//        t->Config_kP(SLOT, 20.0, TIMEOUT);
-//        t->Config_kI(SLOT, 0.1, TIMEOUT);
-//        t->Config_kD(SLOT, 30.0, TIMEOUT);
+//        t->Config_kF(CLOSED_LOOP_SLOT, 0.8, TIMEOUT);
+//        t->Config_kP(CLOSED_LOOP_SLOT, 20.0, TIMEOUT);
+//        t->Config_kI(CLOSED_LOOP_SLOT, 0.1, TIMEOUT);
+//        t->Config_kD(CLOSED_LOOP_SLOT, 30.0, TIMEOUT);
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
