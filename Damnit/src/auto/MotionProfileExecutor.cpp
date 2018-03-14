@@ -41,14 +41,14 @@ void MotionProfileExecutor::Initialize() {
 
 
         t->SelectProfileSlot(SLOT, PRIMARY_PID);
-        constexpr double FGain = /*1.0*/(0.9/*percent*/ * 1023.0/*10 bit SRX max*/) / 1000.0; /*max v*/
+        constexpr double FGain = /*1.0*/(0.9/*percent*/ * 1023.0/*10 bit SRX max*/) / 1100.0; /*max v*/
 
         t->Config_kF(SLOT, FGain, TIMEOUT);
         t->Config_kP(SLOT, 0.5, TIMEOUT); // 25
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 0.0, TIMEOUT); //10
 
-        t->ConfigAllowableClosedloopError(PRIMARY_PID,20,TIMEOUT);
+        t->ConfigAllowableClosedloopError(PRIMARY_PID,10,TIMEOUT);
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
