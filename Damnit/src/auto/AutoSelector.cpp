@@ -38,24 +38,28 @@ frc::Command *AutoSelector::getCommand() {
 
 
     bool enableScaleAuto = Preferences::GetInstance()->GetBoolean("auto.scale.enable",false);
+    bool enableOppositeScaleAuto = Preferences::GetInstance()->GetBoolean("auto.scale.opposite.enable",false);
 
 
-   string startPositionRaw = nt::NetworkTableInstance::GetDefault().GetTable("SmartDashboard")
-    		->GetSubTable("robot start position")->GetEntry("selected").GetString("none");
-    string startPosition = chooser.GetSelected();
-    DriverStation::ReportWarning("selected="+startPosition);
-    DriverStation::ReportWarning("startPositionRaw="+startPositionRaw);
+    string startPosition = nt::NetworkTableInstance::GetDefault()
+            .GetTable("SmartDashboard")
+            ->GetSubTable("robot start position")
+            ->GetEntry("selected")
+            .GetString("none");
 
-    startPosition = startPositionRaw;
+    DriverStation::ReportWarning("start position="+startPosition);
+
     Command* ret=nullptr;
 
     if(startPosition == "left"){
         if(msg[0] == 'L'){
-        //	  ret = new DriveForward();
             ret = new LLSwitchAuto();
         }
         else if(msg[1]=='L' && enableScaleAuto){
             ret = new LLScaleAuto();
+        }
+        else if(msg[1]=='R' && enableOppositeScaleAuto){
+            ret = new LRScaleAuto();
         }
         else{
             ret = new LFwd();
@@ -68,6 +72,9 @@ frc::Command *AutoSelector::getCommand() {
         else if(msg[1] == 'R' && enableScaleAuto){
             ret = new RRScaleAuto();
         }
+        else if(msg[1]=='L' && enableOppositeScaleAuto){
+           ret = new RLScaleAuto();
+        }
         else {
             ret = new RFwd();
 
@@ -75,12 +82,10 @@ frc::Command *AutoSelector::getCommand() {
     }
     else if(startPosition == "center"){
         if(msg[0] == 'L'){
-        //	  ret = new DriveForward();
             ret = new CLSwitchAuto();
         }
         else if(msg[0] == 'R') {
             ret = new CRSwitchAuto();
-        //	  ret = new DriveForward();
         }
     }
 
