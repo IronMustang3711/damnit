@@ -2,7 +2,7 @@
 // Created by Jason Markham on 2/19/18.
 //
 
-#include <Robot.h>
+#include "Robot.h"
 #include "MotionProfileExecutor.h"
 
 MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double timeout,const std::vector<mp::Prof>& _profs)
@@ -31,6 +31,7 @@ void MotionProfileExecutor::Initialize() {
     RobotMap::chassisRightRear1->Follow(rRef);
 
     fillIndex = 0;
+    finished = false;
 
 
     for (auto t : {left, right}) {
@@ -53,17 +54,20 @@ void MotionProfileExecutor::Initialize() {
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
         //TODO this can be removed once it's working correctly?
-        t->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_MotionMagic, 10, TIMEOUT);
+        t->SetStatusFramePeriod(StatusFrameEnhanced::Status_10_Targets, 10, TIMEOUT);
 
         t->SetControlFramePeriod(Control_3_General, 10); //TODO: Control_6_MotProfAddTrajPoint?
 
-        t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
-        t->SetSelectedSensorPosition(0, SLOT, TIMEOUT);
-        //TODO: what is the difference between these 2?
+
+        t->NeutralOutput();
 
         t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
 
         t->ClearMotionProfileTrajectories();
+
+
+        t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
+        t->SetSelectedSensorPosition(0, SLOT, TIMEOUT);
 
     }
 
@@ -85,6 +89,7 @@ void MotionProfileExecutor::Execute() {
        // SmartDashboard::PutNumber("top buffer Rem",status.topBufferRem);
         SmartDashboard::PutNumber("top buffer Cnt",status.topBufferCnt);
         SmartDashboard::PutNumber("bottom buffer Cnt",status.btmBufferCnt);
+        SmartDashboard::PutNumber("profile progress %",getPercentCompleted());
 
 
 
@@ -92,8 +97,9 @@ void MotionProfileExecutor::Execute() {
             t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Enable);
         } else if (status.activePointValid && status.isLast) {
             t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Hold);
-            DriverStation::ReportWarning("cancelling: "+GetName());
-            Cancel();
+            DriverStation::ReportWarning("profile finished: "+GetName());
+//            Cancel();
+            finished = true;
         }
 
 
@@ -118,7 +124,7 @@ void MotionProfileExecutor::Execute() {
 }
 
 bool MotionProfileExecutor::IsFinished() {
-    return IsTimedOut();
+    return finished || IsTimedOut();
 }
 
 void MotionProfileExecutor::End() {
@@ -164,6 +170,11 @@ void MotionProfileExecutor::fill() {
 void MotionProfileExecutor::Interrupted() {
     DriverStation::ReportWarning("interrupted: "+this->GetName());
     Command::Interrupted();
+}
+
+double MotionProfileExecutor::getPercentCompleted() {
+    double topBufRemaining = ( left->GetMotionProfileTopLevelBufferCount() + right->GetMotionProfileTopLevelBufferCount()) / 2.0;
+    return ((profiles.size() - fillIndex) + topBufRemaining ) / profiles.size();
 }
 
 

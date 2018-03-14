@@ -12,6 +12,8 @@ public:
     MotionProfileExecutor(const llvm::Twine& name, double timeout,const std::vector<mp::Prof>& profs);
 
 
+    double getPercentCompleted();
+
 protected:
     void Initialize() override;
 
@@ -40,6 +42,7 @@ private:
     const std::vector<mp::Prof>& profiles;
 
     size_t fillIndex = 0;
+    bool finished = false;
 
 };
 
