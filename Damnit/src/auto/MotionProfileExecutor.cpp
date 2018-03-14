@@ -13,6 +13,10 @@ MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double tim
     left = RobotMap::chassisLeftFront.get();
     right = RobotMap::chassisRightFront.get();
 
+
+
+
+
     notifier = std::make_unique<Notifier>(&MotionProfileExecutor::update, this);
 
 
@@ -20,15 +24,31 @@ MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double tim
 
 void MotionProfileExecutor::Initialize() {
     Robot::chassis->prepareForAutonomous();
+    IMotorController& lRef = *left;
+    IMotorController& rRef = *right;
+
+    RobotMap::chassisLeftRear->Follow(lRef);
+    RobotMap::chassisRightRear1->Follow(rRef);
+
     fillIndex = 0;
+
+
     for (auto t : {left, right}) {
-        t->SelectProfileSlot(SLOT, TIMEOUT);
-        constexpr double FGain = (1.0/*percent*/ * 1023.0/*10 bit SRX max*/) / 1300.0; /*max v*/
+
+
+        t->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder,PRIMARY_PID,TIMEOUT);
+
+
+
+        t->SelectProfileSlot(SLOT, PRIMARY_PID);
+        constexpr double FGain = /*1.0*/(0.9/*percent*/ * 1023.0/*10 bit SRX max*/) / 1000.0; /*max v*/
 
         t->Config_kF(SLOT, FGain, TIMEOUT);
-        t->Config_kP(SLOT, 25.0, TIMEOUT);
+        t->Config_kP(SLOT, 0.5, TIMEOUT); // 25
         t->Config_kI(SLOT, 0.0, TIMEOUT);
-        t->Config_kD(SLOT, 10.0, TIMEOUT);
+        t->Config_kD(SLOT, 0.0, TIMEOUT); //10
+
+        t->ConfigAllowableClosedloopError(PRIMARY_PID,20,TIMEOUT);
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
@@ -62,10 +82,17 @@ void MotionProfileExecutor::Execute() {
 
         t->GetMotionProfileStatus(status);
 
+       // SmartDashboard::PutNumber("top buffer Rem",status.topBufferRem);
+        SmartDashboard::PutNumber("top buffer Cnt",status.topBufferCnt);
+        SmartDashboard::PutNumber("bottom buffer Cnt",status.btmBufferCnt);
+
+
+
         if (status.btmBufferCnt > 5) {
             t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Enable);
         } else if (status.activePointValid && status.isLast) {
             t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Hold);
+            DriverStation::ReportWarning("cancelling: "+GetName());
             Cancel();
         }
 
@@ -95,6 +122,9 @@ bool MotionProfileExecutor::IsFinished() {
 }
 
 void MotionProfileExecutor::End() {
+    if(IsTimedOut()){
+        DriverStation::ReportWarning("timed out: "+GetName());
+    }
     notifier->Stop();
 }
 
@@ -129,6 +159,11 @@ void MotionProfileExecutor::fill() {
         fillIndex++;
     }
 
+}
+
+void MotionProfileExecutor::Interrupted() {
+    DriverStation::ReportWarning("interrupted: "+this->GetName());
+    Command::Interrupted();
 }
 
 

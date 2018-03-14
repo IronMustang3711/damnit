@@ -21,10 +21,13 @@ protected:
 
     void End() override;
 
+    void Interrupted() override ;
+
     void update();
 
     typedef std::vector<mp::Prof>::const_iterator ProfIter;
     static constexpr int SLOT = 0;
+    static constexpr int PRIMARY_PID = 0;
     static constexpr int TIMEOUT = 10;
 
     void fill();
