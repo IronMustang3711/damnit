@@ -13,7 +13,8 @@ MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double tim
     left = RobotMap::chassisLeftFront.get();
     right = RobotMap::chassisRightFront.get();
 
-
+    double expected_time = profiles.size() / 100.0;
+    SetTimeout(expected_time + 0.5);
 
 
 
@@ -73,6 +74,8 @@ void MotionProfileExecutor::Initialize() {
 
     fill();
     notifier->StartPeriodic(0.005);
+
+    SmartDashboard::PutNumber("profile duration",getNominalDuration());
 
 
 }
@@ -175,6 +178,11 @@ void MotionProfileExecutor::Interrupted() {
 double MotionProfileExecutor::getPercentCompleted() {
     double topBufRemaining = ( left->GetMotionProfileTopLevelBufferCount() + right->GetMotionProfileTopLevelBufferCount()) / 2.0;
     return ((profiles.size() - fillIndex) + topBufRemaining ) / profiles.size();
+}
+
+//seconds
+double MotionProfileExecutor::getNominalDuration() {
+    return profiles.size() / 100.0;
 }
 
 

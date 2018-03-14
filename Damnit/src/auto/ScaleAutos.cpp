@@ -15,7 +15,7 @@
 
 class WaitForMotionCompletion : public frc::Command {
 public:
-    WaitForMotionCompletion(MotionProfileExecutor* _executor,double _completionPercent = 1.0)
+    explicit WaitForMotionCompletion(MotionProfileExecutor* _executor,double _completionPercent = 1.0)
             : frc::Command(), exec(_executor), completionPercent(_completionPercent)
     {
 

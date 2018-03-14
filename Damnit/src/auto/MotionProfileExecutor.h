@@ -9,10 +9,12 @@
 #pragma once
 class MotionProfileExecutor : public frc::Command{
 public:
+    //TODO: remove timeout
     MotionProfileExecutor(const llvm::Twine& name, double timeout,const std::vector<mp::Prof>& profs);
 
 
     double getPercentCompleted();
+    double getNominalDuration();
 
 protected:
     void Initialize() override;
@@ -27,7 +29,6 @@ protected:
 
     void update();
 
-    typedef std::vector<mp::Prof>::const_iterator ProfIter;
     static constexpr int SLOT = 0;
     static constexpr int PRIMARY_PID = 0;
     static constexpr int TIMEOUT = 10;
