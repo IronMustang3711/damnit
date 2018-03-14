@@ -47,15 +47,15 @@ void Chassis::Periodic() {
         t->GetFaults(faults);
         t->GetStickyFaults(stickyFaults);
 
-        if(faults.HasAnyFault()){
-                DriverStation::ReportWarning("fault! @ "+t->GetName() + " => "+faults.ToString());
+//        if(faults.HasAnyFault()){
+//                DriverStation::ReportWarning("fault! @ "+t->GetName() + " => "+faults.ToString());
+//
+//        }
 
-        }
-
-        if(stickyFaults.HasAnyFault()){
-            DriverStation::ReportWarning("sticky fault! @ "+t->GetName() + " => "+stickyFaults.ToString());
-            t->ClearStickyFaults(TIMEOUT);
-        }
+//        if(stickyFaults.HasAnyFault()){
+//            DriverStation::ReportWarning("sticky fault! @ "+t->GetName() + " => "+stickyFaults.ToString());
+//            t->ClearStickyFaults(TIMEOUT);
+//        }
 
 
     }

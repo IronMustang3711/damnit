@@ -10,9 +10,10 @@
 
 ScaleAuto::ScaleAuto(MotionProfileExecutor *exec) {
     AddSequential(exec);
-    AddSequential(new ScaleDumpSequence());
-    AddSequential(new DriveForward(-6.0),0.7);
-    AddParallel(new ClampTiltToCube());
+    //TODO: cannot cancel a command that is part of a command group
+//    AddSequential(new ScaleDumpSequence());
+//    AddSequential(new DriveForward(-6.0),0.7);
+//    AddParallel(new ClampTiltToCube());
 
 }
 

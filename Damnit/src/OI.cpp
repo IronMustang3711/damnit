@@ -10,6 +10,7 @@
 #include <llvm/raw_ostream.h>
 #include <Commands/Command.h>
 #include <SmartDashboard/SmartDashboard.h>
+#include <auto/MotionProfileExecutors.h>
 
 
 #include "Commands/ToggleCommand.h"
@@ -162,6 +163,7 @@ OI::OI( Commands* commands) {
 
 	frc::SmartDashboard::PutData(new SwitchDumpSequence());
 	frc::SmartDashboard::PutData(new ScaleDumpSequence());
+  //  frc::SmartDashboard::PutData(new Straight_10ft());
 
 
 }
