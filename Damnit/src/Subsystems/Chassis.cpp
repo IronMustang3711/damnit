@@ -37,10 +37,38 @@ void Chassis::InitDefaultCommand() {
 
 void Chassis::Periodic() {
 
+    Faults faults;
+    StickyFaults stickyFaults;
+
+    static bool fff[10]={false};
+
+
+
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
+        t->GetFaults(faults);
+        t->GetStickyFaults(stickyFaults);
+
+        if(faults.HasAnyFault()){
+          //  if(!fff[t->GetDeviceID()]){
+                DriverStation::ReportWarning("fault! @ "+t->GetName() + " => "+faults.ToString());
+          //      fff[t->GetDeviceID()] = true;
+           // }
+
+        }
+
+        if(stickyFaults.HasAnyFault()){
+            DriverStation::ReportWarning("sticky fault! @ "+t->GetName() + " => "+stickyFaults.ToString());
+            t->ClearStickyFaults(TIMEOUT);
+        }
+
+
+    }
+
 //SmartDashboard::PutNumberArray("encoder positions",llvm::ArrayRef<double>({
 //	static_cast<double>(leftFront->GetSelectedSensorPosition(0)),
 //	static_cast<double>(rightFront->GetSelectedSensorPosition(0))
 //}));
+
 
     SmartDashboard::PutNumber("encoder position(left)", (double) leftFront->GetSelectedSensorPosition(0));
     SmartDashboard::PutNumber("encoder position(right)", (double) rightFront->GetSelectedSensorPosition(0));
@@ -64,10 +92,10 @@ void Chassis::Periodic() {
 //                              GetCurrentCommand() == nullptr ? "null" : GetCurrentCommand()->GetName());
 
 //   llvm::SmallVector<double,4> outputs;
-//    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-//    	outputs.push_back(t->GetMotorOutputPercent());
-//    	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
-//    }
+    for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
+    	//outputs.push_back(t->GetMotorOutputPercent());
+    	SmartDashboard::PutNumber("output "+ t->GetName(), t->GetMotorOutputPercent());
+    }
     // SmartDashboard::PutNumberArray("MotorOutputs", outputs);
 
     if (leftFront->GetControlMode() == ControlMode::MotionMagic
