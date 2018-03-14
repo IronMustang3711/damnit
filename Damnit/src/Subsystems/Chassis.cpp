@@ -40,7 +40,6 @@ void Chassis::Periodic() {
     Faults faults;
     StickyFaults stickyFaults;
 
-    static bool fff[10]={false};
 
 
 
@@ -49,10 +48,7 @@ void Chassis::Periodic() {
         t->GetStickyFaults(stickyFaults);
 
         if(faults.HasAnyFault()){
-          //  if(!fff[t->GetDeviceID()]){
                 DriverStation::ReportWarning("fault! @ "+t->GetName() + " => "+faults.ToString());
-          //      fff[t->GetDeviceID()] = true;
-           // }
 
         }
 
