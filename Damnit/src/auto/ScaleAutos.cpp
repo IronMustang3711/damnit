@@ -3,6 +3,7 @@
 //
 
 #include <Commands/Delay.h>
+#include <Commands/ConditionalCommand.h>
 #include "Commands/UpperTiltPosition.h"
 #include "Commands/BucketTiltPosition.h"
 #include "Commands/DumpCube.h"
@@ -34,6 +35,16 @@ protected:
     MotionProfileExecutor* exec;
     Command* cmd;
     double completionPercent;
+};
+
+//attempt at dealing with command group requirement constraints
+//ConditionalCommand inherits and then removes constraints from child commands
+//TODO: figure out how/if this will fix commandgroup issues
+class Damnit : public frc::ConditionalCommand {
+public:
+    explicit Damnit(Command* c) : ConditionalCommand("damnit("+c->GetName()+")", c, nullptr) {}
+    bool Condition() override {return true;}
+
 };
 
 ScaleAuto::ScaleAuto(MotionProfileExecutor *e) : exec(e) {

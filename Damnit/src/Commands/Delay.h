@@ -3,7 +3,7 @@
 
 #include <Commands/TimedCommand.h>
 
-
+//Todo: remove: this is already implemented in wpilib Commands/WaitCommand
 class Delay : public frc::TimedCommand {
 public:
 	explicit Delay(double timeout);
