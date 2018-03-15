@@ -174,6 +174,13 @@ void Chassis::prepareForAutonomous() {
     leftRear->Follow(lRef);
     rightRear1->Follow(rRef);
 
+    leftFront->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
+    rightFront->SetSelectedSensorPosition(0, 0, TIMEOUT);
+
+    leftFront->ClearMotionProfileTrajectories();
+    rightFront->ClearMotionProfileTrajectories();
+
+
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->ConfigVoltageCompSaturation(11.0, TIMEOUT);
         t->EnableVoltageCompensation(true);
@@ -195,7 +202,7 @@ void Chassis::prepareForTeleop() {
 bool Chassis::driveStraightIsOnTarget() {
     double leftErr = leftFront->GetClosedLoopError(SLOT);
     double rightErr = rightFront->GetClosedLoopError(SLOT);
-    llvm::outs() << "err: left=" << leftErr << " right=" << rightErr << " \n";
+  //  llvm::outs() << "err: left=" << leftErr << " right=" << rightErr << " \n";
     return std::abs(leftErr) < 6.0 && std::abs(rightErr) < 6.0;
 
 }

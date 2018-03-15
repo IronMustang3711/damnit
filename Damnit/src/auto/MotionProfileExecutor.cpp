@@ -133,6 +133,7 @@ bool MotionProfileExecutor::IsFinished() {
 }
 
 void MotionProfileExecutor::End() {
+    fillIndex = 0;
     if(IsTimedOut()){
         DriverStation::ReportWarning("timed out: "+GetName());
     }
@@ -179,7 +180,10 @@ void MotionProfileExecutor::Interrupted() {
 
 double MotionProfileExecutor::getPercentCompleted() {
     double topBufRemaining = ( left->GetMotionProfileTopLevelBufferCount() + right->GetMotionProfileTopLevelBufferCount()) / 2.0;
-    return ((profiles.size() - fillIndex) + topBufRemaining ) / profiles.size();
+    double localRemaining = (profiles.size() - fillIndex);
+    double totalRemaining = topBufRemaining + localRemaining;
+
+    return 1.0 - (totalRemaining/profiles.size());
 }
 
 //seconds

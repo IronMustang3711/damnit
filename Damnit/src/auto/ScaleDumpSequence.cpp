@@ -48,6 +48,7 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 //    AddSequential(new StowBucket);
     AddSequential(new GoToScale(),3.0); //Warning: changing timeouts can result in the upper tilt spazzing out.
     AddSequential(new BucketTiltAutoDump());
+    AddSequential(new GoToScale());
     //AddSequential(new DriveForward(6.0));
     //AddParallel(g2);
    // AddSequential(new DumpCube());

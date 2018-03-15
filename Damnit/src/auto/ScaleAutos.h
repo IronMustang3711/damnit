@@ -13,6 +13,8 @@ class MotionProfileExecutor;
 class ScaleAuto : public frc::CommandGroup {
 public:
     explicit ScaleAuto(MotionProfileExecutor* exec);
+    void Initialize() override ;
+    MotionProfileExecutor* exec;
 };
 
 class RRScaleAuto : public ScaleAuto {

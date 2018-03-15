@@ -16,6 +16,7 @@ DriveForward::DriveForward(double distanceInches,double timeout)
 void DriveForward::Initialize() {
     //double amt = distance == 0.0 ? SmartDashboard::GetNumber("fwd", 12.0) : distance;
    // Robot::chassis->disableMotorSafety();
+    Robot::chassis->prepareForAutonomous();
     Robot::chassis->mm_driveForward_init();
     onTargetCount = 0;
 }
