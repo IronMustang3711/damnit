@@ -167,6 +167,13 @@ void Chassis::resetEncoders() {
 
 void Chassis::prepareForAutonomous() {
     stop();
+
+    auto& lRef = *leftFront;
+    auto& rRef = *rightFront;
+
+    leftRear->Follow(lRef);
+    rightRear1->Follow(rRef);
+
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
         t->ConfigVoltageCompSaturation(11.0, TIMEOUT);
         t->EnableVoltageCompensation(true);
