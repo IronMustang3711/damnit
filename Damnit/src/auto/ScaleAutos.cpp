@@ -71,8 +71,9 @@ void ScaleAuto::Initialize() {
 
     auto thing = new WaitForMotionCompletion(exec,new GoToScale(), 0.5);
     thing->Start();
+    thing->SetRunWhenDisabled(true); //TODO TEST!!!!!
     auto thing2 = new WaitForMotionCompletion(exec, new DumpCube(),1.0);
-    thing2->SetRunWhenDisabled(true); //TODO TEST!!!!!
+    //thing2->SetRunWhenDisabled(true);
 
     thing2->Start();
 
