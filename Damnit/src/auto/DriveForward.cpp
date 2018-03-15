@@ -5,8 +5,8 @@
 #include <Robot.h>
 #include "DriveForward.h"
 
-DriveForward::DriveForward(double distanceInches)
-        : Command("Drive Forward(mm)" /*+ std::to_string(distanceInches) + "in)"*/, 5.0), distance{distanceInches} {
+DriveForward::DriveForward(double distanceInches,double timeout)
+        : Command("Drive Forward(mm)" /*+ std::to_string(distanceInches) + "in)"*/, timeout), distance{distanceInches} {
 
     Requires(Robot::chassis.get());
 
