@@ -1,3 +1,4 @@
+#include <DriverStation.h>
 #include "ReaderBoard.h"
 #include "DumpCube.h"
 #include "BucketTiltPosition.h"
@@ -14,4 +15,9 @@ DumpCube::DumpCube() : frc::CommandGroup("Dump Cube") {
 void DumpCube::Initialize() {
 	CommandGroup::Initialize();
 	ReaderBoard::reportDump();
+}
+
+void DumpCube::End() {
+	CommandGroup::End();
+	frc::DriverStation::ReportWarning("DumpCube::End");
 }

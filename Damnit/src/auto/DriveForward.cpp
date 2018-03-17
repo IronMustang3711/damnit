@@ -114,7 +114,7 @@ DumbDriveForward::DumbDriveForward(double time) : TimedCommand("Drive Forward(ti
 
 
 void DumbDriveForward::Execute() {
-    Robot::chassis->curvatureDrive(0.4, 0.0, false);
+    Robot::chassis->curvatureDrive(-0.4, 0.0, false);
 }
 
 void DumbDriveForward::End() {

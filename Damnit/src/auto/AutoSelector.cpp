@@ -52,11 +52,11 @@ frc::Command *AutoSelector::getCommand() {
     Command* ret=nullptr;
 
     if(startPosition == "left"){
-        if(msg[0] == 'L'){
-            ret = new LLSwitchAuto();
-        }
-        else if(msg[1]=='L' && enableScaleAuto){
+        if(msg[1]=='L' && enableScaleAuto){
             ret = new LLScaleAuto();
+        }
+        else if(msg[0] == 'L'){
+            ret = new LLSwitchAuto();
         }
         else if(msg[1]=='R' && enableOppositeScaleAuto){
             ret = new LRScaleAuto();
@@ -66,11 +66,11 @@ frc::Command *AutoSelector::getCommand() {
         }
     }
     else if(startPosition == "right"){
-        if(msg[0] == 'R'){
-            ret = new RRSwitchAuto();
-        }
-        else if(msg[1] == 'R' && enableScaleAuto){
+        if(msg[1] == 'R' && enableScaleAuto){
             ret = new RRScaleAuto();
+        }
+        else if(msg[0] == 'R') {
+            ret = new RRSwitchAuto();
         }
         else if(msg[1]=='L' && enableOppositeScaleAuto){
            ret = new RLScaleAuto();

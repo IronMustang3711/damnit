@@ -110,6 +110,7 @@ lvuser@roboRIO-3711-FRC:~$ echo "PROTO" > robot_name
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit() {
+    //TODO try commenting this stuff out if teleop change doesnt work
     Robot::bucket->Disable();
     Robot::upperTilt->Disable();
     Robot::clampTilt->Disable();
@@ -131,6 +132,7 @@ void Robot::DisabledPeriodic() {
         Robot::bucket->reset();
         Robot::chassis->resetEncoders();
     }
+    Scheduler::GetInstance()->Run();
 }
 
 void Robot::AutonomousInit() {
@@ -159,8 +161,8 @@ void Robot::AutonomousPeriodic() {
 
 void Robot::TeleopInit() {
     Robot::chassis->prepareForTeleop();
-    if (autonomousCommand != nullptr)
-        autonomousCommand->Cancel();
+//    if (autonomousCommand != nullptr)
+//        autonomousCommand->Cancel();
     ReaderBoard::reportTeleop();
     updateAllianceColor();
 }

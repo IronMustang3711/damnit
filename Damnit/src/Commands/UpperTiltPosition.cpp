@@ -156,7 +156,7 @@ bool UpperTiltPosition::IsFinished() {
 // Called once after isFinished returns true
 void UpperTiltPosition::End() {
     Robot::upperTilt->SetOutputRange(-holdPower, holdPower);  // hold at low power
-
+    DriverStation::ReportWarning("UpperTiltPosition::End");
 }
 
 // Called when another command which requires one or more of the same
@@ -173,7 +173,9 @@ UpperTiltToSwitch::UpperTiltToSwitch()
         : UpperTiltPosition(upper_tilt::getConfig().switch_setpoint) {}
 
 UpperTiltToScale::UpperTiltToScale()
-        : UpperTiltPosition(upper_tilt::getConfig().scale_setpoint) {}
+        : UpperTiltPosition(upper_tilt::getConfig().scale_setpoint) {
+    SetRunWhenDisabled(true);
+}
 
 UpperTiltToWinch::UpperTiltToWinch()
         : UpperTiltPosition(upper_tilt::getConfig().winch_setpoint) {}

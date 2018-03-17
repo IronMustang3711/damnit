@@ -4,6 +4,7 @@
 
 #include <Commands/Delay.h>
 #include <Commands/ConditionalCommand.h>
+#include <Robot.h>
 #include "Commands/UpperTiltPosition.h"
 #include "Commands/BucketTiltPosition.h"
 #include "Commands/DumpCube.h"
@@ -47,7 +48,52 @@ public:
 
 };
 
-ScaleAuto::ScaleAuto(MotionProfileExecutor *e) : exec(e) {
+class Hold : public frc::Command {
+public:
+//    double upper = 0;
+//    double bucket = 0;
+    Hold() : frc::Command("hold"){
+        Requires(Robot::upperTilt.get());
+        Requires(Robot::bucket.get());
+        SetRunWhenDisabled(true);
+    }
+    void Initialize() override{
+        Robot::upperTilt->Enable();
+        Robot::bucket->Enable();
+//        upper = Robot::upperTilt.get()->GetSetpoint();// GetPosition();
+//        bucket = Robot::bucket.get()->GetSetpoint();//GetPosition();
+    }
+    void Execute() override  {
+    Robot::upperTilt->Enable();
+    Robot::bucket->Enable();
+        Robot::upperTilt->SetSetpoint(400);
+        Robot::bucket->SetSetpoint(205);
+
+    }
+    bool IsFinished() override {
+        return false;
+    }
+
+};
+
+ScaleAuto::ScaleAuto(MotionProfileExecutor *e) : exec(e)
+{
+
+    goToScale = new GoToScale();
+    goToScale->SetRunWhenDisabled(true);
+    thing = new WaitForMotionCompletion(exec,goToScale, 0.3);
+    thing->SetRunWhenDisabled(true);
+
+    dumpAndBack = new CommandGroup();
+    dumpAndBack->AddSequential(new DumpCube());
+    //dumpAndBack->AddSequential(new Hold());
+    dumpAndBack->AddSequential( new DumbDriveForward(0.5));// DriveForward(-42.0,3.0));
+    dumpAndBack->AddSequential(new StowBucket());
+
+    //     thing2 = new WaitForMotionCompletion(exec, new DumpCube(),1.0);
+    thing2 = new WaitForMotionCompletion(exec, dumpAndBack,1.0);
+
+
 
 //
 
@@ -79,21 +125,8 @@ ScaleAuto::ScaleAuto(MotionProfileExecutor *e) : exec(e) {
 
 void ScaleAuto::Initialize() {
     CommandGroup::Initialize();
-
-    auto thing = new WaitForMotionCompletion(exec,new GoToScale(), 0.5);
     thing->Start();
-    thing->SetRunWhenDisabled(true); //TODO TEST!!!!!
-    auto thing2 = new WaitForMotionCompletion(exec, new DumpCube(),1.0);
-    //thing2->SetRunWhenDisabled(true);
-
     thing2->Start();
-
-//    auto thing2 = new CommandGroup();
-//    thing2->AddSequential(new WaitForMotionCompletion(exec, new DumpCube(),1.0));
-//    thing2->AddSequential(new DriveForward(-32));
-//    thing2->AddSequential(new StowBucket());
-//
-//    thing2->Start();
 }
 
 LLScaleAuto::LLScaleAuto() : ScaleAuto(new LLScale){}

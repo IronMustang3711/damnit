@@ -9,6 +9,7 @@ public:
 
 protected:
 	void Initialize() override ;
+	void End() override ;
 };
 
 #endif  // DumpCube_H
