@@ -136,6 +136,11 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+    if (autonomousCommand != nullptr)
+        autonomousCommand->Cancel();
+
+
+
     // Robot::chassis->prepareForAutonomous();
     llvm::outs() << "starting auto\n";
     ReaderBoard::reportAuto();

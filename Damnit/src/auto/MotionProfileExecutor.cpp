@@ -4,6 +4,9 @@
 
 #include "Robot.h"
 #include "MotionProfileExecutor.h"
+#include <thread>
+#include <chrono>
+using namespace std::chrono_literals;
 
 MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double timeout,const std::vector<mp::Prof>& _profs)
         : frc::Command(name,timeout), profiles(_profs)
@@ -63,22 +66,25 @@ void MotionProfileExecutor::Initialize() {
 
         t->ChangeMotionControlFramePeriod(5);
 
-        t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
-
         t->ClearMotionProfileTrajectories();
 
+        t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Disable);
 
-        t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
-        t->SetSelectedSensorPosition(0, CLOSED_LOOP_SLOT, TIMEOUT);
+
+
+       // t->GetSensorCollection().SetQuadraturePosition(0, TIMEOUT);
+        //t->SetSelectedSensorPosition(0, CLOSED_LOOP_SLOT, TIMEOUT);
+
+       frc::Wait(0.2);
+
 
     }
+    DriverStation::ReportWarning("init: "+GetName());
+    SmartDashboard::PutNumber("profile duration",getNominalDuration());
 
     fill();
 
     notifier->StartPeriodic(0.005);
-
-    SmartDashboard::PutNumber("profile duration",getNominalDuration());
-
 
 }
 
@@ -96,6 +102,7 @@ void MotionProfileExecutor::Execute() {
         SmartDashboard::PutNumber("bottom buffer Cnt",status.btmBufferCnt);
         SmartDashboard::PutNumber("profile progress %",getPercentCompleted());
 
+        t->Set(ControlMode::MotionProfile, SetValueMotionProfile::Enable);
 
 
         if (status.btmBufferCnt > 5) {
@@ -138,6 +145,7 @@ void MotionProfileExecutor::End() {
         DriverStation::ReportWarning("timed out: "+GetName());
     }
     notifier->Stop();
+    DriverStation::ReportWarning("end: "+GetName());
 }
 
 void MotionProfileExecutor::update() {
