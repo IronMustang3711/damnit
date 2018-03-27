@@ -17,7 +17,6 @@
 #include "Commands/CurvatureDrive.h"
 #include "auto/DriveForward.h"
 #include "Commands/ToggleBreaking.h"
-#include "auto/MotionProfileCommand.h"
 #include "OI.h"
 
 #include "Commands/BucketTiltPosition.h"

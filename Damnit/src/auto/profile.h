@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <array>
-//TODO: remove unused stuff!
 namespace mp {
 
     constexpr double TIME_STEP = 0.01;
@@ -18,11 +16,5 @@ namespace mp {
     };
 
 
-    typedef std::array<Prof, 592> RIGHT_TO_SWITCH_PROFS_t;
-    typedef std::array<Prof,1046> RIGHT_TO_SCALE_PROFS_t;
-    typedef std::array<Prof,728> CENTER_TO_RIGHT_SWTICH_t;
-//todo: constexpr
-    extern RIGHT_TO_SWITCH_PROFS_t PROFS;
 
-    extern RIGHT_TO_SCALE_PROFS_t RIGHT_HOOK_TO_SCALE;
 }
