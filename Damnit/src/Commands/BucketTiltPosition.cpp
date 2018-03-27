@@ -84,7 +84,6 @@ void BucketTiltPosition::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void BucketTiltPosition::Execute() {
-    double currentPosition = Robot::bucket->GetPosition(); //TODO: should this be used?
     double currentTime = Timer::GetFPGATimestamp();
     elapsedTime = currentTime - startTime;
 
@@ -118,7 +117,7 @@ void BucketTiltPosition::Execute() {
 //		SmartDashboard::PutNumber("bucketSetpoint", bucketSetpoint);
     } else {
         // now determine if we are in velocity or position control.
-        currentPosition = Robot::bucket->GetPosition();
+       double currentPosition = Robot::bucket->GetPosition();
         double distanceToTarget = bucketSetpoint - currentPosition;
         //SmartDashboard::PutNumber("Upper", currentPosition);
 
