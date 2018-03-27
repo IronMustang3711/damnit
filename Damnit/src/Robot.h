@@ -67,19 +67,6 @@ public:
 private:
     void updateAllianceColor();
 
-
-   // void initAutoChooser();
-
-    //frc::Command* getAutoCommand();
-
-   // std::shared_ptr<nt::NetworkTable> autoTable;
-
-
-//     std::map<std::string, frc::Command *> autos;
-//    std::vector<std::string> keys;
-
-    Commands* commands;
-
     std::unique_ptr<AutoSelector> autoSelector;
 
 };
