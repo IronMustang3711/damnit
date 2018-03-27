@@ -38,6 +38,11 @@ void DriveArmsWithJoystick::Execute() {
 		}
 
 	}
+	if(yAxis < 0){
+		yAxis *= 0.5;
+	} else {
+		//yAxis *= 0.7;
+	}
 
 	//SmartDashboard::PutNumber("joyX",xAxis);
 	//SmartDashboard::PutNumber("joyY",yAxis);
