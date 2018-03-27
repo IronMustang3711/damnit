@@ -27,8 +27,6 @@ class AutoSelector; //#include "auto/AutoSelector.h"
 
 class Robot : public frc::TimedRobot {
 public:
-    static bool isCompetitionRobot;
-
     frc::Command *autonomousCommand = nullptr;
 
     static std::unique_ptr<OI> oi;

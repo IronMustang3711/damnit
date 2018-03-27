@@ -1,14 +1,14 @@
 
 #include <PIDController.h>
-#include <Robot.h>
-#include <ReaderBoard.h>
+#include "RobotConfig.h"
+#include "ReaderBoard.h"
 
 #include "Clamp.h"
 #include "RobotMap.h"
 
 Clamp::Clamp() : PIDSubsystem("Clamp", 0.02, 0.0, 0.0) {
 
-    if(!Robot::isCompetitionRobot){
+    if(!RobotConfig::IsCompetitionRobot()){
         open_setpoint = PROTO_OPEN_SETPOINT;
         close_setpoint = PROTO_CLOSE_SETPOINT;
     }

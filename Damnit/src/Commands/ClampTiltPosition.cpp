@@ -10,6 +10,7 @@
 
 
 
+#include "RobotConfig.h"
 #include "ReaderBoard.h"
 #include "ClampTiltPosition.h"
 #include "Robot.h"
@@ -150,7 +151,7 @@ void ClampTiltPosition::Interrupted() {
 }
 
 const clamp_tilt::Config &clamp_tilt::getConfig() {
-    return Robot::isCompetitionRobot ? clamp_tilt::COMPETITION_CONFIG : clamp_tilt::PROTO_CONFIG;
+    return RobotConfig::IsCompetitionRobot() ? clamp_tilt::COMPETITION_CONFIG : clamp_tilt::PROTO_CONFIG;
 }
 
 ClampTiltToSwitch::ClampTiltToSwitch() :

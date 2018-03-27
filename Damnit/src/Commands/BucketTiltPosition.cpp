@@ -10,10 +10,11 @@
 
 
 
+#include "RobotConfig.h"
 #include "ReaderBoard.h"
 #include "BucketTiltPosition.h"
 #include "Robot.h"
-#include "WPILib.h"
+#include <WPILib.h>
 const struct {
     float armPosition;
     float bucketPosition;
@@ -197,7 +198,7 @@ void BucketTiltPosition::Interrupted() {
 }
 
 const bucket_tilt::Config &bucket_tilt::getConfig() {
-    return Robot::isCompetitionRobot ? bucket_tilt::COMPETITION_CONFIG : bucket_tilt::PROTO_CONFIG;
+    return RobotConfig::IsCompetitionRobot() ? bucket_tilt::COMPETITION_CONFIG : bucket_tilt::PROTO_CONFIG;
 }
 
 BucketTiltToSwitch::BucketTiltToSwitch() :

@@ -11,7 +11,8 @@ constexpr inline double inches_to_encoder_ticks(double inches) {
 
 #include <cmath>
 #include <llvm/raw_ostream.h>
-#include <Robot.h>
+#include "Robot.h"
+#include "RobotConfig.h"
 #include "Chassis.h"
 #include "RobotMap.h"
 #include "Commands/DriveWithJoystick.h"
@@ -265,5 +266,5 @@ Chassis::Chassis() : Chassis(chassis_config::getConfig().rotation_correction) {
 
 
 const chassis_config::Config &chassis_config::getConfig() {
-    return Robot::isCompetitionRobot ? chassis_config::COMPETITION_CONFIG : chassis_config::PROTO_CONFIG;
+    return RobotConfig::IsCompetitionRobot() ? chassis_config::COMPETITION_CONFIG : chassis_config::PROTO_CONFIG;
 }

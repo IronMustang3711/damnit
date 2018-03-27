@@ -44,7 +44,7 @@ public:
 
     void Initialize() override;
 
-    virtual void Execute() override;
+    void Execute() override;
 
     bool IsFinished() override;
 
