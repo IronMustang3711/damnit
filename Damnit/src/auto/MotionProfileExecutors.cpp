@@ -17,8 +17,14 @@
 #include "RLScale_profile.h"
 #include "LRScale_profile.h"
 
-CRSwitch::CRSwitch() : MotionProfileExecutor("Center->Right Switch",8.0,mp::CRSwitch) {
+#include "MotionProfileStreamer.h"
+#include <array>
 
+CRSwitch::CRSwitch() : MotionProfileExecutor("Center->Right Switch",8.0,mp::CRSwitch) {
+    std::array<mp::Prof,1> profs{mp::Prof()};
+    Command* c = new MotionProfileStreamer<decltype(profs.begin())>(profs.begin(),profs.end());
+    Command* c2 = new MotionProfileStreamer<decltype(profs.rbegin())>(profs.rbegin(),profs.rend());
+    Command* c3 = new MotionProfileStreamer<decltype(mp::CRSwitch.begin())>(mp::CRSwitch.begin(),mp::CRSwitch.end());
 }
 
 
