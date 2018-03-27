@@ -3,7 +3,6 @@
 //
 
 #include "Robot.h"
-#include "Commands/Delay.h"
 #include "Commands/UpperTiltPosition.h"
 #include "Commands/BucketTiltPosition.h"
 #include "Commands/GoToSwitch.h"
@@ -20,7 +19,7 @@ ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
 //    Requires(Robot::bucket.get());
 
     auto g2 = new frc::CommandGroup();
-    g2->AddSequential(new Delay(1.0));
+    g2->AddSequential(new TimedCommand(1.0));
     g2->AddSequential(new DumpCube());
     g2->AddSequential(new StowBucket());
 

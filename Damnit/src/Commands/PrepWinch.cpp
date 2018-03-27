@@ -7,7 +7,6 @@
 #include "PrepWinch.h"
 #include "UpperTiltPosition.h"
 #include "BucketTiltPosition.h"
-#include "Delay.h"
 #include "BucketTiltPosition.h"
 #include "StowClamp.h"
 PrepWinch::PrepWinch() : frc::CommandGroup("prepare winch for latching") {
@@ -19,7 +18,7 @@ PrepWinch::PrepWinch() : frc::CommandGroup("prepare winch for latching") {
    // The two above were added by Scott, please double check
 
     auto g2 = new frc::CommandGroup();
-    g2->AddSequential(new Delay(0.5));
+    g2->AddSequential(new TimedCommand(0.5));
     g2->AddParallel(new BucketTiltToWinch());//(new BucketTiltPosition(217)); //212
 
    // The two below were added by Scott, please double check
