@@ -59,7 +59,6 @@ void Clamp::close() {
 }
 
 void Clamp::Periodic() {
-    //TODO: remove when chattering issue is resolved.
 //    SmartDashboard::PutString("clamp command", GetCurrentCommand() == nullptr ? "null" : GetCurrentCommand()->GetName());
 //    SmartDashboard::PutNumber("clamp err",GetPIDController()->GetError());
 //    SmartDashboard::PutNumber("clamp delta setpoint",GetPIDController()->GetDeltaSetpoint());

@@ -93,7 +93,6 @@ void Robot::RobotInit() {
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit() {
-    //TODO try commenting this stuff out if teleop change doesnt work
     Robot::bucket->Disable();
     Robot::upperTilt->Disable();
     Robot::clampTilt->Disable();

@@ -14,7 +14,6 @@
 #include "DriveForward.h"
 
 ScaleDumpSequence::ScaleDumpSequence() : frc::CommandGroup("scale dump") {
-//TODO clean this up / remove if not being used
 //    Requires(Robot::upperTilt.get());
 //    Requires(Robot::bucket.get());
 

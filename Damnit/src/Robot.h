@@ -22,7 +22,6 @@
 
 #include "OI.h"
 
-//TODO: investigate forward-declaring subsystem types for reduced comilation time
 class AutoSelector; //#include "auto/AutoSelector.h"
 
 class Robot : public frc::TimedRobot {

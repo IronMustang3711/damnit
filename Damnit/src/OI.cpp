@@ -115,7 +115,7 @@ OI::OI() {
 
 //	winchStop.reset(new JoystickButton(controlJoystick.get(),9));
 //	winchStop->WhileHeld(new WinchDisable);
-    //TODO: should the controller joystick have a winch stop also?
+    //TODO: should the controller joystick have a winch stop also? see above.
 
     dwinchPrep.reset(new frc::JoystickButton(driveJoystick.get(), 5));
     dwinchPrep->WhenPressed(new PrepWinch);

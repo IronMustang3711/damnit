@@ -9,7 +9,7 @@
 #pragma once
 class MotionProfileExecutor : public frc::Command{
 public:
-    //TODO: remove timeout
+    //TODO: remove timeout parameter - calculate from profile
     MotionProfileExecutor(const llvm::Twine& name, double timeout,const std::vector<mp::Prof>& profs);
 
 

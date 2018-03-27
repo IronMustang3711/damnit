@@ -92,7 +92,6 @@ void MotionProfileCommand::Execute() {
             DriverStation::ReportError("something weird happening in MotionProfileCommand::Execute");
         }
 
-        //TODO more diagnostic messages from status
 
 
         SmartDashboard::PutNumber("error: " + t->GetName(),

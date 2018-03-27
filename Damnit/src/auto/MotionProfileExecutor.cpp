@@ -45,7 +45,6 @@ void MotionProfileExecutor::Initialize() {
 
         t->NeutralOutput();
 
-       //TODO: is this necessary?
         t->SelectProfileSlot(CLOSED_LOOP_SLOT, PRIMARY_PID_IDX);
         constexpr double FGain = /*1.0*/(0.9/*percent*/ * 1023.0/*10 bit SRX max*/) / 1100.0; /*max v*/
 

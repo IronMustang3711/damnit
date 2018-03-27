@@ -18,7 +18,7 @@
 namespace bucket_tilt {
 
     struct Config {
-        double home_setpoint = -17;  //TODO test me! possible values: -6, -14,-15,-20
+        double home_setpoint = -17;
         double winch_prep_setpoint = 212;
         double switch_setpoint = 150;
         double scale_setpoint = 205;
@@ -73,8 +73,6 @@ private:
     bool velocityControl = false;  // velocity or PID distance control
 
 };
-
-//TODO: remove unused!
 
 class BucketTiltToSwitch : public BucketTiltPosition {
 public:
