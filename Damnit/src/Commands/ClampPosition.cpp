@@ -94,7 +94,7 @@ AbstractClampCommand::AbstractClampCommand(std::string name, double timeout) : f
 
 bool AbstractClampCommand::IsFinished() {
     if(IsTimedOut()){
-        DriverStation::ReportWarning(GetName() + " timed out");
+        //DriverStation::ReportWarning(GetName() + " timed out");
         return true;
     }
     return Robot::clamp->OnTarget();
