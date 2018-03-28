@@ -129,7 +129,7 @@ void Chassis::TeleopDrive(std::shared_ptr<Joystick> stickPosition) {
 void Chassis::mm_driveForward_init() {
     prepareForAutonomous();
     for (const auto t : {leftFront.get(), leftRear.get(), rightFront.get(), rightRear1.get()}) {
-        t->Config_kP(SLOT, 10.0, TIMEOUT); //TODO: this probably needs to be changed for the proto bot
+        t->Config_kP(SLOT, 10.0, TIMEOUT); //TODO: parameterize & recalibrate for proto & competition
         t->Config_kI(SLOT, 0.0, TIMEOUT);
         t->Config_kD(SLOT, 0.0, TIMEOUT);
         t->Config_kF(SLOT, FGain, TIMEOUT);
