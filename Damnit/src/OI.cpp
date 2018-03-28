@@ -72,7 +72,7 @@ OI::OI() {
     auto autoDump = new BucketTiltAutoDump();
     autoDump->SetInterruptible(false);
     ds_dump->WhileHeld(autoDump);
-    ds_dump->WhenReleased(new BucketTiltAllTheWayBack);
+    ds_dump->WhenReleased(new BucketTiltAutoLevel);
 
     driveArms.reset(new frc::JoystickButton(controlJoystick.get(), 1)); // %rod
     driveArms->WhileHeld(new DriveArmsWithJoystick);
@@ -94,9 +94,9 @@ OI::OI() {
     goToScale->WhenPressed(new GoToScale);  // bucket to scale.
 
     dumpCube.reset(new frc::JoystickButton(controlJoystick.get(), 8));
-    dumpCube->WhileHeld(new BucketTiltAutoDump);
-    dumpCube->WhenReleased(new BucketTiltAllTheWayBack);
-    //dumpCube->WhenPressed(new DumpCube);
+//    dumpCube->WhileHeld(new BucketTiltAutoDump);
+//    dumpCube->WhenReleased(new BucketTiltAllTheWayBack);
+    dumpCube->WhenPressed(new DumpCube);
     // dump, delay and home bucket
     stowBucket.reset(new frc::JoystickButton(controlJoystick.get(), 9));
     stowBucket->WhenPressed(new StowBucket);  // Stow clamp, then bucket
