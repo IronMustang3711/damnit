@@ -31,7 +31,7 @@ private:
     double open_setpoint = 140.0;
     double close_setpoint = 0.0;
 
-    static constexpr double PROTO_OPEN_SETPOINT = 140.0;
+    static constexpr double PROTO_OPEN_SETPOINT = 160.0;
     static constexpr double PROTO_CLOSE_SETPOINT = 0.0;
 
     static constexpr double MAX_OUT = 0.7;
