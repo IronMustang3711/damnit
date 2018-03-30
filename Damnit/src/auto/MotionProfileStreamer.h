@@ -7,6 +7,9 @@
 #include "profile.h"
 #include "Robot.h"
 #include <iterator>
+#include <llvm/ArrayRef.h>
+#include <iterator>
+
 
 template
         <typename Iter>
@@ -152,6 +155,40 @@ public:
     bool IsFinished() override {
         return IsTimedOut();
     }
+
+
+
+
+
 };
+
+namespace mp {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#pragma GCC diagnostic ignored "-Wunused-but-set-variable"
+    constexpr inline bool constexprTestPart(){
+        constexpr std::array<mp::Prof, 1> profs{mp::Prof()};
+        static_assert(mp::profCompileTest(),"profCompileTest");
+
+//
+//        Command *c = new MotionProfileStreamer<decltype(profs.begin())>(profs.begin(), profs.end());
+//        Command *c2 = new MotionProfileStreamer<decltype(profs.rbegin())>(profs.rbegin(), profs.rend());
+
+        return true;
+    }
+    inline void compileTest() {
+        mp::constexprTestPart();
+
+        std::array<mp::Prof, 1> profs{mp::Prof()};
+         std::vector<mp::Prof> profVector{};
+        auto bi = std::back_inserter(profVector);
+
+        Command *c = new MotionProfileStreamer<decltype(profs.begin())>(profs.begin(), profs.end());
+        Command *c2 = new MotionProfileStreamer<decltype(profs.rbegin())>(profs.rbegin(), profs.rend());
+        Command *c3 = new MotionProfileStreamer<decltype(profVector.begin())>(profVector.begin(),profVector.end());
+
+    }
+#pragma GCC diagnostic pop
+}
 
 

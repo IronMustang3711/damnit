@@ -3,3 +3,9 @@
 //
 
 #include "MotionProfileStreamer.h"
+
+static_assert(mp::constexprTestPart(), "?!");
+
+ void something() {
+    mp::compileTest(); //TODO: remove once working
+}
