@@ -55,7 +55,7 @@ set(CMAKE_INSTALL_RPATH
 
 
 
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp src/*.h)
 
 
 add_executable(FRCUserProgram ${SOURCE_FILES} )
