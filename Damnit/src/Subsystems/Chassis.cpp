@@ -123,6 +123,12 @@ void Chassis::TeleopDrive(std::shared_ptr<Joystick> stickPosition) {
     z = pow(z, 3);
     z = z * 0.6;
     z += rotation_correction * y;
+
+    if(stickPosition->GetRawButton(1)){
+        y *= 0.5;
+        z *= 0.5;
+    }
+
     differentialDrive->ArcadeDrive(y, z, false);
 }
 
