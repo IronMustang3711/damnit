@@ -6,7 +6,6 @@
 #include "MotionProfileExecutor.h"
 #include <thread>
 #include <chrono>
-using namespace std::chrono_literals;
 
 MotionProfileExecutor::MotionProfileExecutor(const llvm::Twine &name, double timeout,const std::vector<mp::Prof>& _profs)
         : frc::Command(name,timeout), profiles(_profs)
@@ -53,7 +52,7 @@ void MotionProfileExecutor::Initialize() {
         t->Config_kI(CLOSED_LOOP_SLOT, 0.0, TIMEOUT);
         t->Config_kD(CLOSED_LOOP_SLOT, 0.0, TIMEOUT); //10
 
-       // t->ConfigAllowableClosedloopError(PRIMARY_PID_IDX,10,TIMEOUT);
+        t->ConfigAllowableClosedloopError(PRIMARY_PID_IDX,5,TIMEOUT);
 
         t->ConfigMotionProfileTrajectoryPeriod(0, TIMEOUT); //duration already set in profile array
 
