@@ -3,12 +3,10 @@
 //
 
 #include "MotionProfileExecutors.h"
-#include "CRScale_profile.h"
 #include "CRSwitch_profile.h"
 #include "DriveStraight_10ft_profile.h"
 #include "RRScale_profile.h"
 #include "RRSwitch_profile.h"
-#include "CLScale_profile.h"
 #include "CLSwitch_profile.h"
 #include "LFwd_profile.h"
 #include "LLScale_profile.h"
